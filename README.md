@@ -66,7 +66,7 @@ For our project, an agent-based model is the most satisfying because there we ca
 
 For the measurements of the corridor, we'll go to the main station and measure it one afternoon when it's not fully crowded. We also could count the rate of incoming and leaving people during a rather relaxed afternoon and a crowded rush-hour.
 
-## Version / Want-to-do-List
+## Want-to-do-List
 
 * Theiler geht nochmals alle Fragen durch, haben wir zu allem etwas? Rechtschreibung bisher ok.
 * Group name, any ideas?
