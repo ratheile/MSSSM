@@ -1,5 +1,5 @@
 # MATLAB HS12 – Research Plan
-Version info: the submitted version, 2012-10-21 21h
+Version info: the submitted and approved version, 2012-10-24 17h
 
 * Group Name: Mayara
 * Group participants names: Moser Manuel (Mathematics BSc, 3rd Sem), Suter Yannick (Chemistry BSc, 5th Sem), Theiler Raffael (Informatics BSc, 3rd Sem)
@@ -33,6 +33,7 @@ We think that in our simulation we'll have to deal with massive jams because the
 
 Just some ideas where to get inspiration from:
 * Project Suggestions - 16 - Pedestrian Dynamics - 5 papers (01.10.2012)
+* Mehdi Moussaid Publications - http://mehdimoussaid.com/publications.html (24.10.2012)
 * Crowd-Flow-Optimization - FS2012 - https://github.com/nfloery/crowd-flow-optimization  (01.10.2012)
 * Train Jamming - FS2011 - https://github.com/msssm/Train_Jammin  (01.10.2012)
 * Airplane Evacuation / FS2011 https://github.com/msssm/Airplane_Evacuation_2011_FS  (01.10.2012)
