@@ -32,7 +32,7 @@ We think that in our simulation we'll have to deal with massive jams because the
 ## References 
 
 Just some ideas where to get inspiration from:
-* Project Suggestions - 16 - Pedestrian Dynamics - 5 papers (01.10.2012)
+* Project Suggestions - 16 - Pedestrian Dynamics - 5 papers - http://www.soms.ethz.ch/teaching/MatlabFall2012/projects/16-Pedestrian_Dynamics.zip - (01.10.2012)
 * Mehdi Moussaid Publications - http://mehdimoussaid.com/publications.html (24.10.2012)
 * Crowd-Flow-Optimization - FS2012 - https://github.com/nfloery/crowd-flow-optimization  (01.10.2012)
 * Train Jamming - FS2011 - https://github.com/msssm/Train_Jammin  (01.10.2012)
