@@ -3,10 +3,10 @@ classdef agent < handle
     %   Detailed explanation goes here
     
     properties(GetAccess = public, SetAccess = public)
-       radius % Grösse des Agents
-       cordX %Momentane X Koordinate
-       cordY %Momentane Y Koordinate
-       maxSpeed %Maximale geschwidigkeit des Agents
+       radius % Grösse des Agents in Meter
+       cordX %Momentane X Koordinate in Meter
+       cordY %Momentane Y Koordinate in Meter
+       maxSpeed %Maximale Geschwindigkeit des Agents in Meter pro Sekunde
        priority %Priorität des Agents; in welcher Reihenfolge er später iteriert wird
     end
     
