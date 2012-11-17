@@ -1,4 +1,4 @@
-classdef agent
+classdef agent < handle
     %AGENT Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -11,7 +11,7 @@ classdef agent
     end
     
     methods(Access = public)
-        function obj=agent(radius, cordX, cordY, maxSpeed, priority) %Konstruktor 
+        function obj = agent(radius, cordX, cordY, maxSpeed, priority) %Konstruktor 
             obj.radius = radius;
             obj.cordX = cordX;
             obj.cordY = cordY;
@@ -25,12 +25,6 @@ classdef agent
            obj.cordY = obj.cordY + yPlus;                       
         end
         
-    end
-    
-    
-    methods(Access = private)
-        function privateFunct(da)
-        end
     end
     
 end
