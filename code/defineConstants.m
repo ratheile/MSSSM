@@ -1,16 +1,18 @@
-function [] = Untitled10()
+function [] = defineConstants()
 %UNTITLED10 Summary of this function goes here
 %   Detailed explanation goes here
 %Definition von Konstanten
 
-    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT
-    XSCOPE = 100;
-    XRES = 0.01;%Definiert die möglichen Winkel für die Logikfunktion
+    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT HEIGHT SLOPEFACTOR
+    XSCOPE = 10;
+    XRES = 0.001;%Definiert die möglichen Winkel für die Logikfunktion
     XVALUES = -XSCOPE:XRES:XSCOPE;
-    breite = 10; %sigma der Gaussfunktion
+    breite = 1; %sigma der Gaussfunktion
     GAUSSANGLE = gaussmf(XVALUES,[breite 0]);
     ANGLE = atan(XVALUES);
     DELTAT = 0.1; %Iterationsschritte in Sekunden
+    HEIGHT = 0.4; %Normierung bei der Berechnung der Logik
+    SLOPEFACTOR = 10;
 
 
 end

@@ -7,6 +7,7 @@ classdef agent < handle
        cordX %Momentane X Koordinate in Meter
        cordY %Momentane Y Koordinate in Meter
        maxSpeed %Maximale Geschwindigkeit des Agents in Meter pro Sekunde. + heisst nach oben, - nach unten
+       actSpeed %Aktuelle Geschwindigkeit des Agents in Meter pro Sekunde
        priority %Priorität des Agents; in welcher Reihenfolge er später iteriert wird
     end
     
@@ -16,6 +17,7 @@ classdef agent < handle
             obj.cordX = cordX;
             obj.cordY = cordY;
             obj.maxSpeed = maxSpeed;
+            obj.actSpeed = maxSpeed;
             obj.priority = priority;
         end
         function obj = addX(obj, xPlus)
