@@ -6,7 +6,7 @@ classdef agent < handle
        radius % Grösse des Agents in Meter
        cordX %Momentane X Koordinate in Meter
        cordY %Momentane Y Koordinate in Meter
-       maxSpeed %Maximale Geschwindigkeit des Agents in Meter pro Sekunde
+       maxSpeed %Maximale Geschwindigkeit des Agents in Meter pro Sekunde. + heisst nach oben, - nach unten
        priority %Priorität des Agents; in welcher Reihenfolge er später iteriert wird
     end
     
