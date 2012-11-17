@@ -7,3 +7,4 @@ XRES = 0.01;%Definiert die möglichen Winkel für die Logikfunktion
 XVALUES = -XSCOPE:XRES:XSCOPE;
 GAUSSANGLE = gaussmf(XVALUES,[1 0]);
 ANGLE = atan(XVALUES);
+DELTAT = 0.1; %Iterationsschritte in Sekunden
