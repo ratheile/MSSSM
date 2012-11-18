@@ -1,10 +1,10 @@
-% ag = agent.empty(5,0) %Array von 2 leeren agents
-% ag(1) = agent(1,0,0,0.1,1);
-% ag(2) = agent(1,0,3,0.1,1);
-% ag(3) = agent(1,2,2,0.1,1);
+% ag = agent.empty(5,0); %Array von 2 leeren agents
+% ag(1) = agent(1,0,0,1,1);
+% ag(2) = agent(1,0,3,-1,1);
+% ag(3) = agent(1,2,2,1,1);
 % ag(4) = agent(1,6,2,0.1,0);
 % ag(5) = agent(1,7,2,0.1,0);
-% prio = getPriorityArray(ag)
+% prio = getPriorityArray(ag);
 %prioArray = [1,1,1,0,0]
 
 %function [ agentsArrayOut ] = logikFunktion( agentsArrayIn, wallArray )
@@ -16,7 +16,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
 %   influenceSphere gibt an, wie gross der betrachtete Halbkreis eines
 %   Arrays ist
 
-    global ANGLE GAUSSANGLE
+    global ANGLE GAUSSANGLE XVALUES
     len = length(agentsArray);
     radius = zeros(len,1);
     
@@ -34,19 +34,18 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
         if i ~= agentPosition && priorityArray(i) ~= 0
             deltaY = agentsArray(i).cordY - agentsArray(agentPosition).cordY;
             deltaX = agentsArray(i).cordX - agentsArray(agentPosition).cordX;
-            if deltaX ~= 0
-                angleXY = atan(deltaY/deltaX);
-            else
-                angleXY = 0;
-            end
-            [~,indexX] = closest(ANGLE, angleXY);
+            angleXY = atan(deltaX/deltaY); %deltaY > Null noch durch Bedingung der influenceSphere und Intervall von Angle festlegen festlegen
+            
+            [alpha,indexX] = closest(ANGLE, angleXY);
+            alpha = (pi/2 - alpha);
             
             distance = sqrt(deltaX^2 + deltaY^2);
-            radiusSum = agentsArray(i).radius + agentsArray(agentPosition).radius;
-            sumXaxis = sumXaxis .+ xValuesLogic(angleXY, radiusSum, distance)
+            diffVelocity = agentsArray(i).actSpeed - agentsArray(agentPosition).actSpeed;
+%            sumXaxis = sumXaxis + xValuesLogic(angleXY, radiusSum, distance);
+            [betaLeft, betaRight] = getBeta(agentsArray(agentPosition), agentsArray(i), alpha, distance);
+            sumXaxis = xValuesLogic(indexX, distance, betaLeft, betaRight, diffVelocity);
             
-            
-            
+            angleOut = sumXaxis;
             
         end
     end

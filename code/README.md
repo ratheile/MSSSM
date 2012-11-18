@@ -1,3 +1,3 @@
 # Code Folder 
 
-Your code goes here. You could also replace the content of this file with something more meaningful
+This is the code folder. In here, you can find whatever already exists of our code.

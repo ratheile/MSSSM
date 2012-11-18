@@ -10,13 +10,13 @@
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 \usepackage{listings}
 
-%\title{Title}
-%\author{Name 1, Name 2}
+\title{Pedestrian dynamics in long, narrow hallways}
+\author{Moser Manuel, Suter Yannick, Theiler Raffael}
 %\date{date} 
 
 \begin{document}
 
-
+%Front page
 \input{cover}
 \newpage
 
@@ -80,6 +80,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+%All those in seperate Files just need to be imported back in again.
 
 \section{Abstract}
 \input{Abstract}
@@ -105,17 +106,14 @@
 \section{References}
 \input{References}
 
+
 \begin{appendix}
 \section{Appendix}
-\input{Appendix}%Alle codes
-
+\input{Appendix}
+	%All Codes
 \end{appendix}
 
 
 
-
-\end{document}  
-
-
-
- 
+%You successfully reached the end!
+\end{document}
