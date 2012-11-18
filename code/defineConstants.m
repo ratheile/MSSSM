@@ -3,7 +3,7 @@ function [] = defineConstants()
 %   Detailed explanation goes here
 %Definition von Konstanten
 
-    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT HEIGHT SLOPEFACTOR
+    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT HEIGHT SLOPEFACTOR WALLFACTOR AGENTANGLEOFFSET WALLANGLEOFFSET
     XSCOPE = 20;
     XRES = 0.001;%Definiert die möglichen Winkel für die Logikfunktion
     XVALUES = -XSCOPE:XRES:XSCOPE;
@@ -13,7 +13,10 @@ function [] = defineConstants()
     DELTAT = 0.1; %Iterationsschritte in Sekunden
     HEIGHT = 0.4; %Normierung bei der Berechnung der Logik
     SLOPEFACTOR = 8;
-
-
+    WALLFACTOR = -5; %Faktor in der Stärke der Berechnung der Wand
+    AGENTANGLEOFFSET = pi/18; %Offsetwinkel bei der Winkelberechnung für Agents
+    WALLANGLEOFFSET = pi/18; %Offsetwinkel bei der Winkelberechung für Wand
+    
+    
 end
 

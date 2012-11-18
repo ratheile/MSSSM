@@ -16,7 +16,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
 %   influenceSphere gibt an, wie gross der betrachtete Halbkreis eines
 %   Arrays ist
 
-    global ANGLE GAUSSANGLE XVALUES
+    global ANGLE GAUSSANGLE
     len = length(agentsArray);
     radius = zeros(len,1);
     
@@ -40,7 +40,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
             
                 if distance < influenceSphere && (sign(agentsArray(agentPosition).maxSpeed) * agentsArray(i).cordY) > (sign(agentsArray(agentPosition).maxSpeed) * agentsArray(agentPosition).cordY)
             
-                    angleXY = atan(deltaX/deltaY); %deltaY > Null noch durch Bedingung der influenceSphere und Intervall von Angle festlegen festlegen
+                    angleXY = atan(deltaX/deltaY);
             
                     [alpha,indexX] = closest(ANGLE, angleXY);
                     alpha = (pi/2 - alpha);
@@ -66,10 +66,19 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
     lenWall = length(wallArray);
     if lenWall > 0
         for i = 1:lenWall
+            deltaY = agentsArray(i).cordY - agentsArray(agentPosition).cordY;
+            deltaX = agentsArray(i).cordX - agentsArray(agentPosition).cordX;
+            distance = sqrt(deltaX^2 + deltaY^2);           
+            if distance < influenceSphere && (sign(agentsArray(agentPosition).maxSpeed) * wallArray(i).cordY) > (sign(agentsArray(agentPosition).maxSpeed) * agentsArray(agentPosition).cordY)
+                    angleXY = atan(deltaX/deltaY);
+                    [alpha,~] = closest(ANGLE, angleXY);
+                    alpha = (pi/2 - alpha);
+                    [betaLeft, betaRight] = getBeta(radius, alpha, distance);                    
+                    
+                    sumXaxis = sumXaxis + xWallLogic(distance, betaLeft, betaRight, agentsArray(agentPosition).radius);                
+            end
             
-        
         end
-
     end
     [~,indexAngle] = max(sumXaxis);
     angleOut = ANGLE(indexAngle);

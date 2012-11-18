@@ -1,7 +1,7 @@
 function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum )
 %   Berechnet die Werte für die Berechnung der Richtung
     
-    global XVALUES HEIGHT SLOPEFACTOR ANGLE
+    global XVALUES HEIGHT SLOPEFACTOR ANGLE AGENTANGLEOFFSET
     
     if diffVelocity < 0
         alphaX = XVALUES(indexX);
@@ -9,8 +9,8 @@ function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVel
         
         [~,indLeft] = closest(ANGLE, betaLeft);
         [~,indRight] = closest(ANGLE, betaRight);
-        [~,indLeftS] = closest(ANGLE, betaLeft - pi/18); %pi/18 willkürlich gewählt. Könnte man auch abhängig vom Abstand der beiden Agenten zueinander machen
-        [~,indRightS] = closest(ANGLE, betaRight + pi/18);
+        [~,indLeftS] = closest(ANGLE, betaLeft - AGENTANGLEOFFSET); %pi/18 willkürlich gewählt. Könnte man auch abhängig vom Abstand der beiden Agenten zueinander machen
+        [~,indRightS] = closest(ANGLE, betaRight + AGENTANGLEOFFSET);
         
         xOut = (xOut - min(xOut));
         xOut(indLeft:indRight) = 0;
