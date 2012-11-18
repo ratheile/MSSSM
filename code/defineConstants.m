@@ -4,7 +4,7 @@ function [] = defineConstants()
 %Definition von Konstanten
 
     global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT HEIGHT SLOPEFACTOR
-    XSCOPE = 10;
+    XSCOPE = 20;
     XRES = 0.001;%Definiert die möglichen Winkel für die Logikfunktion
     XVALUES = -XSCOPE:XRES:XSCOPE;
     breite = 1; %sigma der Gaussfunktion
@@ -12,7 +12,7 @@ function [] = defineConstants()
     ANGLE = atan(XVALUES);
     DELTAT = 0.1; %Iterationsschritte in Sekunden
     HEIGHT = 0.4; %Normierung bei der Berechnung der Logik
-    SLOPEFACTOR = 10;
+    SLOPEFACTOR = 8;
 
 
 end
