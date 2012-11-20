@@ -1,4 +1,22 @@
 %ResultsAndDiscussion
 
 
+%Discussion
+\subsection{Goals}
+First, let's have a look at what our goals were. We planned to have a look at the pedestrian flux, how it can be improved and jammings be avoided. We furthermore wanted to have a closer look to what happens during rush-hours and in a situation when much more people are moving in one direction than in the other.\\
+On the agent-based side of our model, we wanted to analyze the influence of aggressive fast people in a rush, slowly moving obstacles (eg. mothers with baby buggies) and the influence of drunkard (more or less randomized walking) on the pedestrian flux.\\
+If everything went well, we also wanted to implement a static obstacle and see what happens.
 
+\subsection{Achievements}
+As soon as we started programming we realized there was a major point of importance about this work we all were aware of, but had forgot to put it in the project proposal. We all did not want to start with an already known program or algorithms, but build something "new". So we started off creating our logic function that would allow the agents to avoid crashing into other agents and not working with repulsive forces as for example Helbing (Quelle angeben, ist das älteste Paper) did.\\
+Quite proudly, we can now say we managed to do this. Our idea of the agents "thinking ahead" by consulting where other agents are and not just being pushed around by repulsive forces worked.\\
+We now are able to play with lots of input variables, the most important being number of agents entering the corridor per time and the agents' characteristics as size, speed and lots more.\\
+A nice thing we built but did not originally plan to is that we planned to and did research on the sitation as explained earlier in the long, narrow corridor in Zurich mainstation. But in our simulation, one can also change dimensions as length and shape of the walls easily.\\
+
+\subsection{Fundamental Questions}
+Our fundamental research questions were:
+\begin{itemize}
+\item How does the simulation behave in the following situations: rush hour, with obstacle, with very slow/fast agents, random path agent (drunkard)? Does it run smoothly or will ther be jams?
+\item How will our implementation of a rudimentary kind of ?thinking ahead? affect the simulation? Will it work good or bad? Can we compare it to other implementations?
+\item Are there any group dynamics evolving as lane or group formation?
+\end{itemize}

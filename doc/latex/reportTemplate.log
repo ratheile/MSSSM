@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2012.10.21)  18 NOV 2012 10:49
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2012.10.21)  20 NOV 2012 21:21
 entering extended mode
 **reportTemplate.tex
 (C:\Users\Ueli\GitHub\MSSSM\doc\latex\reportTemplate.tex
@@ -327,40 +327,87 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )) [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/Ueli/GitHub/MSSS
-M/doc/latex/ETHlogo-eps-converted-to.pdf>]
-Overfull \hbox (5.3226pt too wide) in paragraph at lines 43--61
+M/doc/latex/ETHlogo-eps-converted-to.pdf>] (C:\Users\Ueli\GitHub\MSSSM\doc\late
+x\Agreement.tex
+Overfull \hbox (5.3226pt too wide) in paragraph at lines 20--38
  [] 
  []
 
-[2] (C:\Users\Ueli\GitHub\MSSSM\doc\latex\reportTemplate.toc)
+[2]) (C:\Users\Ueli\GitHub\MSSSM\doc\latex\reportTemplate.toc)
 \tf@toc=\write3
  [3]
 (C:\Users\Ueli\GitHub\MSSSM\doc\latex\Abstract.tex)
 (C:\Users\Ueli\GitHub\MSSSM\doc\latex\IndividualContributions.tex)
 (C:\Users\Ueli\GitHub\MSSSM\doc\latex\IntroductionAndMotivation.tex)
-(C:\Users\Ueli\GitHub\MSSSM\doc\latex\DescriptionModel.tex)
-(C:\Users\Ueli\GitHub\MSSSM\doc\latex\Implementation.tex)
-(C:\Users\Ueli\GitHub\MSSSM\doc\latex\ResultsAndDiscussion.tex)
+(C:\Users\Ueli\GitHub\MSSSM\doc\latex\DescriptionModel.tex) [4]
+(C:\Users\Ueli\GitHub\MSSSM\doc\latex\Implementation.tex) [5]
+(C:\Users\Ueli\GitHub\MSSSM\doc\latex\ResultsAndDiscussion.tex
+Missing character: There is no ä in font cmr12!
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--15
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 19.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 19.
+ [6]) [7]
 (C:\Users\Ueli\GitHub\MSSSM\doc\latex\Summary.tex)
-(C:\Users\Ueli\GitHub\MSSSM\doc\latex\References.tex)
-(C:\Users\Ueli\GitHub\MSSSM\doc\latex\Appendix.tex) [4]
+(C:\Users\Ueli\GitHub\MSSSM\doc\latex\References.tex) [8]
+(C:\Users\Ueli\GitHub\MSSSM\doc\latex\WantToDo.tex
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ü in font cmr12!
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--14
+
+ []
+
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ü in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ä in font cmr12!
+Missing character: There is no ü in font cmr12!
+
+Overfull \hbox (1.59178pt too wide) in paragraph at lines 22--23
+$\OML/cmm/m/it/12 http \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 ==www:ethz:ch=faculty
+=exams=plagiarism=confirmation[]n:pdf$ \OT1/cmr/m/n/12 (eifach
+ []
+
+[9]) (C:\Users\Ueli\GitHub\MSSSM\doc\latex\Appendix.tex) [10]
 (C:\Users\Ueli\GitHub\MSSSM\doc\latex\reportTemplate.aux) ) 
 Here is how much of TeX's memory you used:
- 4411 strings out of 493921
- 61113 string characters out of 3147284
- 123776 words of memory out of 3000000
- 7616 multiletter control sequences out of 15000+200000
+ 4434 strings out of 493921
+ 61616 string characters out of 3147284
+ 126776 words of memory out of 3000000
+ 7630 multiletter control sequences out of 15000+200000
  12110 words of font info for 47 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,10n,32p,327b,256s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,10n,32p,577b,256s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmr17.pfb>
-Output written on reportTemplate.pdf (4 pages, 73273 bytes).
+/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on reportTemplate.pdf (10 pages, 120156 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
+ 66 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
