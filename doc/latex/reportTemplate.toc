@@ -8,7 +8,8 @@
 \contentsline {subsection}{\numberline {6.1}Goals}{6}
 \contentsline {subsection}{\numberline {6.2}Achievements}{6}
 \contentsline {subsection}{\numberline {6.3}Fundamental Questions}{6}
+\contentsline {subsection}{\numberline {6.4}Comparing measurements}{7}
 \contentsline {section}{\numberline {7}Summary and Outlook}{8}
 \contentsline {section}{\numberline {8}References}{8}
 \contentsline {section}{\numberline {9}Want-To-Do-List}{9}
-\contentsline {section}{\numberline {A}Appendix}{10}
+\contentsline {section}{\numberline {A}Appendix}{11}
