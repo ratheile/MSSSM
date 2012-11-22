@@ -1,4 +1,4 @@
-# MATLAB HS12 – Research Plan
+﻿# MATLAB HS12 – Research Plan
 Version info: the submitted and approved version, 2012-10-24 17h
 
 * Group Name: Mayara
@@ -7,7 +7,7 @@ Version info: the submitted and approved version, 2012-10-24 17h
 
 ## General Introduction
 
-Annoyed by people rushing through the small corridor left in Zurich main station hall (the path between burger king and meeting point) during the Oktoberfest, market days, concerts and other occasions, we decided to have a look at pedestrian dynamics in hallways which are mostly crowded and narrow (3-4 meters in breadth) compared to normal days when the hall is empty, and where people walk through in opposite directions all the time. We want to have a look at how the pedestrian flux can be improved and how the walk-through time behaves during rush-hours, but also in the case of much more persons moving in one direction than in the other. Also, we want to have a look at the influences of aggressive, fast people in a rush, slowly moving obstacles like mothers with baby buggies and some drunkards, and try to figure out how to avoid jammings. Maybe we'll also implement a static obstacle to observe what happens.
+Annoyed by people rushing through the small corridor left in Zurich main station hall (the path between burger king and groups meeting point) during the Oktoberfest, market days, concerts and other occasions, we decided to have a look at pedestrian dynamics in hallways which are mostly crowded and narrow (3-4 meters in breadth) compared to normal days when the hall is empty, and where people walk through in opposite directions all the time. We want to have a look at how the pedestrian flux can be improved and how the walk-through time behaves during rush-hours, but also in the case of much more persons moving in one direction than in the other. Also, we want to have a look at the influences of aggressive, fast people in a rush, slowly moving obstacles like mothers with baby buggies and some drunkards, and try to figure out how to avoid jammings. Maybe we'll also implement a static obstacle to observe what happens.
 The simulation of problems like this will also help understand the phenomena of group dynamics which usually control and resolve such problems in real life.
 
 ## The Model
