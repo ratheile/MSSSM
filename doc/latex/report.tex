@@ -1,0 +1,95 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}                
+\geometry{letterpaper}                   
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{natbib}
+\usepackage{amssymb, amsmath}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{listings}
+\usepackage[latin1]{inputenc}   
+\usepackage{pdfpages}
+\usepackage{url}
+
+\urlstyle{same}
+
+\title{Pedestrian dynamics in long, narrow hallways}
+\author{Moser Manuel, Suter Yannick, Theiler Raffael}
+\date{December 2012} 
+
+\begin{document}
+
+%COVER
+\input{cover}
+\newpage
+
+%Agreement for free download
+\input{Agreement}
+\newpage
+
+%\begin{figure}[h!]
+%	\centering
+%		\includegraphics[width=0.9\textwidth]{confirmation.pdf}
+%	\label{fig:confirmation}
+%\end{figure}
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IMPORTANT
+% you MUST include the ETH declaration of originality here; it is available for download on the course website or at http://www.ethz.ch/faculty/exams/plagiarism/index_EN; it can be printed as pdf and should be filled out in handwriting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Table of Contents
+\tableofcontents
+\newpage
+
+%All those in seperate Files just need to be imported back in again.
+
+\section{Abstract}
+\input{Abstract}
+\newpage
+
+\section{Individual contributions}
+\input{IndividualContributions}
+\newpage
+
+\section{Introduction and Motivations}
+\input{IntroductionAndMotivation}
+\newpage
+
+\section{Description of the Model}
+\input{DescriptionModel}
+\newpage
+
+\section{Implementation}
+\input{Implementation}
+\newpage
+
+\section{Simulation Results and Discussion}
+\input{ResultsAndDiscussion}
+\newpage
+
+\section{Summary and Outlook}
+\input{Summary}
+\newpage
+
+\section{References}
+\input{References}
+
+%Here comes the Want-To-Do-List-Page with things yet to do!
+\newpage
+\input{WantToDo}
+
+\newpage
+\begin{appendix}
+\section{Appendix}
+\input{Appendix}
+	%All Codes
+\end{appendix}
+
+
+
+%You successfully reached the end!
+\end{document}
