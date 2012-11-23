@@ -1,5 +1,5 @@
 function [ priorityArray ] = getPriorityArray( agentsArray )
-    %Prioritätsarray bestimmen
+    %For given agents, this function reads out their priority values.
 
     priorityArray = zeros(1,length(agentsArray));
     for i = 1:length(agentsArray)

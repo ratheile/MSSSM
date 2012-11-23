@@ -1,8 +1,7 @@
 function [ valueClosest, indexClosest ] = closest( searchArray, searchValue )
-%	Gibt den Wert und den Indexpunkt wieder, der in searchArray am nächsten
-%	bei searchValue liegt
+% This function returns the closest value and index, which is in searchArray, closest to searchValue.
 
-    [~, indexClosest] = min(abs(searchArray - searchValue));
-    valueClosest = searchArray(indexClosest);
+    [~, indexClosest] = min(abs(searchArray - searchValue)); %save index
+    valueClosest = searchArray(indexClosest); %return value
 end
 

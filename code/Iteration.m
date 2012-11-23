@@ -13,7 +13,6 @@ function [] = Iteration( agentsArray, wallArray )
         angleShift = logicFunction(agentsArray, k, INFLUENCESPHERE, prioArray, wallArray);
         
         %Kollisionstest        
-        %yCordOld = agentsArray(k).cordY;
         xCordNeu = agentsArray(k).cordX + sin(angleShift) * DELTAT * agentsArray(k).maxSpeed * dist;
         yCordNeu = agentsArray(k).cordY + cos(angleShift) * DELTAT * agentsArray(k).maxSpeed * dist;
         distMat = zeros(length(sortedPrioArray)-1+length(wallArray),PRECISIONCOLLISION+1);
