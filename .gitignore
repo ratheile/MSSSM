@@ -1,9 +1,4 @@
-# Mosi #
-########
-#Beim kompilieren wurden 4 Dateien erzeugt: .aux, .log, .gz, .toc
-#.gz ist unter packages, .log unter Logs, der Rest nicht aufgeführt, darum hier:
-*.aux
-*.toc
+#Quelle: https://help.github.com/articles/ignoring-files (Comp.S., Packages, L.a.datab, OS gen.f)
 
 # Compiled source #
 ###################
@@ -44,7 +39,7 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-#von https://github.com/github/gitignore/blob/master/LaTeX.gitignore
+#Quelle: https://github.com/github/gitignore/blob/master/LaTeX.gitignore
 *.acn
 *.acr
 *.alg
