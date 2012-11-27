@@ -20,7 +20,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
     len = length(agentsArray);
     radius = zeros(len,1);
     
-    sumXaxis = GAUSSANGLE;    
+    sumXaxis = GAUSSANGLE;  
     if len > 0 %Sollte eigentlich immer erfüllt sein
         for i = 1:len
             radius(i) = agentsArray(i).radius;
@@ -66,18 +66,18 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
     lenWall = length(wallArray);
     if lenWall > 0
         for i = 1:lenWall
-            deltaY = agentsArray(i).cordY - agentsArray(agentPosition).cordY;
-            deltaX = agentsArray(i).cordX - agentsArray(agentPosition).cordX;
-            distance = sqrt(deltaX^2 + deltaY^2);           
+            deltaY = wallArray(i).cordY - agentsArray(agentPosition).cordY;
+            deltaX = wallArray(i).cordX - agentsArray(agentPosition).cordX;
+            distance = sqrt(deltaX^2 + deltaY^2);        
             if distance < influenceSphere && (sign(agentsArray(agentPosition).maxSpeed) * wallArray(i).cordY) > (sign(agentsArray(agentPosition).maxSpeed) * agentsArray(agentPosition).cordY)
                     angleXY = atan(deltaX/deltaY);
                     [alpha,~] = closest(ANGLE, angleXY);
                     alpha = (pi/2 - alpha);
-                    [betaLeft, betaRight] = getBeta(radius, alpha, distance);                    
+                    [betaLeft, betaRight] = getBeta(radius(agentPosition), alpha, distance);
                     
-                    sumXaxis = sumXaxis + xWallLogic(distance, betaLeft, betaRight, agentsArray(agentPosition).radius);                
+                    sumXaxis = sumXaxis + xWallLogic(distance, betaLeft, betaRight, agentsArray(agentPosition).radius);
             end
-            
+            %plot(ANGLE, sumXaxis);
         end
     end
     [~,indexAngle] = max(sumXaxis);

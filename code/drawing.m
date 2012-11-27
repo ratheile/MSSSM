@@ -11,6 +11,7 @@ classdef drawing
         
         particleDensity = 10;
         agentRadius = 0.005;
+        wallRadius = 0.005;
         
         width = 5;
         length = 5;
@@ -53,9 +54,9 @@ classdef drawing
             obj.wallArray = agent.empty(2*obj.length*obj.particleDensity,0);
             for k=1:(obj.length*obj.particleDensity)
                 %left wall
-               obj.wallArray(2*k-1)= agent(1,0,((k-1)/obj.particleDensity),0,0);
+               obj.wallArray(2*k-1)= agent(obj.wallRadius,0,((k-1)/obj.particleDensity),0,0);
                obj.wallArray(k*2)...
-               = agent(1,obj.width,((k-1)/obj.particleDensity),0,0);
+               = agent(obj.wallRadius,obj.width,((k-1)/obj.particleDensity),0,0);
             end%end create wall
 
 
@@ -117,7 +118,7 @@ classdef drawing
         end
         
         
-        function circlePlot(obj,x, y, radius)
+        function circlePlot(obj, x, y, radius)
             rectangle('Position',[x-radius,y-radius,...
                 radius*2,radius*2],...
             'Curvature',[1,1],...
