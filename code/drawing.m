@@ -108,7 +108,7 @@ classdef drawing
             coords(:,3), 'filled');
             
             for i=  1:sizeA
-                circlePlot(obj,coords(i,1),coords(i,2),0.1)
+                circlePlot(obj,coords(i,1),coords(i,2),obj.agentArray(i).radius)
             end
             xlim([0,obj.width])
             ylim([0,obj.length])
