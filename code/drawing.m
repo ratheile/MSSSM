@@ -23,7 +23,7 @@ classdef drawing
         testAgents;
         testWall;
         
-        activateTesting = 1;
+        activateTesting = 0;
     end
     
     
@@ -35,7 +35,7 @@ classdef drawing
             obj.yAxisTitle = yAxisTitle;
             
             %Create testagents
-            if(obj.activateTesting)
+            if (obj.activateTesting)
                 obj.testAgents = agent.empty(200,0);
                 
                for k=1:200
@@ -96,9 +96,9 @@ classdef drawing
                 coords(i,4)=20; %Size of point
             end
             
-            for i = sizeA:(sizeA+sizeW-1)
-                coords(i,1)=obj.wallArray(i-sizeA+1).cordX;
-                coords(i,2)=obj.wallArray(i-sizeA+1).cordY;
+            for i = (sizeA+1):(sizeA+sizeW)
+                coords(i,1)=obj.wallArray(i-sizeA).cordX;
+                coords(i,2)=obj.wallArray(i-sizeA).cordY;
                 coords(i,3)=2; %Color2
                 coords(i,4)=50; %Size of point
             end
@@ -118,7 +118,7 @@ classdef drawing
         
         
         function circlePlot(obj,x, y, radius)
-            rectangle('Position',[x+(radius*2),y+(radius*2),...
+            rectangle('Position',[x-radius,y-radius,...
                 radius*2,radius*2],...
             'Curvature',[1,1],...
               'FaceColor','r')
