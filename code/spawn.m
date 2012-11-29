@@ -29,19 +29,19 @@ index = find(priorityArray==0,1); %position of empty agent slot in agentArray
     
         %y-coordinate
         if position==-1
-            ycoord=YSPT2
+            ycoord=YSPT2;
         else
-            ycoord=YSPB1
+            ycoord=YSPB1;
         end %if-else-ycoord.
     
         %x-coordinate
         distMat = zeros(1,length(sortedPriorityArray));
         for count=1:REP 
-            xcoord=(WIDTH-2*radius)*rand(1)+radius
+            xcoord=(WIDTH-2*radius)*rand(1)+radius;
             for k = sortedPriorityArray
                 distMat(k) = sqrt((ycoord - agentArray(k).cordY)^2 + (xcoord - agentArray(k).cordX)^2);
             end
-            distMat = sort(distMat)
+            distMat = sort(distMat);
             if (distMat(1) >= 0)
                 break
             end
