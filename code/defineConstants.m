@@ -1,7 +1,7 @@
 function [] = defineConstants()
 %defineConstants defines all global constants that will be used later
 
-    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT HEIGHT SLOPEFACTOR WALLFACTOR AGENTANGLEOFFSET WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION SPEED
+    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT HEIGHT SLOPEFACTOR WALLFACTOR AGENTANGLEOFFSET WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION SPEED MEANRADIUS STDRADIUS MEANSPEED STDSPEED WIDTH YSPB1 YSPB2 YSPT1 YSPT2 RANDSTART REP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Name & Value......................value.Description........................
     XSCOPE = 100;                    % 20    how far one looks to the sides
@@ -21,6 +21,18 @@ function [] = defineConstants()
     PRECISIONCOLLISION = 4;        % 31    numerical precision for collision detection
     
     SPEED = 0.01; %Wartezeit in Sekunden für das Abspielen zweier Schritte
+    RANDSTART = 133; %Seed für die Zufallsgeneratoren
+    
+    MEANRADIUS = 0.25;
+    STDRADIUS = 0.01;
+    MEANSPEED = 1.4;
+    STDSPEED = 0.05;
+    WIDTH = 3;
+    YSPB1 = 0;
+    YSPB2 = 2;
+    YSPT1 = 22;
+    YSPT2 = 24;
+    REP = 4;
     % *: ntbc = not to be changed!
 end
 
