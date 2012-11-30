@@ -1,7 +1,7 @@
 function [] = defineConstants()
 %defineConstants defines all global constants that will be used later
 
-    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT HEIGHT SLOPEFACTOR WALLFACTOR AGENTANGLEOFFSET WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION SPEED MEANRADIUS STDRADIUS MEANSPEED STDSPEED WIDTH YSPB1 YSPB2 YSPT1 YSPT2 RANDSTART REP
+    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT HEIGHT SLOPEFACTOR WALLFACTOR AGENTANGLEOFFSET WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION SPEED MEANRADIUS STDRADIUS MEANSPEED STDSPEED WIDTH YSPB1 YSPB2 YSPT1 YSPT2 RANDSTART REP DENSITY REPULSIONAGENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Name & Value......................value.Description........................
     XSCOPE = 100;                    % 20    how far one looks to the sides
@@ -14,6 +14,7 @@ function [] = defineConstants()
     DELTAT = 0.03;                   % 0.1   iteration steps in seconds
     HEIGHT = 3.5;                   % 0.4   normalization factor in logical calculations for agents
     SLOPEFACTOR = 12;                % 8     parameter for other agents' influence
+    REPULSIONAGENT = 2;             % 2     parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
     WALLFACTOR = -0.02;                % -5    parameter for walls' influence
     AGENTANGLEOFFSET = pi/12;       % pi/18 offset angle in angle calculations for agents
     WALLANGLEOFFSET = pi/20;        % pi/18 offset angle in angle calculations for walls
@@ -33,6 +34,8 @@ function [] = defineConstants()
     YSPT1 = 22;
     YSPT2 = 24;
     REP = 4;
+    
+    DENSITY = 0.5;        % Anzahl neue Personen aus einer Richtung pro Sekunde
     % *: ntbc = not to be changed!
 end
 

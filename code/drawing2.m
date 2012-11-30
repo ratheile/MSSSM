@@ -30,7 +30,7 @@ classdef drawing2
     
     methods
         %Constructor
-        function obj = drawing(title, xAxisTitle, yAxisTitle)
+        function obj = drawing2(title, xAxisTitle, yAxisTitle)
             obj.title = title;
             obj.xAxisTitle = xAxisTitle;
             obj.yAxisTitle = yAxisTitle;

@@ -1,7 +1,7 @@
 function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum )
 %   Berechnet die Werte für die Berechnung der Richtung
     
-    global XVALUES HEIGHT SLOPEFACTOR ANGLE AGENTANGLEOFFSET
+    global XVALUES HEIGHT SLOPEFACTOR ANGLE AGENTANGLEOFFSET REPULSIONAGENT
     
     if diffVelocity < 0
         alphaX = XVALUES(indexX);
@@ -15,7 +15,7 @@ function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVel
         xOut = (xOut - min(xOut));
         xOut(indLeft:indRight) = 0;
         
-        xOut = xOut * HEIGHT / max(xOut) * (radiusSum / distance)^2;        
+        xOut = xOut * HEIGHT / max(xOut) * (radiusSum / distance)^REPULSIONAGENT;        
         
         xOut(indLeftS:indLeft) = linspace(xOut(indLeftS),0,(indLeft-indLeftS+1));
         xOut(indRight:indRightS) = linspace(0,xOut(indRightS),(indRightS-indRight+1));
