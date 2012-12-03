@@ -16,6 +16,7 @@ classdef drawing
         
         particleDensity = 10;
         agentRadius = 0.25;
+        wallRadius = 0.005;
         
         width = 2.8;
         length = 30;
@@ -52,7 +53,7 @@ classdef drawing
                 obj.testAgents = agent.empty(200,0);
                 
                for k=1:200
-                   obj.testAgents(k)= agent(1,obj.width*rand(),obj.length*rand(),10000,1);
+                   obj.testAgents(k)= agent(0.25,obj.width*rand(),obj.length*rand(),10000,1);
                    
                end
               obj.agentArray = obj.testAgents;      
@@ -66,9 +67,9 @@ classdef drawing
             obj.wallArray = agent.empty(2*obj.length*obj.particleDensity,0);
             for k=1:(obj.length*obj.particleDensity)
                 %left wall
-               obj.wallArray(2*k-1)= agent(1,0,((k-1)/obj.particleDensity),0,0);
+               obj.wallArray(2*k-1)= agent(obj.wallRadius,0,((k-1)/obj.particleDensity),0,0);
                obj.wallArray(k*2)...
-               = agent(1,obj.width,((k-1)/obj.particleDensity),0,0);
+               = agent(obj.wallRadius,obj.width,((k-1)/obj.particleDensity),0,0);
             end%end create wall
 
             
@@ -112,9 +113,9 @@ classdef drawing
                 coords(i,4)=20; %Size of point
             end
             
-            for i = sizeA:(sizeA+sizeW-1)
-                coords(i,1)=obj.wallArray(i-sizeA+1).cordX;
-                coords(i,2)=obj.wallArray(i-sizeA+1).cordY;
+            for i = (sizeA+1):(sizeA+sizeW)
+                coords(i,1)=obj.wallArray(i-sizeA).cordX;	
+                coords(i,2)=obj.wallArray(i-sizeA).cordY;
                 coords(i,3)=2; %Color2
                 coords(i,4)=50; %Size of point
             end
@@ -122,7 +123,7 @@ classdef drawing
             
             for i=  1:sizeA
                 circlePlot(obj, coords(i,1),coords(i,2),...
-                    obj.agentRadius,'yellow');
+                   obj.agentArray(i).radius,'yellow');
             end
             
             

@@ -10,6 +10,8 @@ classdef agent < handle
        actSpeed %Aktuelle Geschwindigkeit des Agents in Meter pro Sekunde
        priority %Priorität des Agents; in welcher Reihenfolge er später iteriert wird
     end
+     
+       
     
     methods(Access = public)
         function obj = agent(radius, cordX, cordY, maxSpeed, priority) %Konstruktor 
@@ -19,12 +21,6 @@ classdef agent < handle
             obj.maxSpeed = maxSpeed;
             obj.actSpeed = maxSpeed;
             obj.priority = priority;
-        end
-        function obj = addX(obj, xPlus)
-           obj.cordX = obj.cordX + xPlus;                       
-        end
-        function obj = addY(obj, yPlus)
-           obj.cordY = obj.cordY + yPlus;                       
         end
         
     end
