@@ -21,7 +21,7 @@ function [] = defineConstants()
     
     DELTAT = 0.03;                   % 0.1   iteration steps in seconds
     HEIGHT = 3.5;                   % 3.5   normalization factor in logical calculations for agents
-    SLOPEFACTOR = 12;                % 12     parameter for other agents' influence
+    SLOPEFACTOR = 8;                % 12     parameter for other agents' influence
     REPULSIONAGENT = 2;             % 2     parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
     WALLFACTOR = -0.05;                % -0.02    parameter for walls' influence
     AGENTANGLEOFFSET = pi/12;       % pi/12 offset angle in angle calculations for agents
