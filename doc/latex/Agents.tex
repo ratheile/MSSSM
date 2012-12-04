@@ -1,0 +1,21 @@
+%Agents
+
+As the model is agent-based, we wanted to implement them as such. Therefore we created a class called \text{agent}. Every agent has the following properties:
+\begin{itemize}
+	\item Radius of the agent called \textit{radius}
+	\item An x coordinate called \textit{cordX}
+	\item A y coordinate called \textit{cordY}
+	\item A maximal velocity called \textit{maxSpeed}
+	\item An actual velocity called \textit{actSpeed}
+	\item A priority called \text{priority}
+\end{itemize}
+\noi A circle is the mathematically easiest shape to consider especially for collision detections which have to be done later all the time. In addition, we consider the circle to be a good approximation as one also needs some space to move as the legs cover some space in front and behind the body. A circle is also practical as it only needs one parameter entirely for the shape which is the radius. Using this approach, every agent can have a different radius.\\
+
+\noi The coordinates of the agent with respect to a cartesian grid centered at the lower left of the whole filed are vital for all calculations. They are also needed to defined the circle representing the agent in the plane. After each iteration, they will be adjusted to the new situation.\\
+
+\noi Every agent has a maximum velocity. The actual velocity of an agent gives its actual speed. If there is no obstacle, it will be the maximum velocity. In the initialization of an agent, the first actual velocity is set to be equal to the maximum velocity. As velocity is in principle a vectorial quantity, we used the sign of the maximum velocity to determine the way an agent walks. Be our own convention + means to go upwards and - downwards 
+
+
+%class < handle
+
+
