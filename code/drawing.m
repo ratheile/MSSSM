@@ -1,14 +1,12 @@
 
   
 
+%DRAWING Summary of this class goes here
+%This class draws an environment it contains only
+%graphical drawing, no agent logic
+%   Detailed explanation goes here
 
 classdef drawing 
-    %DRAWING Summary of this class goes here
-    %This class draws an environment it contains only
-    %graphical drawing, no agent logic
-    %   Detailed explanation goes here
-    
-
     properties(SetAccess = public, GetAccess = public)
         title = 'Plot';
         xAxisTitle = 'xAxis';
@@ -34,19 +32,13 @@ classdef drawing
         testAgents;
         testWall;
         
-        activateTesting = 1;
+        activateTesting = 0;
     end
     
     
     methods
         %Constructor
-        function obj = drawing(title, xAxisTitle, yAxisTitle)
-            
-            global XVALUES HEIGHT SLOPEFACTOR ANGLE AGENTANGLEOFFSETs
-            
-            obj.title = title;
-            obj.xAxisTitle = xAxisTitle;
-            obj.yAxisTitle = yAxisTitle;
+        function obj = drawing()
             
             %Create testagents
             if(obj.activateTesting)
@@ -89,6 +81,7 @@ classdef drawing
     end
     
     methods(Access = public)
+
         function obj= plotStep(obj)
 
             %Clear the graph window
@@ -165,10 +158,8 @@ classdef drawing
         end
       
         function obj = drawLine(obj, x1,y1, x2,y2)
-           array = [x1,y1;x2,y2]
-           array(:,1)
-           array(:,2)
-           l = line(array(:,1),array(:,2), [0;0],'Color','black', ...
+           array = [x1,y1;x2,y2];
+           line(array(:,1),array(:,2), [0;0],'Color','black', ...
                'LineWidth', 2);
           % get(l)
         end
