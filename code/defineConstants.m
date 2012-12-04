@@ -6,7 +6,7 @@ function [] = defineConstants()
         WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION...
         SPEED MEANRADIUS STDRADIUS MEANSPEED STDSPEED WIDTH...
         YSPB1 YSPB2 YSPT1 YSPT2 RANDSTART REP DENSITYUP DENSITYDOWN...
-        REPULSIONAGENT
+        REPULSIONAGENT STANDOFF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Name & Value......................value.Description........................
     XSCOPE = 100;                    % 100    how far one looks to the sides
@@ -28,6 +28,7 @@ function [] = defineConstants()
     WALLANGLEOFFSET = pi/20;        % pi/20 offset angle in angle calculations for walls
     INFLUENCESPHERE = 2;            % 2     how far an agents "looks", in meters
     PRECISIONCOLLISION = 4;        % 4    numerical precision for collision detection
+    STANDOFF = -0.5;                % -0.5  "Strength" to resolve standoffs, must be negative
     
     SPEED = 0.001; %Wartezeit in Sekunden für das Abspielen zweier Schritte
     RANDSTART = 133; %Seed für die Zufallsgeneratoren

@@ -57,7 +57,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
                     end
                 
                     [betaLeft, betaRight] = getBeta(radiusSum, alpha, distance);
-                    sumXaxis = sumXaxis + xValuesLogic(indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum);            
+                    sumXaxis = sumXaxis + xValuesLogic(indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum, sign(agentsArray(agentPosition).actSpeed));            
                     %angleOut = sumXaxis %Für debugging
                 end
             end
