@@ -9,7 +9,7 @@ function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVel
         
         [~,indLeft] = closest(ANGLE, betaLeft);
         [~,indRight] = closest(ANGLE, betaRight);
-        [~,indLeftS] = closest(ANGLE, betaLeft - AGENTANGLEOFFSET); %pi/18 willkürlich gewählt. Könnte man auch abhängig vom Abstand der beiden Agenten zueinander machen
+        [~,indLeftS] = closest(ANGLE, betaLeft - AGENTANGLEOFFSET);
         [~,indRightS] = closest(ANGLE, betaRight + AGENTANGLEOFFSET);
         
         xOut = (xOut - min(xOut));
