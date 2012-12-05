@@ -14,13 +14,15 @@ classdef simulation < handle
         %Objects
         draw; %Das Zeichenobjekt
         agentSize = 200; %Defaultwert 200 kann mit Funktion berechnet werden
-        %Results
+        currentStep = 1;
         
+        %Results
+        spawned;
         
         %Properties
         %EVT durch globals austauschen!!
         agentMinRadius = 0.25; %Minimaler Radius von einem Agent
-        agentMaxSpeed
+        agentMaxSpeed;
         
     end
     
@@ -28,6 +30,7 @@ classdef simulation < handle
         
         %Constructor
         function obj = simulation()
+            obj.spawned = zeros(1,obj.loops);
         end
     end
 
@@ -98,9 +101,11 @@ classdef simulation < handle
                 %obj.draw.agentArray(i) =  agent(0.25,obj.draw.width*rand()...
                 %    ,obj.draw.length*rand(),10000,1)
                 
-                obj.draw.agentArray(i) = agent(0.4, 0,0,...
+                obj.draw.agentArray(i) = agent(0.01, 2,2,...
                     obj.agentMaxSpeed, 0);
             end
+            obj.draw.agentArray(1) = agent(0.01, 1,1,...
+                    obj.agentMaxSpeed, 1);
         end
         
         
@@ -117,15 +122,12 @@ classdef simulation < handle
             end
             emptyCount
             %Fülle leere Plätze mit neuen Agents
-            spawned = 0;
             for i = 1:emptyCount
                 if(balanceProbability(obj) == 1)
-                    spawned = spawned +1;
-                    randPrefix(obj)
+                    obj.spawned(obj.currentStep) = obj.spawned(obj.currentStep) +1;
                     spawn(obj.draw.agentArray,randPrefix(obj));
                 end
             end
-            spawned
         end
         
         %Spawnwahrscheinlichkeit
@@ -141,23 +143,27 @@ classdef simulation < handle
         %Das Resultat ist eine Matrix der Form
         %Oben   [Schritt1O Schritt2O...]
         %Unten  [Schritt1U Schritt2U...]
+        %Der jeweilige eintrag sind die angekommenen agents / iteration
         function result =  run(obj)
             global SPEED;
             result = zeros(2,obj.loops);
             initialSpawn(obj);
             %for i = 1:obj.loops
                 
-                [result(1,1), result(2,1)] = ...
-                    Iteration(obj.draw.agentArray,...
-                    obj.draw.wallArray);
+              %  [result(1,1), result(2,1)] = ...
+              %      Iteration(obj.draw.agentArray,...
+              %      obj.draw.wallArray);
                 
                 obj.draw.plotStep();
                 pause(SPEED);
                 addNewAgentsToArray(obj);
-                
+                obj.draw.plotStep();
             %end
             
         end
+        
+        
+        
     end
     
 end
