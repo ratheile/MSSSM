@@ -13,6 +13,7 @@ The basis of the simulation is the agent. An agent should represent a person in 
 \noi In comparison to previous models which used a force field to guide the agents, we thought that this approach is more realistic as the force field approach given that the force field already defines the optimal solution one is looking for. It should also prove to be more adaptable within a reasonable time frame to other problems.
 
 \subsection{Intelligence}
+\subsubsection{General considerations regarding the necessary intelligence}
 For the model to work properly, a sensible solution to deal with the problem of finding the right path must be found. We do not claim to have found the best solution but believe our model to be a fairly good solution.\\
 The effect of every other agent, be it agent or wall, inside a halfcircle in front of the agent should be considered. The fundamental idea is to get a function for every agent inside the halfcircle which reproduces the effect it has on the path the centered agent would take. All of these functions will then be added and the maximum value would be taken as the best way to go forward. An additional function is added which should represent the tendency to go straight forward.\\
 
@@ -26,6 +27,18 @@ A function calculated in $x$ will then be superimposed on $\varphi$ which corres
 \noi and set the $y$ values corresponding to $x$ values on a collision course to zero. The exact implementation will be treated in chapter \textit{Implementation} where equation (\ref{eq1}) is modified to accommodate for various different parameters. If an agent has another agent in front of him which is walking in the same direction but slower, the function given in (\ref{eq1}) is also applied.\\
 Should another agent walk in the same direction, but with greater speed, we thought that it would be logical to follow him. This was done using a gaussian curve centered on the direction of the faster agent.\\
 Agents moving in the same direction with the same speed have no influence on each other in our model. Two agents standing still on the other hand will also be treated using the function given in (\ref{eq1}) to avoid standoffs.
+
+\subsubsection{Necessary parameters and variables}
+The most important case to be considered is the one in which two agents have to cross each other. This information is stored as the sign of the difference in velocity which was set to be negative for this case. We reckon that the important parameters necessary to assess the influence of the other agent of the considered agents are
+\begin{itemize}
+	\item $\alpha_X$, the angle between the centers of the two agents with respect to the y-axis
+	\item $\delta v$, the difference in velocity, set to be negative for this situation
+	\item $\beta_\y{Links}$ and $\beta_\y{Rechts}$, two angles describing which directions of the path to be chosen would lead to a collision. For more details see below
+	\item $r_S = r_1 + r_2$ being the sum of the two involved agents
+	\item $d$, the distance between the two involved agents
+\end{itemize}
+
+
 
 
 
