@@ -1,11 +1,12 @@
-function [] = Iteration( agentsArray, wallArray )
+function [topOut,botOut] = Iteration( agentsArray, wallArray )
 %	Funktion ruft die Funktion logicFunction auf
 %   Muss mit einer Prioritätenliste auf alle Agents ausgeweitet werden
 
     global INFLUENCESPHERE PRECISIONCOLLISION DELTAT YSPT1 YSPB2
     
     dist = linspace(0,1,PRECISIONCOLLISION);
-    
+    topOut=0;
+    botOut=0;
     prioArray = getPriorityArray(agentsArray);
     sortedPrioArray = getSortedPriorityArray(prioArray);  
     lenSort = length(sortedPrioArray);
@@ -39,10 +40,14 @@ function [] = Iteration( agentsArray, wallArray )
         agentsArray(k).cordX = xCordNeu(maxL);
         agentsArray(k).cordY = yCordNeu(maxL);
         
-        if ((agentsArray(k).cordY < YSPB2 && agentsArray(k).maxSpeed < 0)||... %von oben nach unten, grenze erreicht 
-               (agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0)) %von unten nach oben, grenze erreicht
+        if ((agentsArray(k).cordY < YSPB2 && agentsArray(k).maxSpeed < 0)) %von oben nach unten, grenze erreicht 
            agentsArray(k).priority = 0;
            agentsArray(k).actSpeed = 0;
+            botOut = botOut +1;
+        elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0)) %von unten nach oben, grenze erreicht
+           agentsArray(k).priority = 0;
+           agentsArray(k).actSpeed = 0;
+           topOut = topOut + 1;
         else
             agentsArray(k).actSpeed = agentsArray(k).maxSpeed() * (maxL - 1) / (PRECISIONCOLLISION - 1);
         end

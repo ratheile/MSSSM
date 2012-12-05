@@ -43,13 +43,13 @@ classdef simulation < handle
             obj.draw = drawing.empty(1,0);
             obj.draw = drawing();   %create the drawing object
             calcPossibleAgents(obj);
-            obj.draw.testAgents = agent.empty(obj.agentSize ...
+            obj.draw.testAgents = agent.empty(200 ...
                 ,0);
         end
         
       
-        %Modusauswahl für verschidene Run Konfigurationen
-        function obj = runMode(obj,mode)
+        %Modusauswahl für versci
+        function obj = runMode(mode)
             switch mode
               case (mode == 'normal')
                 run(obj);

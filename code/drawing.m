@@ -6,7 +6,7 @@
 %graphical drawing, no agent logic
 %   Detailed explanation goes here
 
-classdef drawing 
+classdef drawing < handle
     properties(SetAccess = public, GetAccess = public)
         title = 'Plot';
         xAxisTitle = 'xAxis';

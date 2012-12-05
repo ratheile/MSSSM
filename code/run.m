@@ -1,3 +1,4 @@
 clear
 clc
-draw = drawing()
+sim = simulation()
+sim.init()
