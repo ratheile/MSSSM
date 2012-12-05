@@ -18,7 +18,9 @@ classdef simulation < handle
         
         
         %Properties
+        %EVT durch globals austauschen!!
         agentMinRadius = 0.25; %Minimaler Radius von einem Agent
+        agentMaxSpeed
         
     end
     
@@ -43,19 +45,22 @@ classdef simulation < handle
             obj.draw = drawing.empty(1,0);
             obj.draw = drawing();   %create the drawing object
             calcPossibleAgents(obj);
-            obj.draw.testAgents = agent.empty(obj.agentSize ...
+            obj.draw.agentArray = agent.empty(obj.agentSize ...
                 ,0);
         end
         
       
         %Modusauswahl für verschidene Run Konfigurationen
+        %switch case hat aus irgend einem grund nicht funktioniert.
         function obj = runMode(obj,mode)
-            switch mode
-              case (mode == 'normal')
+            
+            
+              if (strcmp('normal', mode) == 1)
+                disp('Running normal mode:');
                 run(obj);
-              otherwise
+              else
                 disp('unknown mode');
-            end
+              end
         end
     end
     
@@ -82,27 +87,50 @@ classdef simulation < handle
         end
         
         
+        %spawne alle agents
+        function obj = initialSpawn(obj)
+            sze = size(obj.draw.agentArray);
+        
+            for i = 1:(sze)
+                %For testing
+                %obj.draw.length
+                %obj.draw.width
+                %obj.draw.agentArray(i) =  agent(0.25,obj.draw.width*rand()...
+                %    ,obj.draw.length*rand(),10000,1)
+                
+                obj.draw.agentArray(i) = agent(0.4, 0,0,...
+                    obj.agentMaxSpeed, 0);
+            end
+        end
+        
+        
         %Finde leere Agents
-        function obj = addAgentsToArray(obj)
+        function obj = addNewAgentsToArray(obj)
             emptyCount = 0;
             sze = size(obj.draw.agentArray);
-            for i = 1:(sze+1)
-                if(obj.draw.agentArray(i) == 0)
+            
+            for i = 1:(sze(2))
+                obj.draw.agentArray(i)
+                if(obj.draw.agentArray(i).priority == 0)
                     emptyCount = emptyCount + 1;
                 end
             end
-            
+            emptyCount
             %Fülle leere Plätze mit neuen Agents
+            spawned = 0;
             for i = 1:emptyCount
                 if(balanceProbability(obj) == 1)
+                    spawned = spawned +1;
+                    randPrefix(obj)
                     spawn(obj.draw.agentArray,randPrefix(obj));
                 end
             end
+            spawned
         end
         
         %Spawnwahrscheinlichkeit
         function prob = balanceProbability(obj)
-            if (rand(1)> 0.7)
+            if (rand(1)< 0.1)
                 prob = 1;
             else
                 prob = 0;
@@ -114,19 +142,20 @@ classdef simulation < handle
         %Oben   [Schritt1O Schritt2O...]
         %Unten  [Schritt1U Schritt2U...]
         function result =  run(obj)
+            global SPEED;
             result = zeros(2,obj.loops);
-            
-            for i = 1:obj.loops
+            initialSpawn(obj);
+            %for i = 1:obj.loops
                 
-                [result(1,i), result(2,i)] = ...
+                [result(1,1), result(2,1)] = ...
                     Iteration(obj.draw.agentArray,...
                     obj.draw.wallArray);
                 
                 obj.draw.plotStep();
                 pause(SPEED);
-                addAgentsToArray(obj);
+                addNewAgentsToArray(obj);
                 
-            end
+            %end
             
         end
     end

@@ -40,11 +40,11 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray )
         agentsArray(k).cordX = xCordNeu(maxL);
         agentsArray(k).cordY = yCordNeu(maxL);
         
-        if ((agentsArray(k).cordY < YSPB2 && agentsArray(k).maxSpeed < 0)) %von oben nach unten, grenze erreicht 
+        if (agentsArray(k).cordY < YSPB2 && agentsArray(k).maxSpeed < 0) %von oben nach unten, grenze erreicht 
            agentsArray(k).priority = 0;
            agentsArray(k).actSpeed = 0;
             botOut = botOut +1;
-        elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0)) %von unten nach oben, grenze erreicht
+        elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0) %von unten nach oben, grenze erreicht
            agentsArray(k).priority = 0;
            agentsArray(k).actSpeed = 0;
            topOut = topOut + 1;

@@ -1,4 +1,4 @@
 clear
 clc
-sim = simulation()
+sim = simulation();
 sim.init()
