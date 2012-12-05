@@ -29,16 +29,23 @@ Should another agent walk in the same direction, but with greater speed, we thou
 Agents moving in the same direction with the same speed have no influence on each other in our model. Two agents standing still on the other hand will also be treated using the function given in (\ref{eq1}) to avoid standoffs.
 
 \subsubsection{Necessary parameters and variables}
-The most important case to be considered is the one in which two agents have to cross each other. This information is stored as the sign of the difference in velocity which was set to be negative for this case. We reckon that the important parameters necessary to assess the influence of the other agent of the considered agents are
+We reckon that the important parameters necessary to assess the influence of one agent onto the other agents are
 \begin{itemize}
 	\item $\alpha_X$, the angle between the centers of the two agents with respect to the y-axis
-	\item $\delta v$, the difference in velocity, set to be negative for this situation
-	\item $\beta_\y{Links}$ and $\beta_\y{Rechts}$, two angles describing which directions of the path to be chosen would lead to a collision. For more details see below
+	\item $\Delta v$, the difference in velocity, set to be negative for this situation
+	\item $\beta_\y{Links}$ and $\beta_\y{Rechts}$, two angles describing which directions of the path to be chosen would lead to a collision.
 	\item $r_S = r_1 + r_2$ being the sum of the two involved agents
 	\item $d$, the distance between the two involved agents
 \end{itemize}
+\noi In figure \ref{fig:beta} in chapter \ref{label} a graphical depiction of $\alpha_X$, $\beta_\y{Links}$ and $\beta_\y{Rechts}$ is given alongside the way to calculate them.\\
+The sign of $\Delta v$ was chosen to be positive in the case of two agents walking in the same direction and negative in the case of crossing agents.
 
+\subsubsection{Collision detection and the its connection to the iteration speed}
+Collision detection has to be carried out in order to keep the simulation physically possible. We used an approach in which the vector describing the path the agent walks on is subdivided into several small steps. The agent then goes on as far as he can. To avoid the agents sticking to close together and therefore not being able to move anymore, the number of subdivisions should be rather small.\\
+Given that the length of the vector is determined by the iteration time intervall $\Delta t$, it is also important for $\Delta t$ to be not to small. This has a phyiscal representation as in reality one goes on in discrete steps, not infinitesimal small steps that one would get in the case of $\Delta t \rightarrow \infty$.
 
+\subsection{Discretization}
+As it is a numerical calculation, at some point there has to be a numerical discretization. Since we wanted the agents to be able to move freely around, we abandoned the idea of using a grid on which the agents could walk around. The discretization comes about in the form of the functions and angles to be calculated.
 
 
 
