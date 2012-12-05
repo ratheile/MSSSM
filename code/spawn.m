@@ -47,6 +47,7 @@ index = find(priorityArray==0,1); %position of empty agent slot in agentArray
             agentArray(index).cordX = xcoord;
             agentArray(index).cordY = ycoord;
             agentArray(index).maxSpeed = speed;
+            agentArray(index).actSpeed = speed;
             agentArray(index).radius = radius;
             agentArray(index).priority = rand(1);
             while (agentArray(index).priority == 0) %Damit priority sicher nicht 0 ist
@@ -57,11 +58,16 @@ index = find(priorityArray==0,1); %position of empty agent slot in agentArray
             for count=1:REP 
                 xcoord=(WIDTH-2*radius)*rand(1)+radius;
                 for k = sortedPriorityArray
-                    distMat(k) = sqrt((ycoord - agentArray(k).cordY)^2 + (xcoord - agentArray(k).cordX)^2);
+                    distMat(k) = sqrt((ycoord - agentArray(k).cordY)^2 + (xcoord - agentArray(k).cordX)^2) - agentArray(k).radius - radius;
                 end
                 distMat = sort(distMat);
                 if (distMat(1) >= 0)
                     break
+                elseif (count ~= REP)
+                    continue
+                else
+                    'No agent spawned'
+                    return
                 end
             end
     
@@ -77,6 +83,7 @@ index = find(priorityArray==0,1); %position of empty agent slot in agentArray
                 agentArray(index).cordX = xcoord;
                 agentArray(index).cordY = ycoord;
                 agentArray(index).maxSpeed = speed;
+                agentArray(index).actSpeed = speed;
                 agentArray(index).radius = radius;
                 agentArray(index).priority = rand(1);
                 while (agentArray(index).priority == 0) %Damit priority sicher nicht 0 ist
@@ -85,4 +92,5 @@ index = find(priorityArray==0,1); %position of empty agent slot in agentArray
             end %if kollisionsabfrage
         end %if size
     end %if
+    agentArray(index)
 end %Function

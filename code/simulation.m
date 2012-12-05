@@ -45,6 +45,8 @@ classdef simulation < handle
         %nächste woche!
         function obj = init(obj)
             defineConstants(); %defne all global variables
+            global SEED
+            rng(SEED);   % Set seed for random number generator
             obj.draw = drawing.empty(1,0);
             obj.draw = drawing();   %create the drawing object
             calcPossibleAgents(obj);
@@ -75,17 +77,17 @@ classdef simulation < handle
         %Berechnet die maximale Anzahl möglicher Agents
         %im generierten Feld
         function obj =  calcPossibleAgents(obj) 
-            obj.agentSize = (obj.draw.width*obj.draw.length)/...
-                (3*obj.agentMinRadius^2);
+            obj.agentSize = floor((obj.draw.width*obj.draw.length)/...
+                (3*obj.agentMinRadius^2));
         end
         
         %Random Funktion für oben unten spawnen
-        function rand = randPrefix(obj)
-           rand = randi(2);
-           if (rand == 2)
-               rand = 1;
+        function randOut = randPrefix(obj)
+           randOut = randi(2);
+           if (randOut == 2)
+               randOut = 1;
            else
-               rand = -1;
+               randOut = -1;
            end
         end
         
@@ -101,38 +103,24 @@ classdef simulation < handle
                 %obj.draw.agentArray(i) =  agent(0.25,obj.draw.width*rand()...
                 %    ,obj.draw.length*rand(),10000,1)
                 
-                obj.draw.agentArray(i) = agent(0.01, 2,2,...
+                obj.draw.agentArray(i) = agent(0.01, 0 ,0 ,...
                     obj.agentMaxSpeed, 0);
             end
-            obj.draw.agentArray(1) = agent(0.01, 1,1,...
-                    obj.agentMaxSpeed, 1);
+
         end
         
         
-        %Finde leere Agents
+        %Spawne einen neuen Agent
         function obj = addNewAgentsToArray(obj)
-            emptyCount = 0;
-            sze = size(obj.draw.agentArray);
-            
-            for i = 1:(sze(2))
-                obj.draw.agentArray(i)
-                if(obj.draw.agentArray(i).priority == 0)
-                    emptyCount = emptyCount + 1;
-                end
-            end
-            emptyCount
-            %Fülle leere Plätze mit neuen Agents
-            for i = 1:emptyCount
-                if(balanceProbability(obj) == 1)
-                    obj.spawned(obj.currentStep) = obj.spawned(obj.currentStep) +1;
-                    spawn(obj.draw.agentArray,randPrefix(obj));
-                end
+            if (balanceProbability(obj) == 1)
+                obj.spawned(obj.currentStep) = obj.spawned(obj.currentStep) +1;
+                spawn(obj.draw.agentArray,randPrefix(obj));
             end
         end
         
         %Spawnwahrscheinlichkeit
         function prob = balanceProbability(obj)
-            if (rand(1)< 0.1)
+            if (rand(1) < 1)    %Muss noch angepasst werden mit deltaT * rho
                 prob = 1;
             else
                 prob = 0;
@@ -144,7 +132,7 @@ classdef simulation < handle
         %Oben   [Schritt1O Schritt2O...]
         %Unten  [Schritt1U Schritt2U...]
         %Der jeweilige eintrag sind die angekommenen agents / iteration
-        function result =  run(obj)
+        function result = run(obj)
             global SPEED;
             result = zeros(2,obj.loops);
             initialSpawn(obj);
@@ -156,7 +144,9 @@ classdef simulation < handle
                 
                 obj.draw.plotStep();
                 pause(SPEED);
-                addNewAgentsToArray(obj);
+                for i = 1:5
+                    addNewAgentsToArray(obj);
+                end
                 obj.draw.plotStep();
             %end
             
