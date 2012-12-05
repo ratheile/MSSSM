@@ -1,4 +1,22 @@
 %IntroductionAndMotivation
 
-%had to drop some of our goals because we wanted to build everything up on our own.
-%vgl. auch Results and discussion
+%evtl. irgendwo Anmerkung machen dass ich hier mich ziemlich an den Research Plan halte (motivation, fundamental questions anfang & expected results sehr ähnlich)?
+
+\subsection{Motivation}
+As many commuters too, we all got annoyed by people rushing through the small corridor left in Zurich main station hall (the path between burger king and groups meeting point) during the Oktoberfest, market days, concerts and other occasions. So when thinking about a simulation project, this quickly crossed our minds. Special about this situation of a narrow but long corridor is that there's not much space to avoid other pedestrians to the side, especially if there are lots of other people whereas there is no need of path optimisation as the ultimate goal is to cross the hallway without crashing into someone else.
+
+\subsection{Fundamental Questions}
+The fundamental questions of our simulation project we started with are:
+\begin{itemize}
+\item We try to simulate the pedestrian flux of agents in a hallway in the following different situations: Rush hour (danger of jamming), much more agents in one direction than in the other, with an static obstacle (if possible), with aggressive/very fast or slow agents, random path agent (drunkard). Will the pedestrian flux run smoothly or will they block each other and be stuck?
+\item Will the implementation of a rudimentary kind of thinking/looking ahead help to avoid blockages? If possible, we may determine the limits for which the goal of passing is achieved with and without this implementation and compare them.
+\item Will there be group dynamics or similar behaviours of agents even if they're only programmed to walk to the other side, each on his own?
+\end{itemize}
+As soon as the programming phase started, we realized there was a major point of importance about this work we all were aware of, but had forgot to think about beforehand. We did not want to start with a simulation already created, but build something "new". So we started off creating our logic function that would allow the agents to avoid crashing into other agents. So, new fundamental questions arised:
+\begin{itemize}
+\item Starting with the idea of looking ahead, how can we turn this into a rudimentary kind of intelligence?
+\item How can we have a look at the main station situation but keep our agents as random as possible?
+\end{itemize}
+
+\subsection{Expected Results}
+We think that there will be lots of changes in the direction of walking to the left and right while trying to avoid other agents. With rising amount of agents we expect more jams, this seems obvious. We think that in our simulation we'll have to deal with massive jams because the agents are not communicating with each other in any way. Our implementation of "looking ahead" as a form of intelligence will probably improve the people flux but only to a limited range.
