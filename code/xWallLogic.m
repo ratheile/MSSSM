@@ -1,6 +1,5 @@
 function [ xOut ] = xWallLogic(distance, betaLeft, betaRight, radius)                
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+%	xWallLogic calculates and returns the values for the repulsive strength and angle of an wall agent to an agent specified by distance, betaLeft und betaRight. Radius is the radius of the agent in question. See documentation for a visualisation of the setup
 
     global XVALUES WALLFACTOR ANGLE WALLANGLEOFFSET
     
@@ -8,10 +7,10 @@ function [ xOut ] = xWallLogic(distance, betaLeft, betaRight, radius)
     
     [~,indLeft] = closest(ANGLE, betaLeft);
     [~,indRight] = closest(ANGLE, betaRight);
-    [~,indLeftS] = closest(ANGLE, betaLeft - WALLANGLEOFFSET); %pi/18 willkürlich gewählt. Könnte man auch abhängig vom Abstand der beiden Agenten zueinander machen
+    [~,indLeftS] = closest(ANGLE, betaLeft - WALLANGLEOFFSET); 
     [~,indRightS] = closest(ANGLE, betaRight + WALLANGLEOFFSET);
     
-    xOut(indLeft:indRight) = WALLFACTOR / (distance - radius);
+    xOut(indLeft:indRight) = WALLFACTOR / (distance - radius); 
 
     xOut(indLeftS:indLeft) = linspace(0, xOut(indLeft), (indLeft-indLeftS+1));
     xOut(indRight:indRightS) = linspace(xOut(indRight), 0, (indRightS-indRight+1));

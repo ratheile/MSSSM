@@ -1,7 +1,11 @@
-function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum )
+function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum , isMoving )
 %   Berechnet die Werte für die Berechnung der Richtung
     
-    global XVALUES HEIGHT SLOPEFACTOR ANGLE AGENTANGLEOFFSET REPULSIONAGENT
+    global XVALUES HEIGHT SLOPEFACTOR ANGLE AGENTANGLEOFFSET REPULSIONAGENT STANDOFF
+    
+    if (isMoving == 0 && diffVelocity == 0)     %Agents bleiben beide stehen
+        diffVelocity = STANDOFF;
+    end
     
     if diffVelocity < 0
         alphaX = XVALUES(indexX);
@@ -9,7 +13,7 @@ function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVel
         
         [~,indLeft] = closest(ANGLE, betaLeft);
         [~,indRight] = closest(ANGLE, betaRight);
-        [~,indLeftS] = closest(ANGLE, betaLeft - AGENTANGLEOFFSET); %pi/18 willkürlich gewählt. Könnte man auch abhängig vom Abstand der beiden Agenten zueinander machen
+        [~,indLeftS] = closest(ANGLE, betaLeft - AGENTANGLEOFFSET);
         [~,indRightS] = closest(ANGLE, betaRight + AGENTANGLEOFFSET);
         
         xOut = (xOut - min(xOut));
@@ -25,13 +29,10 @@ function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVel
         xOut = gaussmf(XVALUES, [radiusSum/distance alphaX]) * diffVelocity * HEIGHT/5 * radiusSum/distance;
         
     else
-        xOut = zeros(1,length(XVALUES));
+        xOut = zeros(1,length(XVALUES));    %Agents laufen gleich schnell
         
     end
         
-   
-    
-    
 end
 
 

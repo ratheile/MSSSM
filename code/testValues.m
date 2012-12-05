@@ -10,7 +10,7 @@ draw.plotStep();
 
 %logicFunction(draw.agentArray, 1, 3, [2 1], draw.wallArray)
 for i = 1:100
-Iteration(draw.agentArray, draw.wallArray);
+Iteration2(draw.agentArray, draw.wallArray);
 draw.plotStep();
 pause(SPEED)
 end

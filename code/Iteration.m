@@ -39,8 +39,8 @@ function [] = Iteration( agentsArray, wallArray )
         agentsArray(k).cordX = xCordNeu(maxL);
         agentsArray(k).cordY = yCordNeu(maxL);
         
-        if ((agentsArray(k).cordX < YSPB2 && agentsArray(k).maxSpeed < 0)||... %von oben nach unten, grenze erreicht 
-               (agentsArray(k).cordX > YSPT1 && agentsArray(k).maxSpeed > 0)) %von unten nach oben, grenze erreicht
+        if ((agentsArray(k).cordY < YSPB2 && agentsArray(k).maxSpeed < 0)||... %von oben nach unten, grenze erreicht 
+               (agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0)) %von unten nach oben, grenze erreicht
            agentsArray(k).priority = 0;
            agentsArray(k).actSpeed = 0;
         else

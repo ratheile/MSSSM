@@ -7,7 +7,6 @@
 % prio = getPriorityArray(ag);
 %prioArray = [1,1,1,0,0]
 
-%function [ agentsArrayOut ] = logikFunktion( agentsArrayIn, wallArray )
 function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere, priorityArray, wallArray)
 %   Funktion berechnet die Richtung, in die ein Agent gehen wird. Mögliche
 %   Werte liegen zwischen -pi/2 bis pi/2, wobei 0 nach rechts bedeutet und
@@ -15,6 +14,11 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
 %   agentPosition gibt an, für welchen Agent dass es gemacht werden soll.
 %   influenceSphere gibt an, wie gross der betrachtete Halbkreis eines
 %   Arrays ist
+%   Funktion summiert die einzelnen Einflüsse aller anderen Agents, welche
+%   innerhalbt der influenceSphere sind. Danach werden die Einflüsse aller
+%   Wandagents innerhalb der influenceSphere addiert. Anschliessend wird
+%   das Maximum dieser entstehenden Funktion genommen und der entsprechende
+%   Winkel zurückgegeben.
 
     global ANGLE GAUSSANGLE
     len = length(agentsArray);
@@ -29,8 +33,6 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
         if influenceSphere < (3*maxRadius)
             influenceSphere = 3*maxRadius;
         end
-%       agentsArrayIn(1) = agentsArrayIn(1).addY(0.1);
-
 
         for i = 1:len %Durch den Array mit allen Agenten durchgehen
             if i ~= agentPosition && priorityArray(i) ~= 0
@@ -43,7 +45,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
                     angleXY = atan(deltaX/deltaY);
             
                     [alpha,indexX] = closest(ANGLE, angleXY);
-                    alpha = (pi/2 - alpha);
+                    alpha = (pi/2 - alpha); %   Alpha umrechnen in das Alpha, welches für die Berechnung der Betawinkel benötigt wird (siehe Dokumentation)
     
                     radiusSum = agentsArray(agentPosition).radius + agentsArray(i).radius;
             
@@ -55,7 +57,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
                     end
                 
                     [betaLeft, betaRight] = getBeta(radiusSum, alpha, distance);
-                    sumXaxis = sumXaxis + xValuesLogic(indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum);            
+                    sumXaxis = sumXaxis + xValuesLogic(indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum, sign(agentsArray(agentPosition).actSpeed));            
                     %angleOut = sumXaxis %Für debugging
                 end
             end
@@ -73,7 +75,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
                     angleXY = atan(deltaX/deltaY);
                     [alpha,~] = closest(ANGLE, angleXY);
                     alpha = (pi/2 - alpha);
-                    [betaLeft, betaRight] = getBeta(radius(agentPosition), alpha, distance);
+                    [betaLeft, betaRight] = getBeta(radius(agentPosition) + wallArray(i).radius, alpha, distance);
                     
                     sumXaxis = sumXaxis + xWallLogic(distance, betaLeft, betaRight, agentsArray(agentPosition).radius);
             end

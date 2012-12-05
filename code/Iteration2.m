@@ -2,7 +2,7 @@ function [] = Iteration2( agentsArray, wallArray )
 %	Funktion ruft die Funktion logicFunction auf
 %   Muss mit einer Prioritätenliste auf alle Agents ausgeweitet werden
 
-    global INFLUENCESPHERE PRECISIONCOLLISION DELTAT YSPT1 YSPB2
+    global INFLUENCESPHERE PRECISIONCOLLISION DELTAT
     
     dist = linspace(0,1,PRECISIONCOLLISION);
     
@@ -39,7 +39,6 @@ function [] = Iteration2( agentsArray, wallArray )
         agentsArray(k).cordX = xCordNeu(maxL);
         agentsArray(k).cordY = yCordNeu(maxL);
         agentsArray(k).actSpeed = agentsArray(k).maxSpeed() * (maxL - 1) / (PRECISIONCOLLISION - 1);
-        end
     end    
 
 
