@@ -49,8 +49,10 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
     
                     radiusSum = agentsArray(agentPosition).radius + agentsArray(i).radius;
             
-            
-                    if (sign(agentsArray(i).actSpeed) + sign(agentsArray(agentPosition).actSpeed)) == 0 %Agents laufen in unterschiedliche Richtung
+                    
+                    if (sign(agentsArray(i).actSpeed) == 0) %Anderer Agent bleibt stehen
+                        diffVelocity = -abs(agentsArray(i).actSpeed);
+                    elseif (sign(agentsArray(i).actSpeed) + sign(agentsArray(agentPosition).actSpeed)) == 0 %Agents laufen in unterschiedliche Richtung
                         diffVelocity = -abs(agentsArray(i).actSpeed - agentsArray(agentPosition).actSpeed);
                     else %Agents laufen in gleiche Richtung oder einer bleibt stehen
                         diffVelocity = abs(agentsArray(i).actSpeed - agentsArray(agentPosition).actSpeed);
