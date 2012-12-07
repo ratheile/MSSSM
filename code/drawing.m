@@ -59,21 +59,7 @@ classdef drawing < handle
               obj.agentArray = obj.testAgents;      
                
             end
-            
-            %create the wall
-            
-            
-            
-            obj.wallArray = agent.empty(2*obj.length*obj.particleDensity,0);
-            for k=1:(obj.length*obj.particleDensity)
-                %left wall
-               obj.wallArray(2*k-1)= agent(obj.wallRadius,0,((k-1)/obj.particleDensity),0,0);
-               obj.wallArray(k*2)...
-               = agent(obj.wallRadius,obj.width,((k-1)/obj.particleDensity),0,0);
-            end%end create wall
-
-            
-            
+            createWall(obj);
         end
         
         %Set the agents
@@ -89,6 +75,16 @@ classdef drawing < handle
     end
     
     methods(Access = public)
+        
+        function obj = createWall(obj)
+            obj.wallArray = agent.empty(2*obj.length*obj.particleDensity,0);
+            for k=1:(obj.length*obj.particleDensity)
+                %left wall
+               obj.wallArray(2*k-1)= agent(obj.wallRadius,0,((k-1)/obj.particleDensity),0,0);
+               obj.wallArray(k*2)...
+               = agent(obj.wallRadius,obj.width,((k-1)/obj.particleDensity),0,0);
+            end%end create wall
+        end
 
         function obj= plotStep(obj)
 

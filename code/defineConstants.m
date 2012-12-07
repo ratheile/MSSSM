@@ -19,14 +19,14 @@ function [] = defineConstants()
     
     %!!!delta t noch anpassen ist warscheinlich noch zu klein!!!
     
-    DELTAT = 0.03;                   % 0.1   iteration steps in seconds
+    DELTAT = 0.1;                   % 0.1   iteration steps in seconds
     HEIGHT = 3.5;                   % 3.5   normalization factor in logical calculations for agents
     SLOPEFACTOR = 8;                % 12     parameter for other agents' influence
     REPULSIONAGENT = 2;             % 2     parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
     WALLFACTOR = -0.05;                % -0.02    parameter for walls' influence
     AGENTANGLEOFFSET = pi/12;       % pi/12 offset angle in angle calculations for agents
     WALLANGLEOFFSET = pi/20;        % pi/20 offset angle in angle calculations for walls
-    INFLUENCESPHERE = 2;            % 2     how far an agents "looks", in meters
+    INFLUENCESPHERE = 3;            % 2     how far an agents "looks", in meters
     PRECISIONCOLLISION = 4;        % 4    numerical precision for collision detection
     STANDOFF = -0.5;                % -0.5  "Strength" to resolve standoffs, must be negative
     
@@ -34,7 +34,7 @@ function [] = defineConstants()
     RANDSTART = 133; %Seed für die Zufallsgeneratoren
     
     MEANRADIUS = 0.25;		% Durchschnittsradius eines Agents
-    STDRADIUS = 0.01;		% Standardabweichung der Radii der Agents
+    STDRADIUS = 0.03;		% Standardabweichung der Radii der Agents
     MEANSPEED = 1.4;		% Durchschnittsgeschwindigkeit eines Agents in Metern pro Sekunde
     STDSPEED = 0.05;		% Standardabweichung der Geschwindigkeiten der Agents in Metern pro Sekunde
     WIDTH = 2.8;			% Breite des Feldes

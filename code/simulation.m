@@ -50,7 +50,9 @@ classdef simulation < handle
             obj.draw = drawing.empty(1,0);
             obj.draw = drawing();   %create the drawing object
             calcPossibleAgents(obj);
-             obj.draw.agentArray = agent.empty(50 ...
+            
+            
+             obj.draw.agentArray = agent.empty(100 ...
                  ,0);
 
             
@@ -65,7 +67,14 @@ classdef simulation < handle
             
             
               if (strcmp('normal', mode) == 1)
+                  obj.draw.particleDensity = 4;
+                  obj.draw.createWall();
                 disp('Running normal mode:');
+                run(obj);
+              elseif (strcmp('fasttest', mode) == 1)
+                disp('Running fast mode with reduced wall points:');
+                obj.draw.particleDensity = 1;
+                obj.draw.createWall();
                 run(obj);
               else
                 disp('unknown mode');
