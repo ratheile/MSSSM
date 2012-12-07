@@ -52,7 +52,7 @@ classdef simulation < handle
             calcPossibleAgents(obj);
             
             
-             obj.draw.agentArray = agent.empty(100 ...
+            obj.draw.agentArray = agent.empty(100 ...
                  ,0);
 
             
@@ -135,7 +135,7 @@ classdef simulation < handle
         function prob = balanceProbability(obj)
             global DENSITYUP DENSITYDOWN DELTAT
             %Genähert kommen genau im schnitt density agents
-            if (	rand(1) > 1-DELTAT*(DENSITYUP+DENSITYDOWN))  
+            if (rand(1) > 1-DELTAT*(DENSITYUP+DENSITYDOWN))  
                 prob = 1;
             else
                 prob = 0;

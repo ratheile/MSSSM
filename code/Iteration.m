@@ -34,10 +34,13 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray )
         distMat = sort(distMat);
         
         maxL = find(distMat(1,:) < 0, 1) - 1;
-        if maxL == 0% Sollte eigentlich nicht geschehen
-            maxL = 1;
-        end
         
+        if maxL == 0 %  Sollte eigentlich nicht passieren, dann ist ein Fehler in der Iteration geschehen. Loesche den Agent, da er sich nicht bewegen kann, da ein anderer Agent auf seiner Position steht
+            agentsArray(k).priority = 0;
+            fprintf('Ein Agent ist in einer unmöglichen Position. Agent gelöscht')
+            continue
+        end
+            
         %neue koordinante setzen
         agentsArray(k).cordX = xCordNeu(maxL);
         agentsArray(k).cordY = yCordNeu(maxL);

@@ -36,7 +36,7 @@ function [] = defineConstants()
     MEANRADIUS = 0.25;		% Durchschnittsradius eines Agents
     STDRADIUS = 0.03;		% Standardabweichung der Radii der Agents
     MEANSPEED = 1.4;		% Durchschnittsgeschwindigkeit eines Agents in Metern pro Sekunde
-    STDSPEED = 0.05;		% Standardabweichung der Geschwindigkeiten der Agents in Metern pro Sekunde
+    STDSPEED = 0.08;		% Standardabweichung der Geschwindigkeiten der Agents in Metern pro Sekunde
     WIDTH = 2.8;			% Breite des Feldes
     
     YSPT2 = 30;
@@ -53,10 +53,10 @@ function [] = defineConstants()
     
     REP = 4;			% Anzahl Versuche, einen neuen Agent zu spawnen
     
-    DENSITYUP = 0.5;        % Anzahl neue Personen aus einer Richtung pro Sekunde
-    DENSITYDOWN = 0.5;      % Und nach unten
+    DENSITYUP = 2;        % Anzahl neue Personen aus einer Richtung pro Sekunde
+    DENSITYDOWN = 2;      % Und nach unten
     
-    SEED = 51;              % Seed for random number generator
+    SEED = 151;              % Seed for random number generator
 
     % *: ntbc = not to be changed!
 end
