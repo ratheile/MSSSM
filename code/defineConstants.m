@@ -6,11 +6,11 @@ function [] = defineConstants()
         WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION...
         SPEED MEANRADIUS STDRADIUS MEANSPEED STDSPEED WIDTH...
         YSPB1 YSPB2 YSPT1 YSPT2 RANDSTART REP DENSITYUP DENSITYDOWN...
-        REPULSIONAGENT STANDOFF SEED
+        REPULSIONAGENT STANDOFF SEED DISPERSIONFACTOR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Name & Value......................value.Description........................
-    XSCOPE = 100;                    % 100    how far one looks to the sides
-    XRES = 0.05;                   % 0.05 x-resolution, possible angles for logical functions
+    XSCOPE = 120;                    % 100    how far one looks to the sides
+    XRES = 0.04;                   % 0.05 x-resolution, possible angles for logical functions
     XVALUES = -XSCOPE:XRES:XSCOPE;  % ntbc* generate all possible x-values
     breite = 1;                     % 1     standard deviation of Gaussian function
                                     % determines the tendency to walk straightforwards
@@ -20,15 +20,20 @@ function [] = defineConstants()
     %!!!delta t noch anpassen ist warscheinlich noch zu klein!!!
     
     DELTAT = 0.1;                   % 0.1   iteration steps in seconds
-    HEIGHT = 3.5;                   % 3.5   normalization factor in logical calculations for agents
+    HEIGHT = 1;                   % 3.5   normalization factor in logical calculations for agents
     SLOPEFACTOR = 8;                % 12     parameter for other agents' influence
-    REPULSIONAGENT = 2;             % 2     parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
+    REPULSIONAGENT = 2.1;             % 2     parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
     WALLFACTOR = -0.05;                % -0.02    parameter for walls' influence
-    AGENTANGLEOFFSET = pi/12;       % pi/12 offset angle in angle calculations for agents
+    AGENTANGLEOFFSET = pi/14;       % pi/12 offset angle in angle calculations for agents
     WALLANGLEOFFSET = pi/20;        % pi/20 offset angle in angle calculations for walls
     INFLUENCESPHERE = 3;            % 2     how far an agents "looks", in meters
     PRECISIONCOLLISION = 4;        % 4    numerical precision for collision detection
     STANDOFF = -0.5;                % -0.5  "Strength" to resolve standoffs, must be negative
+    DISPERSIONFACTOR = 1/75;        % Positiv für Abstossung, negativ für Anziehung
+                                    % Negativ = Die Agents wollen
+                                    % hintereinander herlaufen
+                                    % 0 für gar keinen Einfluss
+                                    % 1/100 oder -1/50
     
     SPEED = 0.001; %Wartezeit in Sekunden für das Abspielen zweier Schritte
     RANDSTART = 133; %Seed für die Zufallsgeneratoren
@@ -51,7 +56,7 @@ function [] = defineConstants()
     %YSPB1--------
     YSPB1 = 0;
     
-    REP = 4;			% Anzahl Versuche, einen neuen Agent zu spawnen
+    REP = 6;			% Anzahl Versuche, einen neuen Agent zu spawnen
     
     DENSITYUP = 2;        % Anzahl neue Personen aus einer Richtung pro Sekunde
     DENSITYDOWN = 2;      % Und nach unten
