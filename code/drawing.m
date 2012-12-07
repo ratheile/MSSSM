@@ -11,18 +11,19 @@ classdef drawing < handle
         title = 'Plot';
         xAxisTitle = 'xAxis';
         yAxisTitle = 'yAxis';
+        xStretchFactor = 5;
+        
         
         particleDensity = 10;
-        agentRadius = 0.25;
         wallRadius = 0.005;
         
+
         width = 2.8;
         length = 30;
         wallDia = 0.05;
         
-        xStretchFactor = 5;
-        
-        spawnZoneDistance = 2.5;
+        spawnZoneDistanceTop = 2.5;
+        spawnZoneDistanceBot = 2.5;
         
         %Data
         wallArray;
@@ -39,6 +40,13 @@ classdef drawing < handle
     methods
         %Constructor
         function obj = drawing()
+            
+            %Setup the Playfield
+            global YSPT2 YSPT1 YSPB1 YSPB2 WIDTH
+            obj.width = WIDTH;
+            obj.length = YSPT2;
+            obj.spawnZoneDistanceTop = YSPT2 - YSPT1;
+            obj.spawnZoneDistanceBot = YSPB2 - YSPB1;
             
             %Create testagents
             if(obj.activateTesting)
@@ -97,29 +105,30 @@ classdef drawing < handle
             %1 = X coordinates
             %2 = Y coordinates
             %3 = color
-            coords = zeros(sizeA+ sizeW,4);
             
+            %For wall painting use this:
+            %coords = zeros(sizeA+ sizeW,4);          
             for i = 1:sizeA
-                coords(i,1)=obj.agentArray(i).cordX;
-                coords(i,2)=obj.agentArray(i).cordY;
-                coords(i,3)=1; %Color1
-                coords(i,4)=20; %Size of point
-            end
-            
-            for i = (sizeA+1):(sizeA+sizeW)
-                coords(i,1)=obj.wallArray(i-sizeA).cordX;	
-                coords(i,2)=obj.wallArray(i-sizeA).cordY;
-                coords(i,3)=2; %Color2
-                coords(i,4)=50; %Size of point
-            end
-            
-            
-            for i=  1:sizeA
-                circlePlot(obj, coords(i,1),coords(i,2),...
-                   obj.agentArray(i).radius,'yellow');
+                 if(sign(obj.agentArray(i).maxSpeed) == -1)
+                    color = 'blue';
+                else
+                    color = 'red';
+                 end
+                if(obj.agentArray(i).priority ~= 0)
+                circlePlot(obj, obj.agentArray(i).cordX,...
+                   obj.agentArray(i).cordY,...
+                   obj.agentArray(i).radius,...
+                   color);
+                end
             end
             
             
+%             for i = (sizeA+1):(sizeA+sizeW)
+%                 coords(i,1)=obj.wallArray(i-sizeA).cordX;	
+%                 coords(i,2)=obj.wallArray(i-sizeA).cordY;
+%             end
+%             
+           
             xlim([0,obj.width])
             ylim([0,obj.length])
             daspect([1,obj.xStretchFactor,1])
@@ -129,12 +138,12 @@ classdef drawing < handle
             
             %Draw start and end lines
             drawLine(obj, 0+obj.wallDia...
-                , obj.spawnZoneDistance, obj.width- obj.wallDia, ...
-               obj.spawnZoneDistance);
+                , obj.spawnZoneDistanceBot, obj.width- obj.wallDia, ...
+               obj.spawnZoneDistanceBot);
            
            drawLine(obj, 0+obj.wallDia...
-                , obj.length-obj.spawnZoneDistance, obj.width- obj.wallDia, ...
-               obj.length-obj.spawnZoneDistance);
+                , obj.length-obj.spawnZoneDistanceTop, obj.width- obj.wallDia, ...
+               obj.length-obj.spawnZoneDistanceTop);
         end
 
     end

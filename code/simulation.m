@@ -8,7 +8,7 @@ classdef simulation < handle
     
     properties
         %Iteration properties
-        loops = 100;
+        loops = 10000;
         
         
         %Objects
@@ -50,8 +50,12 @@ classdef simulation < handle
             obj.draw = drawing.empty(1,0);
             obj.draw = drawing();   %create the drawing object
             calcPossibleAgents(obj);
-            obj.draw.agentArray = agent.empty(obj.agentSize ...
-                ,0);
+             obj.draw.agentArray = agent.empty(50 ...
+                 ,0);
+
+            
+%              obj.draw.agentArray = agent.empty(obj.agentSize ...
+%                  ,0);
         end
         
       
@@ -112,33 +116,17 @@ classdef simulation < handle
         
         %Spawne einen neuen Agent
         function obj = addNewAgentsToArray(obj)
-<<<<<<< HEAD
-            emptyCount = 0;
-            sze = size(obj.draw.agentArray);
-            
-            for i = 1:(sze(2))
-                if(obj.draw.agentArray(i).priority == 0)
-                    emptyCount = emptyCount + 1;
-                end
-            end
-            emptyCount
-            %Fülle leere Plätze mit neuen Agents
-            for i = 1:emptyCount
-                if(balanceProbability(obj) == 1)
-                    obj.spawned(obj.currentStep) = obj.spawned(obj.currentStep) +1;
-                    spawn(obj.draw.agentArray,randPrefix(obj));
-                end
-=======
             if (balanceProbability(obj) == 1)
                 obj.spawned(obj.currentStep) = obj.spawned(obj.currentStep) +1;
                 spawn(obj.draw.agentArray,randPrefix(obj));
->>>>>>> 4671f70152561c189540f8ebe464dbf874431cf5
             end
         end
         
         %Spawnwahrscheinlichkeit
         function prob = balanceProbability(obj)
-            if (rand(1) < 1)    %Muss noch angepasst werden mit deltaT * rho
+            global DENSITYUP DENSITYDOWN DELTAT
+            %Genähert kommen genau im schnitt density agents
+            if (	rand(1) > 1-DELTAT*(DENSITYUP+DENSITYDOWN))  
                 prob = 1;
             else
                 prob = 0;
@@ -154,19 +142,17 @@ classdef simulation < handle
             global SPEED;
             result = zeros(2,obj.loops);
             initialSpawn(obj);
-            %for i = 1:obj.loops
+            for i = 1:obj.loops
                 
-              %  [result(1,1), result(2,1)] = ...
-              %      Iteration(obj.draw.agentArray,...
-              %      obj.draw.wallArray);
+                [result(1,1), result(2,1)] = ...
+                    Iteration(obj.draw.agentArray,...
+                    obj.draw.wallArray);
                 
                 obj.draw.plotStep();
                 pause(SPEED);
-                for i = 1:5
-                    addNewAgentsToArray(obj);
-                end
+                addNewAgentsToArray(obj);
                 obj.draw.plotStep();
-            %end
+            end
             
         end
         
@@ -175,4 +161,3 @@ classdef simulation < handle
     end
     
 end
-
