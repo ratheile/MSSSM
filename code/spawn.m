@@ -92,5 +92,5 @@ index = find(priorityArray==0,1); %position of empty agent slot in agentArray
             end %if kollisionsabfrage
         end %if size
     end %if
-    agentArray(index)
+    agentArray(index);
 end %Function

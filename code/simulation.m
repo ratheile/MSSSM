@@ -148,11 +148,14 @@ classdef simulation < handle
         %Unten  [Schritt1U Schritt2U...]
         %Der jeweilige eintrag sind die angekommenen agents / iteration
         function result = run(obj)
-            global SPEED;
+            global SPEED DELTAT;
             result = zeros(2,obj.loops);
             initialSpawn(obj);
+            
             for i = 1:obj.loops
-                
+                if(mod(i,100) == 0)
+                    fprintf('Time elapsed: %i Seconds \n ',(DELTAT*i))
+                end
                 [result(1,1), result(2,1)] = ...
                     Iteration(obj.draw.agentArray,...
                     obj.draw.wallArray);
