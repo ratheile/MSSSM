@@ -41,6 +41,7 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray )
         %neue koordinante setzen
         agentsArray(k).cordX = xCordNeu(maxL);
         agentsArray(k).cordY = yCordNeu(maxL);
+        agentsArray(k).angle = angleShift;
         
         if (agentsArray(k).cordY < YSPB2 && agentsArray(k).maxSpeed < 0) %von oben nach unten, grenze erreicht 
            agentsArray(k).priority = 0;

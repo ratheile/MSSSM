@@ -9,6 +9,7 @@ classdef agent < handle
        maxSpeed %Maximale Geschwindigkeit des Agents in Meter pro Sekunde. + heisst nach oben, - nach unten
        actSpeed %Aktuelle Geschwindigkeit des Agents in Meter pro Sekunde
        priority %Priorität des Agents; in welcher Reihenfolge er später iteriert wird
+       angle %Winkel, in die ein Agent schaut (für gewisse graphische Darstellungen, debugging
     end
      
        
@@ -21,6 +22,7 @@ classdef agent < handle
             obj.maxSpeed = maxSpeed;
             obj.actSpeed = maxSpeed;
             obj.priority = priority;
+            obj.angle = 0;
         end
         
     end
