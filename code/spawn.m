@@ -66,7 +66,7 @@ index = find(priorityArray==0,1); %position of empty agent slot in agentArray
                 elseif (count ~= REP)
                     continue
                 else
-                    'No agent spawned'
+                    fprintf('No agent spawned')
                     return
                 end
             end

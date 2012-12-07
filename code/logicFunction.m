@@ -20,7 +20,7 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
 %   das Maximum dieser entstehenden Funktion genommen und der entsprechende
 %   Winkel zurückgegeben.
 
-    global ANGLE GAUSSANGLE
+    global ANGLE GAUSSANGLE DISPERSIONFACTOR
     len = length(agentsArray);
     radius = zeros(len,1);
     
@@ -52,8 +52,11 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
                     
                     if (sign(agentsArray(i).actSpeed) == 0) %Anderer Agent bleibt stehen
                         diffVelocity = -abs(agentsArray(i).actSpeed);
+%                    elseif (sign(agentsArray(i).actSpeed) + sign(agentsArray(agentPosition).actSpeed)) == 0 || ((abs(agentsArray(agentPosition).actSpeed) - abs(agentsArray(i).actSpeed)) > 0) %Agents laufen in unterschiedliche Richtung
                     elseif (sign(agentsArray(i).actSpeed) + sign(agentsArray(agentPosition).actSpeed)) == 0 %Agents laufen in unterschiedliche Richtung
                         diffVelocity = -abs(agentsArray(i).actSpeed - agentsArray(agentPosition).actSpeed);
+                    elseif ((abs(agentsArray(agentPosition).actSpeed) - abs(agentsArray(i).actSpeed)) > 0)
+                        diffVelocity = -abs(agentsArray(i).actSpeed - agentsArray(agentPosition).actSpeed) * DISPERSIONFACTOR;                        
                     else %Agents laufen in gleiche Richtung oder einer bleibt stehen
                         diffVelocity = abs(agentsArray(i).actSpeed - agentsArray(agentPosition).actSpeed);
                     end

@@ -19,7 +19,7 @@ function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVel
         xOut = (xOut - min(xOut));
         xOut(indLeft:indRight) = 0;
         
-        xOut = xOut * HEIGHT / max(xOut) * (radiusSum / distance)^REPULSIONAGENT;        
+        xOut = xOut * HEIGHT / max(xOut) * (-diffVelocity)* (radiusSum / distance)^REPULSIONAGENT;        
         
         xOut(indLeftS:indLeft) = linspace(xOut(indLeftS),0,(indLeft-indLeftS+1));
         xOut(indRight:indRightS) = linspace(0,xOut(indRightS),(indRightS-indRight+1));
