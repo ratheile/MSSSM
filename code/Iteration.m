@@ -20,14 +20,16 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray )
         yCordNeu = agentsArray(k).cordY + cos(angleShift) * DELTAT * agentsArray(k).maxSpeed * dist;
         distMat = zeros(lenSort+lenWall,PRECISIONCOLLISION+1);
         for l = sortedPrioArray
-            if l == k
+            if (((agentsArray(k).cordX - agentsArray(l).cordX)^2 + (agentsArray(k).cordY - agentsArray(l).cordY)^2) > (INFLUENCESPHERE * INFLUENCESPHERE)) || (l == k)
                 continue
             end
             distMat(l,:) = [(sqrt((xCordNeu - agentsArray(l).cordX).^2 + (yCordNeu - agentsArray(l).cordY).^2) - agentsArray(k).radius - agentsArray(l).radius),-1]; %-1 als Sentinel                      
         end
         for l = (lenSort+1):(lenSort+lenWall)
-            lneu = l-lenSort;
-            distMat(l,:) = [(sqrt((xCordNeu - wallArray(lneu).cordX).^2 + (yCordNeu - wallArray(lneu).cordY).^2) - agentsArray(k).radius - wallArray(lneu).radius),-1]; %-1 als Sentinel                                  
+            if (((agentsArray(k).cordX - agentsArray(l).cordX)^2 + (agentsArray(k).cordY - agentsArray(l).cordY)^2) < (INFLUENCESPHERE * INFLUENCESPHERE))
+                lneu = l-lenSort;
+                distMat(l,:) = [(sqrt((xCordNeu - wallArray(lneu).cordX).^2 + (yCordNeu - wallArray(lneu).cordY).^2) - agentsArray(k).radius - wallArray(lneu).radius),-1]; %-1 als Sentinel                                  
+            end
         end
         distMat = sort(distMat);
         
