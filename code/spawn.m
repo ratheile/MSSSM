@@ -91,6 +91,8 @@ index = find(priorityArray==0,1); %position of empty agent slot in agentArray
                 end
             end %if kollisionsabfrage
         end %if size
+    else
+        'Warning: Agent array is full'
     end %if
     agentArray(index)
 end %Function
