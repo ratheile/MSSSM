@@ -26,8 +26,8 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray )
             distMat(l,:) = [(sqrt((xCordNeu - agentsArray(l).cordX).^2 + (yCordNeu - agentsArray(l).cordY).^2) - agentsArray(k).radius - agentsArray(l).radius),-1]; %-1 als Sentinel                      
         end
         for l = (lenSort+1):(lenSort+lenWall)
-            if (((agentsArray(k).cordX - agentsArray(l).cordX)^2 + (agentsArray(k).cordY - agentsArray(l).cordY)^2) < (INFLUENCESPHERE * INFLUENCESPHERE))
-                lneu = l-lenSort;
+            lneu = l-lenSort;
+            if (((agentsArray(k).cordX - wallArray(lneu).cordX)^2 + (agentsArray(k).cordY - wallArray(lneu).cordY)^2) < (INFLUENCESPHERE * INFLUENCESPHERE))
                 distMat(l,:) = [(sqrt((xCordNeu - wallArray(lneu).cordX).^2 + (yCordNeu - wallArray(lneu).cordY).^2) - agentsArray(k).radius - wallArray(lneu).radius),-1]; %-1 als Sentinel                                  
             end
         end
