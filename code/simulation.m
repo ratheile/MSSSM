@@ -115,7 +115,6 @@ classdef simulation < handle
             sze = size(obj.draw.agentArray);
             
             for i = 1:(sze(2))
-                obj.draw.agentArray(i)
                 if(obj.draw.agentArray(i).priority == 0)
                     emptyCount = emptyCount + 1;
                 end
