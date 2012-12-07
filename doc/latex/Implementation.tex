@@ -1,28 +1,38 @@
 %Implementation
 
-\subsection{General considerations}	%Genereller Aufbau, Einbindung der Funktionen und die Simulation gestartet wird
+\subsection{General considerations}	%Genereller Aufbau, Einbindung der Funktionen und wie die Simulation gestartet wird
 %Nach oben/unten entspricht der y-Koordinate
 %Wandagents gespeichert in einem Array WallArray
 %Agents gespeichert in einem Array agentArray
+%Simplifications wahrscheinlich auch hier einbringen
+%closest.m als Diskretisierung einbringen
 
 \subsection{Agents}
 \input{Agents.tex}
 
-\subsection{Drawing of the field} %Wie wird das Feld gezeichnet? Implementierung der Zeichnung von Mosi. Nullpunkt des Koordinatensystems links unten
+\subsection{Drawing of the field}
+%Wie wird das Feld gezeichnet?
+%Implementierung der Zeichnung von Mosi.
+%Nullpunkt des Koordinatensystems links unten
+%auch Kürzung des Feldes erwähnen
 
 
-\subsection{Logical functions}
+\subsection{Logical functions}\label{logic}
 \input{LogicFunctions.tex}
 
-\subsection{Iteration} %Iterationsfunktion und Kollisionsabfragen hier beschreiben. Ebenso die Erschaffung der Agents durch spawn
+\subsection{Iteration}
+%Iterationsfunktion und Kollisionsabfragen hier beschreiben.
+%Ebenso die Erschaffung der Agents durch spawn
 
 
 \clearpage
 
+%das kommt noch weg, aber irgendwo einbauen oder erwähnen!
 \subsection{Simplifications}
 \begin{itemize}
 \item[x] All our agents walk on their own, there are no groups of friends, families etc who stand together as much as possible.
 \item[x] The agents are not able to walk backwards, they only can see and walk 90° to each side.
 \item[?] All have the same mean speed, size, ??
 \item[?] Any other simplifications?
+\item[x] Feld gekürzt, da Verhältnis 60:2.8 schwierig auf Bildschirm
 \end{itemize}
