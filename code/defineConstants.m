@@ -53,11 +53,10 @@ function [] = defineConstants()
     
     REP = 4;			% Anzahl Versuche, einen neuen Agent zu spawnen
     
-    DENSITYUP = 0.5;        % Anzahl neue Personen aus einer Richtung pro Sekunde
-    DENSITYDOWN = 0.5;      % Und nach unten
+    DENSITYUP = 1;        % Anzahl neue Personen aus einer Richtung pro Sekunde
+    DENSITYDOWN = 1;      % Und nach unten
     
     SEED = 51;              % Seed for random number generator
 
     % *: ntbc = not to be changed!
 end
-
