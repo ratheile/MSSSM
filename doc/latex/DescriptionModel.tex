@@ -47,3 +47,7 @@ Given that the length of the vector is determined by the iteration time interval
 \subsection{Discretization}
 As it is a numerical calculation, at some point there has to be a numerical discretization. Since we wanted the agents to be able to move around freely, we abandoned the idea of using a grid on which the agents could walk around in favour of a continuous space simulation. The discretization comes about in the form of the functions and angles to be calculated.
 
+\subsection{Spawning of new agents}
+A hallway usually has at its two endings a more open space than the hallway where the flow of people arriving from the hallway will disperse. In order for things not to get too messy, we decided that agents would simply cease to exist if they reach a line (called dstruction line) which would signify the beginning of this region of dispersion. Newly spawned agents would be created on a line (called spawn line) below the destruction line and pass a short distance without oncoming agents so that they could already orientate themselfes according to the flow of agents walking the other way. This could be important in cases where the agents would form columns and newly spawned agents could adapt to that by not interrupting the column.
+
+
