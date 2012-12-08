@@ -6,18 +6,18 @@
 \begin{itemize}
 
 \item[!] GENERAL :
-\item Kapitel "How to start our simulation" und was man wie wählen kann, ebenfalls run auskommentieren
 \item WIE/WO Daten rausziehen aus Agents?
 \item gestaute (noch unfertig) agents nch simulationsende einbeziehen oder nicht, für welche Zwecke?
 \item Densityup/Densitydown einbinden (hoffentlich noch möglich?)
+\item Agent seine Geburtsiteration mitgeben, und bei Auswertung auch Todesiteration, um Zeit auszuwerten?
 \\
 
 \item[!] OUTPUT :
 \item Untersuche Situationen wenn: Anz. Agents variiert, Gangbreite variiert.
 \item Plot mit: x-Achse Zeit, y-Achse Personen pro Zeitabschnitt (evtl. mehrere deltaT) erzeugt/gelöscht, je oben&unten, für verschiedene Gangbreiten
 \item Weglängen? (Problem: abhängig von Anz. Agents im System, und diese ändert sich immer wieder
-\item gesamthaft gelaufene Strecke pro deltaT
-\item wie viele Agents im System drin
+\item Jeder Agent: gesamthaft gelaufene Strecke pro deltaT
+\item Wie viele Agents im System drin?
 \\
 
 \item[!] TEST:
@@ -27,9 +27,20 @@
 
 \item[!] SIMPLE:
 \item Bei den Constants bei Speed und Radius hinschreiben, dass 3*Standardabweichung kleiner als der Mittelwert sein muss.
-\item Warum ist das run file nicht auf github?
 \\
 
+\item[!] DOKUMENTATION :
+\item Für alle Funktionen einen Kurzbeschrieb erstellen mit: Sinn und Zweck, Rechenmethode, evtl noch Kommentare dazu.
+\item Code auskommentieren!
+\item Kapitel "How to start our simulation" und was man wie wählen kann, ebenfalls run auskommentieren
+\item Kapitel Limitations of our model (dort simplifications reinnehmen, 180°-limitation verhindert "ausbrechen" (Bild), etc.
+\\
+
+\item[!] INFO :
+\item \textbf{sim.spawned}: wieviele werden gespawnt in jedem Iterationsschritt. 1.Zeile = oben; 2.Zeile = unten
+\item \textbf{sim.result}: wieviele kommen an in jedem Iterationsschritt. 1.Zeile=oben, 2.zeile = unten.
+\item \textbf{sim.additionalReport} 1.Zeile: Von allen Agents in diesem Iterationsschritt zurückgelegte Strecke , 2.Zeile  Agents im System in jedem Iterationsschritt
+\item \textbf{fehlt noch}: Funktion evaluateAgent welche beim "Tod" eines Agents seine Daten (gelaufene Weglänge, evtl noch Geburts- und Todesiteration) ausliest und in eine sim.... matrix speichert!
 
 \end{itemize}
 
