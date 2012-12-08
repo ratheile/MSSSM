@@ -98,8 +98,26 @@ classdef simulation < handle
                 disp('unknown mode');
               end
         end
+
+            
+        %Berechnet optionale Resultate
+        %Reihe1: Gesammtweg/Schritt
+        %Reihe2: Agents im system
+        function obj = additionalReport(obj, step)
+            global DELTAT;
+            
+            sizeA = size(obj.draw.agentArray,2);
+            for i = 1:sizeA
+                if(obj.draw.agentArray(i).priority ~= 0)
+                    obj.additionalresult(2,step) =  obj.additionalresult(2,step) +1; %Agents ++
+                    way = abs(obj.draw.agentArray(i).actSpeed)*DELTAT;
+                    obj.additionalresult(1,step) = obj.additionalresult(1,step)+ way; %Gesammtweg aufsummieren
+                    obj.draw.agentArray(i).distance = obj.draw.agentArray(i).distance+way; %Agent aufsummieren
+                end
+            end
+        end
+
     end
-    
 %-----------------------------------------------------
 %Private:
 
@@ -142,47 +160,48 @@ classdef simulation < handle
         
         
         %Spawne einen neuen Agent
+%         function obj = addNewAgentsToArray(obj, currentStep)
+%             if (balanceProbability(obj) == 1)
+%                 pfx = randPrefix(obj);
+%                 if(pfx == 1)
+%                     %Unten gespawnt
+%                     obj.spawned(2,currentStep) = obj.spawned(currentStep) +1;
+%                 else
+%                     %Oben gespawnt
+%                     obj.spawned(1,currentStep) = obj.spawned(currentStep) +1;
+%                 end
+%                 spawn(obj.draw.agentArray,pfx);
+%             end
+%         end
+
         function obj = addNewAgentsToArray(obj, currentStep)
-            if (balanceProbability(obj) == 1)
-                pfx = randPrefix(obj);
-                if(pfx == 1)
-                    %Unten gespawnt
-                    obj.spawned(2,currentStep) = obj.spawned(currentStep) +1;
-                else
-                    %Oben gespawnt
-                    obj.spawned(1,currentStep) = obj.spawned(currentStep) +1;
-                end
-                spawn(obj.draw.agentArray,pfx);
+            [probOben probUnten] = balanceProbability(obj);
+            if (probOben == 1)
+                obj.spawned(1,currentStep) = obj.spawned(currentStep) +1;
+                spawn(obj.draw.agentArray,1);
             end
+            if (probUnten == 1)
+                obj.spawned(2,currentStep) = obj.spawned(currentStep) +1;
+                spawn(obj.draw.agentArray,-1);
+            end            
         end
-        
+
+
+
         %Spawnwahrscheinlichkeit
-        function prob = balanceProbability(obj)
+        function [probOben probUnten] = balanceProbability(obj)
             global DENSITYUP DENSITYDOWN DELTAT
             %Genähert kommen genau im schnitt density agents
-            if (rand(1) > 1-DELTAT*(DENSITYUP+DENSITYDOWN))  
-                prob = 1;
+            if (rand(1) > 1-DELTAT*DENSITYUP)  
+                probUnten = 1; % Von unten nach oben
             else
-                prob = 0;
+                probUnten = 0;
             end
-        end
-        
-        
-        %Berechnet optionale Resultate
-        %Reihe1: Gesammtweg/Schritt
-        %Reihe2: Agents im system
-        function obj = additionalReport(obj, step)
-            global DELTAT;
-            
-            sizeA = size(obj.draw.agentArray,2);
-            for i = 1:sizeA
-                if(obj.draw.agentArray(i).priority ~= 0)
-                    obj.additionalresult(2,step) =  obj.additionalresult(2,step) +1; %Agents ++
-                    way = abs(obj.draw.agentArray(i).actSpeed)*DELTAT;
-                    obj.additionalresult(1,step) = obj.additionalresult(1,step)+ way; %Gesammtweg aufsummieren
-                    obj.draw.agentArray(i).distance = obj.draw.agentArray(i).distance+way; %Agent aufsummieren
-                end
-            end
+            if (rand(1) > 1-DELTAT*DENSITYDOWN)  
+                probOben = 1; % Von oben nach unten
+            else
+                probOben = 0;
+            end            
         end
         
         
@@ -208,6 +227,13 @@ classdef simulation < handle
                 [obj.result(1,i), obj.result(2,i)] = ...
                     Iteration(obj.draw.agentArray,...
                     obj.draw.wallArray);
+                
+                %   evaluateAgent.m
+                %   Zusätzliche Ausgabe bei Iteration, wenn Agent gelöscht
+                %   (matrix 0 mit 1 für löschen)
+                %   Dann Distanz aus Agent auslesen und abspeichern in
+                %   einem Vektor
+                
                 
                 addNewAgentsToArray(obj, i);
                 pause(SPEED);

@@ -10,7 +10,7 @@ classdef agent < handle
        actSpeed %Aktuelle Geschwindigkeit des Agents in Meter pro Sekunde
        priority %Priorität des Agents; in welcher Reihenfolge er später iteriert wird
        angle %Winkel, in die ein Agent schaut (für gewisse graphische Darstellungen, 
-       distance = 0 %zurückgelegter weg
+       distance %zurückgelegter weg
     end
      
        
@@ -24,6 +24,7 @@ classdef agent < handle
             obj.actSpeed = maxSpeed;
             obj.priority = priority;
             obj.angle = 0;
+            obj.distance = 0;
         end
         
         function obj = reset(obj)
