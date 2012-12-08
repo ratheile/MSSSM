@@ -1,6 +1,8 @@
-function [topOut,botOut] = Iteration( agentsArray, wallArray )
+function [topOut,botOut] = Iteration( agentsArray, wallArray, distArray )
 %	Funktion ruft die Funktion logicFunction auf
 %   Muss mit einer Prioritätenliste auf alle Agents ausgeweitet werden
+%   distArray: Speichere die zurückgelegte Weglänge eines Agents wenn er
+%   gelöscht wird
 
     global INFLUENCESPHERE PRECISIONCOLLISION DELTAT YSPT1 YSPB2
     
@@ -42,6 +44,7 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray )
         end
             
         %neue koordinante setzen
+        agentsArray(k).distance = agentsArray(k).distance + sqrt((xCordNeu(maxL) - agentsArray(k).cordX)^2 + (yCordNeu(maxL) - agentsArray(k).cordY)^2);
         agentsArray(k).cordX = xCordNeu(maxL);
         agentsArray(k).cordY = yCordNeu(maxL);
         agentsArray(k).angle = angleShift;
@@ -51,11 +54,25 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray )
            agentsArray(k).actSpeed = 0;
            %evaluateAgent(agent);
             botOut = botOut +1;
+            test = find(distArray == 0,1);
+            if size(test,2) == 0
+                fprintf('Distanzarray ist zu kurz\n')
+            else
+                distArray(test) = agentsArray(k).distance;
+            end
+            prioArray = getPriorityArray(agentsArray);
         elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0) %von unten nach oben, grenze erreicht
            agentsArray(k).priority = 0;
            agentsArray(k).actSpeed = 0;
            %evaluateAgent(agent);
            topOut = topOut + 1;
+            test = find(distArray == 0,1);
+            if size(test,2) == 0
+                fprintf('Distanzarray ist zu kurz\n')
+            else
+                distArray(test) = agentsArray(k).distance;
+            end
+            prioArray = getPriorityArray(agentsArray);
         else
             agentsArray(k).actSpeed = agentsArray(k).maxSpeed() * (maxL - 1) / (PRECISIONCOLLISION - 1);
         end

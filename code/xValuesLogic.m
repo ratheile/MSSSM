@@ -3,7 +3,7 @@ function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVel
     
     global XVALUES HEIGHT SLOPEFACTOR ANGLE AGENTANGLEOFFSET REPULSIONAGENT STANDOFF
     
-    if (isMoving == 0 && diffVelocity == 0)     %Agents bleiben beide stehen
+    if isMoving == 0 && abs(diffVelocity) < 0.2    %Agents bleiben beide stehen (ungefähr)
         diffVelocity = STANDOFF;
     end
     

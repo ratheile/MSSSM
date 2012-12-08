@@ -15,7 +15,10 @@ ifSave = input('Save output [Y/N]? ','s');
 
 if ifSave == 'Y'
     outName = input('Write data to: ', 's');
-    copyfile('defineConstants.m',['sim/' outName '.m']);
+    copyfile('defineConstants.m',['sim/' outName '.txt']);
+    fileID = fopen(['sim/' outName '.txt'],'a+');
+    fprintf(fileID,['\nMode utilized: ' mode]);
+    fclose(fileID);
     save(['sim/' outName '.mat']);
     print('-dpng',['sim/' outName '.png']);
     %load(<pfad>)

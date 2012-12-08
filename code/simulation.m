@@ -8,12 +8,14 @@ classdef simulation < handle
     
     properties
         %Iteration properties
-        loops = 500;
+        loops;
         
         
         %Objects
         draw; %Das Zeichenobjekt
         agentSize = 200; %Defaultwert 200 kann mit Funktion berechnet werden
+        
+        evaluateAgent;
         
         %Results
         calcAdditionalReport = 0;
@@ -33,6 +35,8 @@ classdef simulation < handle
         
         %Constructor
         function obj = simulation()
+            global LOOPS
+            obj.loops = LOOPS;
             obj.spawned = zeros(2,obj.loops);
         end
     end
@@ -48,12 +52,12 @@ classdef simulation < handle
         %nächste woche!
         function obj = init(obj)
             defineConstants(); %defne all global variables
-            global SEED
+            global SEED DENSITYUP DENSITYDOWN DELTAT
             rng(SEED);   % Set seed for random number generator
             obj.draw = drawing.empty(1,0);
             obj.draw = drawing();   %create the drawing object
             calcPossibleAgents(obj);
-            
+            obj.evaluateAgent = zeros(1,ceil((DENSITYUP+DENSITYDOWN) * DELTAT * obj.loops + 30));       
             
             obj.draw.agentArray = agent.empty(100 ...
                  ,0);
@@ -226,13 +230,7 @@ classdef simulation < handle
                 end
                 [obj.result(1,i), obj.result(2,i)] = ...
                     Iteration(obj.draw.agentArray,...
-                    obj.draw.wallArray);
-                
-                %   evaluateAgent.m
-                %   Zusätzliche Ausgabe bei Iteration, wenn Agent gelöscht
-                %   (matrix 0 mit 1 für löschen)
-                %   Dann Distanz aus Agent auslesen und abspeichern in
-                %   einem Vektor
+                    obj.draw.wallArray, obj.evaluateAgent);
                 
                 
                 addNewAgentsToArray(obj, i);
@@ -248,7 +246,11 @@ classdef simulation < handle
                 
             end
             
-            
+            ind = find(obj.evaluateAgent == 0,1);
+            if size(ind,2) ~= 0 || ind ~= 1
+                obj.evaluateAgent = obj.evaluateAgent(1:(ind-1));
+            end
+                
            
             
         end

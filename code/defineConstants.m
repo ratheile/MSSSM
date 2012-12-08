@@ -6,7 +6,7 @@ function [] = defineConstants()
         WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION...
         SPEED MEANRADIUS STDRADIUS MEANSPEED STDSPEED WIDTH...
         YSPB1 YSPB2 YSPT1 YSPT2 RANDSTART REP DENSITYUP DENSITYDOWN...
-        REPULSIONAGENT STANDOFF SEED DISPERSIONFACTOR
+        REPULSIONAGENT STANDOFF SEED DISPERSIONFACTOR LOOPS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Name & Value......................value.Description........................
     XSCOPE = 120;                    % 100    how far one looks to the sides
@@ -63,7 +63,7 @@ function [] = defineConstants()
     DENSITYUP = 0.5;        % Anzahl neue Personen aus einer Richtung pro Sekunde
     DENSITYDOWN = 2;      % Und nach unten
 
-    
+    LOOPS = 400;            % Anzahl Iterationen
     SEED = 251;              % Seed for random number generator
 
     % *: ntbc = not to be changed!
