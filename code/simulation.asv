@@ -17,7 +17,6 @@ classdef simulation < handle
         currentStep = 1;
         
         %Results
-        calcAdditionalReport = 0;
         spawned;
         result;
         
@@ -74,11 +73,6 @@ classdef simulation < handle
             
               if(isempty(strfind(mode, '-nograph')) == 0)
                   obj.drawGraph = 0;
-              end
-              
-              
-              if(isempty(strfind(mode, '-report')) == 0)
-                  obj.calcAdditionalReport = 1;
               end
               
               if (isempty(strfind(mode, 'normal')) == 0)
@@ -158,10 +152,10 @@ classdef simulation < handle
         end
         
         function obj = additionalReport(obj)
-            sizeA = size(obj.draw.agentArray,2);
-            for i = 1:sizeA
                 
-            end
+            sizeA = size(obj.draw.agentArray,2); %size gibt 1, 200 aus
+            for1:sizeA
+
         end
         
         
@@ -188,10 +182,6 @@ classdef simulation < handle
                 
                 if(obj.drawGraph == 1)
                     obj.draw.plotStep();
-                end
-                
-                if(obj.calcAdditionalReport == 1)
-                    additionalReport(obj);
                 end
                 
             end
