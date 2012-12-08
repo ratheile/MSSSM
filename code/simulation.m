@@ -225,10 +225,10 @@ classdef simulation < handle
             initialSpawn(obj);
             
             for i = 1:obj.loops
-                if(mod(i,50) == 0)
+                if(mod(i,floor(DELTAT * obj.loops)) == 0)
                     fprintf('Time elapsed: %i Seconds \n',(DELTAT*i))
                 end
-                [obj.result(1,i), obj.result(2,i)] = ...
+                [obj.result(1,i), obj.result(2,i), obj.evaluateAgent] = ...
                     Iteration(obj.draw.agentArray,...
                     obj.draw.wallArray, obj.evaluateAgent);
                 
@@ -246,10 +246,10 @@ classdef simulation < handle
                 
             end
             
-            ind = find(obj.evaluateAgent == 0,1);
-            if size(ind,2) ~= 0 || ind ~= 1
-                obj.evaluateAgent = obj.evaluateAgent(1:(ind-1));
-            end
+%             ind = find(obj.evaluateAgent == 0,1);
+%             if size(ind,2) ~= 0 || ind ~= 1
+%                 obj.evaluateAgent = obj.evaluateAgent(1:(ind-1));
+%             end
                 
            
             

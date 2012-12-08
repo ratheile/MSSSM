@@ -1,4 +1,4 @@
-function [topOut,botOut] = Iteration( agentsArray, wallArray, distArray )
+function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArray )
 %	Funktion ruft die Funktion logicFunction auf
 %   Muss mit einer Prioritätenliste auf alle Agents ausgeweitet werden
 %   distArray: Speichere die zurückgelegte Weglänge eines Agents wenn er
@@ -59,6 +59,7 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray, distArray )
                 fprintf('Distanzarray ist zu kurz\n')
             else
                 distArray(test) = agentsArray(k).distance;
+                agentsArray(k).distance
             end
             prioArray = getPriorityArray(agentsArray);
         elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0) %von unten nach oben, grenze erreicht
@@ -78,7 +79,7 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray, distArray )
         end
     end    
 
-
+    outArray = distArray;
 end
 
      

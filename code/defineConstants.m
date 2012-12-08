@@ -63,7 +63,7 @@ function [] = defineConstants()
     DENSITYUP = 0.5;        % Anzahl neue Personen aus einer Richtung pro Sekunde
     DENSITYDOWN = 2;      % Und nach unten
 
-    LOOPS = 400;            % Anzahl Iterationen
+    LOOPS = 300;            % Anzahl Iterationen
     SEED = 251;              % Seed for random number generator
 
     % *: ntbc = not to be changed!
