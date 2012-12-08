@@ -246,10 +246,10 @@ classdef simulation < handle
                 
             end
             
-%             ind = find(obj.evaluateAgent == 0,1);
-%             if size(ind,2) ~= 0 || ind ~= 1
-%                 obj.evaluateAgent = obj.evaluateAgent(1:(ind-1));
-%             end
+            ind = find(obj.evaluateAgent == 0,1);
+            if size(ind,2) ~= 0 || ind ~= 1
+                obj.evaluateAgent = obj.evaluateAgent(1:(ind-1));
+            end
                 
            
             
