@@ -8,18 +8,18 @@ classdef simulation < handle
     
     properties
         %Iteration properties
-        loops = 1000;
+        loops = 500;
         
         
         %Objects
         draw; %Das Zeichenobjekt
         agentSize = 200; %Defaultwert 200 kann mit Funktion berechnet werden
-        currentStep = 1;
         
         %Results
         calcAdditionalReport = 0;
         spawned;
         result;
+        additionalresult;
         
         %Properties
         %EVT durch globals austauschen!!
@@ -33,7 +33,7 @@ classdef simulation < handle
         
         %Constructor
         function obj = simulation()
-            obj.spawned = zeros(1,obj.loops);
+            obj.spawned = zeros(2,obj.loops);
         end
     end
 
@@ -69,15 +69,18 @@ classdef simulation < handle
         function obj = runMode(obj,mode)
                 
               if(isempty(strfind(mode, '-MACHKEIPENIS')) == 0)
+                  disp('MODE: keine Richtungsanzeige');
                   obj.draw.drawP = 0;
               end
             
               if(isempty(strfind(mode, '-nograph')) == 0)
+                  disp('MODE: kein Graph');
                   obj.drawGraph = 0;
               end
               
               
               if(isempty(strfind(mode, '-report')) == 0)
+                  disp('MODE: zusätzlicher report');
                   obj.calcAdditionalReport = 1;
               end
               
@@ -139,10 +142,17 @@ classdef simulation < handle
         
         
         %Spawne einen neuen Agent
-        function obj = addNewAgentsToArray(obj)
+        function obj = addNewAgentsToArray(obj, currentStep)
             if (balanceProbability(obj) == 1)
-                obj.spawned(obj.currentStep) = obj.spawned(obj.currentStep) +1;
-                spawn(obj.draw.agentArray,randPrefix(obj));
+                pfx = randPrefix(obj);
+                if(pfx == 1)
+                    %Unten gespawnt
+                    obj.spawned(2,currentStep) = obj.spawned(currentStep) +1;
+                else
+                    %Oben gespawnt
+                    obj.spawned(1,currentStep) = obj.spawned(currentStep) +1;
+                end
+                spawn(obj.draw.agentArray,pfx);
             end
         end
         
@@ -157,10 +167,21 @@ classdef simulation < handle
             end
         end
         
-        function obj = additionalReport(obj)
+        
+        %Berechnet optionale Resultate
+        %Reihe1: Gesammtweg/Schritt
+        %Reihe2: Agents im system
+        function obj = additionalReport(obj, step)
+            global DELTAT;
+            
             sizeA = size(obj.draw.agentArray,2);
             for i = 1:sizeA
-                
+                if(obj.draw.agentArray(i).priority ~= 0)
+                    obj.additionalresult(2,step) =  obj.additionalresult(2,step) +1; %Agents ++
+                    way = abs(obj.draw.agentArray(i).actSpeed)*DELTAT;
+                    obj.additionalresult(1,step) = obj.additionalresult(1,step)+ way; %Gesammtweg aufsummieren
+                    obj.draw.agentArray(i).distance = obj.draw.agentArray(i).distance+way; %Agent aufsummieren
+                end
             end
         end
         
@@ -169,21 +190,26 @@ classdef simulation < handle
         %Das Resultat ist eine Matrix der Form
         %Oben   [Schritt1O Schritt2O...]
         %Unten  [Schritt1U Schritt2U...]
-                %Der jeweilige eintrag sind die angekommenen agents / iteration
+        %Der jeweilige eintrag sind die angekommenen agents / iteration
         function obj = run(obj)
             global SPEED DELTAT;
-            obj.result = zeros(3,obj.loops);
+            obj.result = zeros(2,obj.loops);
+            %Speicher für additionale resultate
+            if(obj.calcAdditionalReport == 1)
+                obj.additionalresult = zeros(2, obj.loops);
+            end
+            
             initialSpawn(obj);
             
             for i = 1:obj.loops
                 if(mod(i,50) == 0)
                     fprintf('Time elapsed: %i Seconds \n',(DELTAT*i))
                 end
-                [obj.result(1,1), obj.result(2,1)] = ...
+                [obj.result(1,i), obj.result(2,i)] = ...
                     Iteration(obj.draw.agentArray,...
                     obj.draw.wallArray);
                 
-                addNewAgentsToArray(obj);
+                addNewAgentsToArray(obj, i);
                 pause(SPEED);
                 
                 if(obj.drawGraph == 1)
@@ -191,7 +217,7 @@ classdef simulation < handle
                 end
                 
                 if(obj.calcAdditionalReport == 1)
-                    additionalReport(obj);
+                    additionalReport(obj, i);
                 end
                 
             end

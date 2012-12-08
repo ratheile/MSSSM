@@ -49,10 +49,12 @@ function [topOut,botOut] = Iteration( agentsArray, wallArray )
         if (agentsArray(k).cordY < YSPB2 && agentsArray(k).maxSpeed < 0) %von oben nach unten, grenze erreicht 
            agentsArray(k).priority = 0;
            agentsArray(k).actSpeed = 0;
+           %evaluateAgent(agent);
             botOut = botOut +1;
         elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0) %von unten nach oben, grenze erreicht
            agentsArray(k).priority = 0;
            agentsArray(k).actSpeed = 0;
+           %evaluateAgent(agent);
            topOut = topOut + 1;
         else
             agentsArray(k).actSpeed = agentsArray(k).maxSpeed() * (maxL - 1) / (PRECISIONCOLLISION - 1);
