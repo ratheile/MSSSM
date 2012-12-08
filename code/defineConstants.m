@@ -20,7 +20,7 @@ function [] = defineConstants()
     %!!!delta t noch anpassen ist warscheinlich noch zu klein!!!
     
     DELTAT = 0.1;                   % 0.1   iteration steps in seconds
-    HEIGHT = 1;                   % 3.5   normalization factor in logical calculations for agents
+    HEIGHT = 3.5;                   % 3.5   normalization factor in logical calculations for agents
     SLOPEFACTOR = 8;                % 12     parameter for other agents' influence
     REPULSIONAGENT = 2.1;             % 2     parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
     WALLFACTOR = -0.05;                % -0.02    parameter for walls' influence
@@ -29,7 +29,7 @@ function [] = defineConstants()
     INFLUENCESPHERE = 3;            % 2     how far an agents "looks", in meters
     PRECISIONCOLLISION = 4;        % 4    numerical precision for collision detection
     STANDOFF = -0.5;                % -0.5  "Strength" to resolve standoffs, must be negative
-    DISPERSIONFACTOR = 1/75;        % Positiv für Abstossung, negativ für Anziehung
+    DISPERSIONFACTOR = 1;        % Positiv für Abstossung, negativ für Anziehung
                                     % Negativ = Die Agents wollen
                                     % hintereinander herlaufen
                                     % 0 für gar keinen Einfluss
@@ -38,10 +38,12 @@ function [] = defineConstants()
     SPEED = 0.001; %Wartezeit in Sekunden für das Abspielen zweier Schritte
     RANDSTART = 133; %Seed für die Zufallsgeneratoren
     
+                            % Die dreifache Standardabweichung muss kleiner
+                            % sein als der Durchschnittswert
     MEANRADIUS = 0.25;		% Durchschnittsradius eines Agents
     STDRADIUS = 0.03;		% Standardabweichung der Radii der Agents
     MEANSPEED = 1.4;		% Durchschnittsgeschwindigkeit eines Agents in Metern pro Sekunde
-    STDSPEED = 0.08;		% Standardabweichung der Geschwindigkeiten der Agents in Metern pro Sekunde
+    STDSPEED = 0.2;		% Standardabweichung der Geschwindigkeiten der Agents in Metern pro Sekunde
     WIDTH = 2.8;			% Breite des Feldes
     
     YSPT2 = 30;
@@ -62,7 +64,7 @@ function [] = defineConstants()
     DENSITYDOWN = 1;      % Und nach unten
 
     
-    SEED = 151;              % Seed for random number generator
+    SEED = 251;              % Seed for random number generator
 
     % *: ntbc = not to be changed!
 end
