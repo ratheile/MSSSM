@@ -58,10 +58,10 @@ function [] = defineConstants()
     %YSPB1--------
     YSPB1 = 0;
     
-    REP = 6;			% Anzahl Versuche, einen neuen Agent zu spawnen
+    REP = 10;			% Anzahl Versuche, einen neuen Agent zu spawnen
     
     DENSITYUP = 1;        % Anzahl neue Personen aus einer Richtung pro Sekunde
-    DENSITYDOWN = 0.5;      % Und nach unten
+    DENSITYDOWN = 0.4;      % Und nach unten
 
     LOOPS = 1200;            % Anzahl Iterationen
     SEED = 51;              % Seed for random number generator

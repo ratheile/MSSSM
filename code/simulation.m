@@ -113,15 +113,12 @@ classdef simulation < handle
         function obj = additionalReport(obj, step)
             global DELTAT;
             
-            sizeA = size(obj.draw.agentArray,2);
-            for i = 1:sizeA
-                if(obj.draw.agentArray(i).priority ~= 0)
-                    obj.additionalresult(2,step) =  obj.additionalresult(2,step) +1; %Agents ++
-                    way = abs(obj.draw.agentArray(i).actSpeed)*DELTAT;
-                    obj.additionalresult(1,step) = obj.additionalresult(1,step)+ way; %Gesammtweg aufsummieren
-                    obj.draw.agentArray(i).distance = obj.draw.agentArray(i).distance+way; %Agent aufsummieren
-                end
+            sortedPrioArray = getSortedPriorityArray(getPriorityArray(obj.draw.agentArray));  
+            for i = sortedPrioArray;
+                way = abs(obj.draw.agentArray(i).actSpeed)*DELTAT;
+                obj.additionalresult(1,step) = obj.additionalresult(1,step)+ way; %Gesammtweg aufsummieren
             end
+            obj.additionalresult(2,step) = size(sortedPrioArray,2);
         end
 
     end
