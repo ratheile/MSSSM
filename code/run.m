@@ -5,6 +5,7 @@ profile off
 profile on
 clear
 clc
+defineConstants();
 sim = simulation();
 sim.init()
 
