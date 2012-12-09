@@ -60,6 +60,7 @@ function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArra
             else
                 distArray(test) = agentsArray(k).distance;
             end
+            agentsArray(k).distance = 0;
             prioArray = getPriorityArray(agentsArray);
         elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0) %von unten nach oben, grenze erreicht
            agentsArray(k).priority = 0;
@@ -72,6 +73,7 @@ function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArra
             else
                 distArray(test) = agentsArray(k).distance;
             end
+            agentsArray(k).distance = 0;
             prioArray = getPriorityArray(agentsArray);
         else
             agentsArray(k).actSpeed = agentsArray(k).maxSpeed() * (maxL - 1) / (PRECISIONCOLLISION - 1);
