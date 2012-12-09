@@ -59,7 +59,6 @@ function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArra
                 fprintf('Distanzarray ist zu kurz\n')
             else
                 distArray(test) = agentsArray(k).distance;
-                agentsArray(k).distance
             end
             prioArray = getPriorityArray(agentsArray);
         elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0) %von unten nach oben, grenze erreicht
