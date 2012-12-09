@@ -39,6 +39,7 @@ function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArra
         
         if maxL == 0 %  Sollte eigentlich nicht passieren, dann ist ein Fehler in der Iteration geschehen. Loesche den Agent, da er sich nicht bewegen kann, da ein anderer Agent auf seiner Position steht
             agentsArray(k).priority = 0;
+            agentsArray(k).distance = 0;
             fprintf('Ein Agent ist in einer unmöglichen Position. Agent gelöscht\n')
             continue
         end
