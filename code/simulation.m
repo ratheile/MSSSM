@@ -226,6 +226,8 @@ classdef simulation < handle
             
             for i = 1:obj.loops
                 if(mod(i,floor(DELTAT * obj.loops)) == 0)
+                    c = clock;
+                    fprintf('Actual time on system: %d h %d min %d sec\n',c(4),c(5),c(6));
                     fprintf('Time elapsed: %i Seconds \n',(DELTAT*i))
                 end
                 [obj.result(1,i), obj.result(2,i), obj.evaluateDistance, obj.evaluateTime] = ...
