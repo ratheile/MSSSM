@@ -1,4 +1,4 @@
-function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArray )
+function [topOut,botOut, outDistArray, outTimeArray] = Iteration( agentsArray, wallArray, distArray , timeArray)
 %	Funktion ruft die Funktion logicFunction auf
 %   Muss mit einer Prioritätenliste auf alle Agents ausgeweitet werden
 %   distArray: Speichere die zurückgelegte Weglänge eines Agents wenn er
@@ -49,6 +49,7 @@ function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArra
         agentsArray(k).cordX = xCordNeu(maxL);
         agentsArray(k).cordY = yCordNeu(maxL);
         agentsArray(k).angle = angleShift;
+        agentsArray(k).time = agentsArray(k).time + DELTAT;
         
         if (agentsArray(k).cordY < YSPB2 && agentsArray(k).maxSpeed < 0) %von oben nach unten, grenze erreicht 
            agentsArray(k).priority = 0;
@@ -61,6 +62,13 @@ function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArra
             else
                 distArray(test) = agentsArray(k).distance;
             end
+            test = find(timeArray == 0,1);
+            if size(test,2) == 0
+                fprintf('Distanzarray ist zu kurz\n')
+            else
+                timeArray(test) = agentsArray(k).time;
+            end
+            agentsArray(k).time = 0;
             agentsArray(k).distance = 0;
             prioArray = getPriorityArray(agentsArray);
         elseif(agentsArray(k).cordY > YSPT1 && agentsArray(k).maxSpeed > 0) %von unten nach oben, grenze erreicht
@@ -74,14 +82,22 @@ function [topOut,botOut, outArray] = Iteration( agentsArray, wallArray, distArra
             else
                 distArray(test) = agentsArray(k).distance;
             end
+            test = find(timeArray == 0,1);
+            if size(test,2) == 0
+                fprintf('Distanzarray ist zu kurz\n')
+            else
+                timeArray(test) = agentsArray(k).time;
+            end
+            agentsArray(k).time = 0;
             agentsArray(k).distance = 0;
             prioArray = getPriorityArray(agentsArray);
         else
             agentsArray(k).actSpeed = agentsArray(k).maxSpeed() * (maxL - 1) / (PRECISIONCOLLISION - 1);
         end
     end    
-
-    outArray = distArray;
+    
+    outTimeArray = timeArray;
+    outDistArray = distArray;
 end
 
      

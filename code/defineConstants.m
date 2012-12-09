@@ -22,7 +22,7 @@ function [] = defineConstants()
     DELTAT = 0.1;                   % 0.1   iteration steps in seconds
     HEIGHT = 3.5;                   % 3.5   normalization factor in logical calculations for agents
     SLOPEFACTOR = 8;                % 12     parameter for other agents' influence
-    REPULSIONAGENT = 2.1;             % 2     parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
+    REPULSIONAGENT = 2.2;             % 2     parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
     WALLFACTOR = -0.05;                % -0.02    parameter for walls' influence
     AGENTANGLEOFFSET = pi/14;       % pi/12 offset angle in angle calculations for agents
     WALLANGLEOFFSET = pi/20;        % pi/20 offset angle in angle calculations for walls
@@ -61,10 +61,10 @@ function [] = defineConstants()
     REP = 6;			% Anzahl Versuche, einen neuen Agent zu spawnen
     
     DENSITYUP = 1;        % Anzahl neue Personen aus einer Richtung pro Sekunde
-    DENSITYDOWN = 1;      % Und nach unten
+    DENSITYDOWN = 0.5;      % Und nach unten
 
-    LOOPS = 1200;            % Anzahl Iterationen
-    SEED = 251;              % Seed for random number generator
+    LOOPS = 250;            % Anzahl Iterationen
+    SEED = 51;              % Seed for random number generator
 
     % *: ntbc = not to be changed!
 end

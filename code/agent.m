@@ -11,6 +11,7 @@ classdef agent < handle
        priority %Priorität des Agents; in welcher Reihenfolge er später iteriert wird
        angle %Winkel, in die ein Agent schaut (für gewisse graphische Darstellungen, 
        distance %zurückgelegter weg
+       time % Zeit, die ein Agent im System verbringt
     end
      
        
@@ -25,6 +26,7 @@ classdef agent < handle
             obj.priority = priority;
             obj.angle = 0;
             obj.distance = 0;
+            obj.time = 0;
         end
         
         function obj = reset(obj)

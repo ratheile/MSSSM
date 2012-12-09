@@ -15,7 +15,9 @@ classdef simulation < handle
         draw; %Das Zeichenobjekt
         agentSize = 200; %Defaultwert 200 kann mit Funktion berechnet werden
         
-        evaluateAgent;
+        evaluateDistance;
+        evaluateTime;
+        
         
         %Results
         calcAdditionalReport = 0;
@@ -57,7 +59,8 @@ classdef simulation < handle
             obj.draw = drawing.empty(1,0);
             obj.draw = drawing();   %create the drawing object
             calcPossibleAgents(obj);
-            obj.evaluateAgent = zeros(1,ceil((DENSITYUP+DENSITYDOWN) * DELTAT * obj.loops + 30));       
+            obj.evaluateDistance = zeros(1,ceil((DENSITYUP+DENSITYDOWN) * DELTAT * obj.loops + 30));       
+            obj.evaluateTime = zeros(1,ceil((DENSITYUP+DENSITYDOWN) * DELTAT * obj.loops + 30)); 
             
             obj.draw.agentArray = agent.empty(100 ...
                  ,0);
@@ -228,9 +231,9 @@ classdef simulation < handle
                 if(mod(i,floor(DELTAT * obj.loops)) == 0)
                     fprintf('Time elapsed: %i Seconds \n',(DELTAT*i))
                 end
-                [obj.result(1,i), obj.result(2,i), obj.evaluateAgent] = ...
+                [obj.result(1,i), obj.result(2,i), obj.evaluateDistance, obj.evaluateTime] = ...
                     Iteration(obj.draw.agentArray,...
-                    obj.draw.wallArray, obj.evaluateAgent);
+                    obj.draw.wallArray, obj.evaluateDistance, obj.evaluateTime);
                 
                 
                 addNewAgentsToArray(obj, i);
@@ -246,11 +249,14 @@ classdef simulation < handle
                 
             end
             
-            ind = find(obj.evaluateAgent == 0,1);
+            ind = find(obj.evaluateDistance == 0,1);
             if (size(ind,2) ~= 0) || (ind ~= 1)
-                obj.evaluateAgent = obj.evaluateAgent(1:(ind-1));
+                obj.evaluateDistance = obj.evaluateDistance(1:(ind-1));
             end
-                
+            ind = find(obj.evaluateTime == 0,1);
+            if (size(ind,2) ~= 0) || (ind ~= 1)
+                obj.evaluateTime = obj.evaluateTime(1:(ind-1));
+            end                
            
             
         end
