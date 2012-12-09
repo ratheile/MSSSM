@@ -5,16 +5,9 @@
 
 \begin{itemize}
 
-\item[!] GENERAL :
-\item WIE/WO Daten rausziehen aus Agents?
-\item gestaute (noch unfertig) agents nch simulationsende einbeziehen oder nicht, für welche Zwecke?
-\item Densityup/Densitydown einbinden (hoffentlich noch möglich?)
-\item Agent seine Geburtsiteration mitgeben, und bei Auswertung auch Todesiteration, um Zeit auszuwerten?
-\\
-
 \item[!] OUTPUT :
 \item Untersuche Situationen wenn: Anz. Agents variiert, Gangbreite variiert.
-\item Plot mit: x-Achse Zeit, y-Achse Personen pro Zeitabschnitt (evtl. mehrere deltaT) erzeugt/gelöscht, je oben&unten, für verschiedene Gangbreiten
+\item Plot mit: x-Achse Zeit, y-Achse Personen pro Zeitabschnitt (evtl. mehrere deltaT) erzeugt/gelöscht, je oben\& unten, für verschiedene Gangbreiten
 \item Weglängen? (Problem: abhängig von Anz. Agents im System, und diese ändert sich immer wieder
 \item Jeder Agent: gesamthaft gelaufene Strecke pro deltaT
 \item Wie viele Agents im System drin?
@@ -23,7 +16,6 @@
 
 \item[!] TEST:
 \item Mit Dispersionfactor rumspielen
-\item Mal Standardabweichung der Geschweindigkeit etwas erhöhen
 \\
 
 \item[!] DOKUMENTATION :
@@ -33,11 +25,17 @@
 \item Kapitel Limitations of our model (dort simplifications reinnehmen, 180°-limitation verhindert "ausbrechen" (Bild), etc.
 \\
 
-\item[!] INFO :
-\item \textbf{sim.spawned}: wieviele werden gespawnt in jedem Iterationsschritt. 1.Zeile = oben; 2.Zeile = unten
-\item \textbf{sim.result}: wieviele kommen an in jedem Iterationsschritt. 1.Zeile=oben, 2.zeile = unten.
-\item \textbf{sim.additionalReport} 1.Zeile: Von allen Agents in diesem Iterationsschritt zurückgelegte Strecke , 2.Zeile  Agents im System in jedem Iterationsschritt
-\item \textbf{fehlt noch}: Funktion evaluateAgent welche beim "Tod" eines Agents seine Daten (gelaufene Weglänge, evtl noch Geburts- und Todesiteration) ausliest und in eine sim.... matrix speichert!
+\item[!] INFO zu simulation results:\\
+The following informations can be obtained through the simulation file:
+
+\item \textbf{sim.loops}: Number of loops calculated
+\item \textbf{sim.evaluateDistance}: (1$\times$(\# of arrived agents))-matrix containing the distances that the arrived agents walked
+\item \textbf{sim.evaluateTime}: (1$\times$(\# of arrived agents))-matrix containing the time it took the arrived agents to arrive
+\item \textbf{sim.calcAdditionalReport}: 1, if the additional results were chosen, else 0
+\item \textbf{sim.spawned}: (2$\times$loops)-Matrix containing the number of spawned agents at the top (column 1) and bottom (column 2)
+\item \textbf{sim.result}:  (2$\times$loops)-Matrix containing the number of deleted agents at the top (column 1) and bottom (column 2)
+\item \textbf{sim.additionalresult}:  (2$\times$loops)-Matrix containing the total distance walked by all agents at each iteration step (column 1) and the number of agents in the system (column 2)
+\item \textbf{sim.drawGraph}: 1, if a graphical output was drawn, else 0
 
 \end{itemize}
 
