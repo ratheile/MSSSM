@@ -62,7 +62,7 @@ classdef simulation < handle
             obj.evaluateDistance = zeros(1,ceil((DENSITYUP+DENSITYDOWN) * DELTAT * obj.loops + 30));       
             obj.evaluateTime = zeros(1,ceil((DENSITYUP+DENSITYDOWN) * DELTAT * obj.loops + 30)); 
             
-            obj.draw.agentArray = agent.empty(100 ...
+            obj.draw.agentArray = agent.empty(ceil((DENSITYUP+DENSITYDOWN) * DELTAT * obj.loops + 30) ...
                  ,0);
 
             
