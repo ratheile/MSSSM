@@ -14,15 +14,15 @@ To each of these runs, three files were generated:
 ## Data saves
 
 Then there are some Data Saves:
-* No data saves yet.
+* ADataPackage1 - contains 12 vectors with the total walked distance per iteration (sum over all agents) of each simulation.
 
 ## Graps/Pictures
 
 And there are some plots:
 
-* No Plots yet.
+* ATotalDistanceInfluencesColoured - Plots the total distances of all 12 simulations in one plot, the same influence values have the same colour.
+* ATotalDistanceSeedsColoured - Plots the total distances of all 12 simulations in one plot, the same seeds have the same colour
+* ADistancesPerSeeds - Plots 3 plots, each another seed.
 
 ## Plot commands
-Here are the Matlab codes for the plots:
-
-(There are no plots yet => no commands ;) )
+The Matlab commands for the plots can be found in the file "APlotCodes.txt".
