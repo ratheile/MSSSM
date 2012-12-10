@@ -16,12 +16,12 @@ To each of these runs, three files were generated:
 Then there are some Data Saves:
 * There are no data saves yet.
 
-## Graps/Pictures
+## Plots/Pictures
 
-And there are some Graphs:
+And there are some plots:
 * There are no graphs yet.
 
-## Graph commands
-Here are the Matlab codes for the graphs:
+## Plot commands
+Here are the Matlab codes for the plots:
 
-There are no graphs yet.
+There are no plots yet.
