@@ -32,7 +32,7 @@ The heart of the simulation is the function \textit{logicFunction.m}, which dete
 \subsubsection{xValuesLogic.m}
 \text{xValuesLogic.m} distinguishes three different cases.
 \begin{itemize}
-	\item For two crossing agents or if the agent in front of the agent in question is slower, we used equation (\ref{logik1}) to get $x_\y{out}'$. It was also used for two not moving agents, setting $\Delta v$ equal to an arbitrary value given in \textit{STANDOFF}.
+	\item For two crossing agents or if the agent in front of the agent in question is slower, we used equation (\ref{logik1}) to get $x_\y{out}'$. It was also used for two not moving agents, setting $\Delta v$ equal to an arbitrary value given in \texttt{STANDOFF}. This was a quick way to resolve standoffs, although this would eventually turn out to be in its actual form an Achilles heel of the model.
 	\begin{equation}\label{logik1}
 		x_\y{out}' = \frac{1}{\dis (|x - \alpha_X|)^{\brac{\frac{-\Delta v}{a}}}} = (|x - \alpha_X|)^{\brac{\frac{\Delta v}{a}}},\ \Delta v < 0
 	\end{equation}
@@ -40,11 +40,12 @@ The heart of the simulation is the function \textit{logicFunction.m}, which dete
 	\begin{equation}\label{logik2}
 		x_\y{out} = x_\y{out}' \cdot \frac{b}{max(x_\y{out}')} \cdot \brac{\frac{r_S}{d}}^c
 	\end{equation}
-	\noi The variables $a$ (called \textit{SLOPEFACTOR}), $b$ (\textit{HEIGHT}) and $c$ (\textit{REPULSIONAGENT}) have to chosen in a way that the simulation runs smoothly. The term $\frac{b}{max(x_\y{out}')}$ normalized the function to a maximum value $b$ while the term $\brac{\frac{r_S}{d}}^c$ controls that the repulsive influence gets stronger the closer the two agents get. $c$ is usually chosen to be larger than 1.\\
+	\noi The variables $a$ (called \texttt{SLOPEFACTOR}), $b$ (\texttt{HEIGHT}) and $c$ (\texttt{REPULSIONAGENT}) have to chosen in a way that the simulation runs smoothly. The term $\frac{b}{max(x_\y{out}')}$ normalized the function to a maximum value $b$ while the term $\brac{\frac{r_S}{d}}^c$ controls that the repulsive influence gets stronger the closer the two agents get. $c$ is usually chosen to be larger than 1.\\
+	For two agents walking the in the same direction, the function given in equation \label{logik2} is additionally multiplied with the difference in speed $|\delta v|$ in a try to make them avoid standing agents more resolute as it that case $|\delta v|$ would be rather big.\\
 	
-	\noi If the $x_\y{out}$ given in equation (\ref{logik2}) would be returned, the agent in question would aim to miss the other agent exactly. We thought that this would be to close as in reality, one also leaves a bit of space if possible between each other. Therefore we introduced an offset given as \textit{WALLANGLEOFFSET} which gives the angle additionally to the $\beta$ angles for which an agent should aim to. To account for this, $x_\y{out}$ is modified with an linear interpolation between the values at $\beta + WALLANGLEOFFSET$ and $\beta$ (which was set to zero before).
+	\noi If the $x_\y{out}$ given in equation (\ref{logik2}) would be returned, the agent in question would aim to miss the other agent exactly. We thought that this would be to close as in reality, one also leaves a bit of space if possible between each other. Therefore we introduced an offset given as \texttt{WALLANGLEOFFSET} which gives the angle additionally to the $\beta$ angles for which an agent should aim to. To account for this, $x_\y{out}$ is modified with an linear interpolation between the values at $\beta + $\texttt{WALLANGLEOFFSET} and $\beta$ (which was set to zero before).
 
-	\item If the agent in front of the agent in question is faster, a gaussian curve was used with the mean $\alpha_X$ and standard deviation $rS/d$. It is then modified further with $\Delta v$ and \textit{HEIGHT} to make it a weak influence.
+	\item If the agent in front of the agent in question is faster, a gaussian curve was used with the mean $\alpha_X$ and standard deviation $rS/d$. It is then modified further with $\Delta v$ and \texttt{HEIGHT} to make it a weak influence.
 	\item For two agents moving with the same speed, the influence is set two zero by returning a vector of zeros.
 \end{itemize}
 
@@ -54,7 +55,7 @@ To avoid hitting the wall, we used a very simple approach. Every angle correspon
 \begin{equation}\label{logik8}
 	x_\y{Out} = x \cdot \frac{a}{d - rS}
 \end{equation}
-\noi As before for agents, an offset is introduced so the agent in question doesn't just try to avoid the wall-agent but also to leave some buffer space. The offset is also given in \textit{WALLANGLEOFFSET}, $a$ can be accessed with the constant variable \textit{WALLFACTOR}. $a$ has to be set negative as otherwise the wall would have an attractive force. To set a good value for this factor $a$ is quite delicate because if it is too low agents will be stuck in the wall while if it too high they will never approach the wall even slightly. 
+\noi As before for agents, an offset is introduced so the agent in question doesn't just try to avoid the wall-agent but also to leave some buffer space. The offset is also given in \texttt{WALLANGLEOFFSET}, $a$ can be accessed with the constant variable \texttt{WALLFACTOR}. $a$ has to be set negative as otherwise the wall would have an attractive force. To set a good value for this factor $a$ is quite delicate because if it is too low agents will be stuck in the wall while if it too high they will never approach the wall even slightly. 
 
 \subsubsection{Calculating functions in $x$ and transforming them into a polar axis in $\varphi$}
 \begin{figure}[h!]
@@ -65,7 +66,7 @@ To avoid hitting the wall, we used a very simple approach. Every angle correspon
 	\label{fig:Bsp2}
 \end{figure}
 
-\noi As the functions given above are given in $x$ but the direction to go on is determined in polar values, it needs to be transformed into a $\varphi$ axis. This is done using a vector for $x$ ranging $\pm$ \textit{XSCOPE} with a step of \textit{XRES}. Applying the arcustangent on it yields the axis in angular values ($\varphi$). The transforming is done simply by using the $\varphi$ axis instead of the $x$ axis. This is shown in the two figures \ref{fig:Bsp2} and \ref{fig:Bsp2Out}. As those functions are only chosen to show the principle, they were not normalized in height according to the equations mentioned above.\\
+\noi As the functions given above are given in $x$ but the direction to go on is determined in polar values, it needs to be transformed into a $\varphi$ axis. This is done using a vector for $x$ ranging $\pm$ \texttt{XSCOPE} with a step of \texttt{XRES}. Applying the arcustangent on it yields the axis in angular values ($\varphi$). The transforming is done simply by using the $\varphi$ axis instead of the $x$ axis. This is shown in the two figures \ref{fig:Bsp2} and \ref{fig:Bsp2Out}. As those functions are only chosen to show the principle, they were not normalized in height according to the equations mentioned above.\\
 In figure \ref{fig:Bsp2}, the function (\ref{logik1}) is shown graphically in the $x$ as well as $\varphi$ axis. Figure \ref{fig:Bsp2Out} shows the $x_\y{out}$ the function \textit{xValuesLogic.m} returns.
 
 \begin{figure}[h!]
@@ -77,7 +78,7 @@ In figure \ref{fig:Bsp2}, the function (\ref{logik1}) is shown graphically in th
 \end{figure}
 
 \subsubsection{Graphical example}
-This subchapter shall give a visual explanation of how the logic functions work. Lets consider the situation given in \ref{Bsp1}.
+This subchapter shall give a visual example of how the logic functions work. Lets consider the situation given in \ref{Bsp1}.
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.40\textwidth]{pictures/Bsp1}

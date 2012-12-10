@@ -1,0 +1,20 @@
+%Iteration
+
+\subsubsection{General considerations}
+One iteration step is carried out using the function \textit{Iteration.m}. For it to work properly, the array of all agents and all wall agents has to passed to it. All other inputs as well as all output variables are introduced for evalutation of the model and are per se not necessary for the iteration. It deals with three main tasks, the propagation of the simulation in time, the collision detection and the destruction of an agent after reaching its goal.\\
+The spawning of new agents is treated in the function \textit{Spawn.m}. Both functions are called from the \textit{simulation.m} which controlls the simulation and stores all the data.
+
+\subsubsection{Iteration step and collision detection}
+This function takes four input array, although only two are critical for the success of the iteration. Those two are the arrays for all dynamic and static agents (equals wall agents). The output consists of the number of agents which disapeared during the iteration step, the distance covered by the disapeared agents as well as the time the disapeared agents had spent in the simulations.\\
+At first, an index array is calculated with the indices of the dynamic agents in the given array of agents sorted according to their priority. This is done using the functions \textit{getPriorityArray.m} and \textit{getSortedPriorityArray.m}. Then a loop over the index array is carried out.\\
+For every agent, the desired direction is calculated using the function \textit{logicFunction.m} explained above. Using the angle obtained by the call of \textit{logicFunction.m} und the speed given as the agent property, the new $x$- and $y$-coordiantes-to-be are determined. The path to it is then split in several substeps with the number of divisions given in the constant \texttt{PRECISIONCOLLISION}. In addition, the place where the agents stands is also included in case the agent cannot move at all.\\
+For each of these positions, the distance to all other agents minus the radii is calculated yielding a distance matrix. This is done over all agents, dynamic as well as static. The last position for each other agent is left -1 as a sentinel. The distance matrix is then sorted using the matlab command \textit{sort} which leaves the most negative value for each column in the first row. The position of the first negative minimal distance indicates a collision. This position minus 1 will then be the distance the agent in question walks.\\
+
+\noi In very rare cases, all positions in the first row of the sorted distance matrix are negative. This has the very nasty significance of an agent that could not even stand at its actual position. We reckon this has to do with some small numerical errors, as it only very rarely. To leave the agent at its actual position will now only result in a complete freze of two agents. It is certainly not a nice solution, but in these cases we simply deleted the faulty agent by setting its priority to 0 and reset its distance and time properties to enable the simulation to keep on running.
+
+\subsubsection{Destruction of agents}
+If an agent reaches his goal, the other side, it is automatically deleted inside \textit{Iteration.m}. This is simply done by setting the priority of the agent to 0. The attributes time and distance are read out before resetting and handed back to the calling function for later evaluation. After a deletion, the priority array giving all the indices of active agents is recalculated in order to avoid any influence of the deleted agent on other agents as the iteration step proceeds through the residual agents in the loop over all agents.
+
+\subsubsection{Spawning new agents}
+Spawning of one new agents is done by the function \textit{spawn.m}.
+
