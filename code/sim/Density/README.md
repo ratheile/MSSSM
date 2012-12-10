@@ -2,7 +2,7 @@
 
 ## Description
 
-In this folder you find the outcomes of a test series, where ONLY the densities, namely DENSITYUP and DENSITYDOWN of agents incoming per second was changed. For 3 different Seeds (51, 71, 91), and for different combinations of up and down density (each combinations of elements of (0.4, 0.6, 0.8, 1), where densityup >= densitydown), the simulation was run. We didn't run the other combinations because the whole situation is symmetric.
+In this folder you find the outcomes of a test series, where ONLY the densities, namely DENSITYUP and DENSITYDOWN of agents incoming per second was changed. For 3 different Seeds (51, 71, 91), and for different combinations of up and down density (each combinations of elements of (0.4, 0.6, 0.8, 1), where densityup >= densitydown => 10 combinations), the simulation was run. We didn't run the other combinations because the whole situation is symmetric.
 
 ## Files
 
@@ -14,7 +14,8 @@ To each of these runs, three files were generated:
 ## Data saves
 
 Then there are some Data Saves:
-* There are no data saves yet.
+* ADataPackage1 - contains for the 10 simulated combinations, each 3 seeds, each the vectors "agents in system", "agent finished time", "agent finished distance", so in total 10*3*3=90 vectors
+* ADataPackage2 - contains ADataPackage1 and also Average Vectors to each of the Situations: ...Avg (...1+...2+...3)/3
 
 ## Graps/Pictures
 
@@ -24,4 +25,4 @@ And there are some Graphs:
 ## Graph commands
 Here are the Matlab codes for the graphs:
 
-There are no graphs yet.
+The Matlab codes can be found in the file APlotCodes.txt.
