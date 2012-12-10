@@ -53,7 +53,7 @@ sim.runMode(mode);
 
 if ifSave == 'Y'
     save(['sim/' outName '.mat']);
-    sim.obj.draw.plotStep();
+    sim.draw.plotStep();
     print('-dpng',['sim/' outName '.png']);
     %load(<pfad>)
 end
