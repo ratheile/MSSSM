@@ -102,6 +102,33 @@ All methods are listed here:
 
 
 
+\subsection{How to run a simulation}
+To start a simulation, simply change to the "/code" directory in your local matlab installation. Then type "run" into the command window. This will set up a new simulation environment.
+This environment can be accessed trough the "sim" variable. The run script will ask for a "runmode" and if you like to save the results afterwards.\\
+
+Supported runmodes are:\\
+
+
+
+\begin{tabular}{|p{3cm}|p{10cm}|}
+      \hline
+      normal & normal mode with many wall agents\\ \hline
+      fasttest & faster mode with lesser wall agents \\ 
+      \hline
+\end{tabular}\\
+
+Supported parameters are:\\
+
+\begin{tabular}{|p{3cm}|p{10cm}|}
+      \hline
+      -nograph & simulation draws no graph, can be used if graphical output is not necessary.\\ \hline
+      -report & additional report will be recorded\\ \hline
+      -MACHKEPENIS & removes the direction markers on top of the agents.\\
+      \hline
+\end{tabular}\\
+
+A string could be for example: "normal -nograph -report".
+For a more detailed example please view the header of the run.m file. 
 
 
 
@@ -122,7 +149,6 @@ All methods are listed here:
 \input{Iteration}
 %Iterationsfunktion und Kollisionsabfragen hier beschreiben.
 %Ebenso die Erschaffung der Agents durch spawn
-
 
 \clearpage
 
