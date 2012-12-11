@@ -6,6 +6,104 @@
 %Agents gespeichert in einem Array agentArray
 %Simplifications wahrscheinlich auch hier einbringen
 %closest.m als Diskretisierung einbringen
+We had to build our implementation around several different desires:
+\begin{itemize}
+\item Code has to be expandable with additional features.
+\item If there is a class model it has to be simple because the project
+is not that big.
+\item Constants should be easy to find.
+\end{itemize}
+
+According to those points the simulation code is a mixture between classes and cascaded functions. At the top is a file defining all the global constants. This approach is maybe not very correct in therms of a good programming style but it makes it very simple to adjust smaller details. \\
+
+There are 3 classes: simulation.m, agent.m and drawing.m .The further description about these classes can be found in the table or direct in the header of the class files. The rest of the code is split up into different logical functions.\\
+
+\begin{tabular}{|l|p{7cm}|l|}
+        \hline
+        Class & Description & Parent \\ \hline
+        simulation.m
+		& This class offers all the functions for simulations. It can be executed  
+		with different parameters depending on the users preferences.           
+		& Matlab "handle" class \\ \hline
+
+		agent.m    
+		& This class is a container for all the agent data such as its radius and 
+		the coordinates.   
+		& Matlab "handle" class \\ \hline
+
+
+		drawing.m
+		& This class can draw a field containing agents.           
+		& Matlab "handle" class \\  \hline
+
+\end{tabular}\\
+\newpage
+The following class diagram is a summary of the most important functions and properties in this project:\\
+\includegraphics[width=10cm]{pictures/classpackage}\\
+
+
+
+%simulation.m
+\subsection{simulation.m}
+The simulation class describes an object that wraps all the different possibilities of our simulation program. Its the start point for a new simulation, runs this simulation and collects all the data requested from the agents and the simulated environment. The main flow of a run cycle is described in the following activity diagram:\\
+\includegraphics[width=15cm]{pictures/activityDiagram}\\
+
+\subsubsection{Properties}
+Important properties:
+\begin{itemize}
+\item draw: The drawing.m implementation.
+\item result: A matrix containing simulation results
+\item additionalResult: A matrix containing simulation results
+\item evaluateTime %Noch beschreiben
+\item evaluateDistance %Noch beschreiben
+\end{itemize}
+\subsubsection{Methods}
+All methods are listed here:
+\begin{itemize}
+\item simulation(): Constructor, sets up the object.
+\item init(): Initializes the existing object: Fills up arrays with object, etc.
+\item runMode(): Pass console like parameters to this function to run a simulation.
+\item additionalReport(): Fills the additionalResult matrix.
+\item calcPossibleAgents(): Calculates the maximum possible number of agents for the set area.
+\item randPrefix(): Randomly generates 1 or -1 to set the spawnpoint (top or bottom).
+\item initialSPawn(): Fills up the agent array with new agent.m objects. They have priority 0.
+\item addNewAgentsToArray():Used to add new agents to the simulation while running.
+\item balanceProbability(): Balances the probability to spawn agents.
+\item {\bf run()}: Main function to run a simulation after everything is set up and ready.
+See the activity diagram for a better explanation.
+\end{itemize}
+
+
+
+
+
+%drawing.m
+\subsection{drawing.m}
+This class basically adapts simple Matlab drawing functions and converts them into useful functions for this project. As a result its very easy to draw the new situation after a simulation step.
+\subsubsection{Properties}
+Important properties:
+\begin{itemize}
+\item particleDensity: Resolution for wall agent.m objects in $\frac{agents}{meter}$.
+\item width: The field width.
+\item length: The field length.
+\item wallArray: All the agent.m object for the wall.
+\item agentArray: All the agent.m objects for the simulation.
+\end{itemize}
+\subsubsection{Methods}
+All methods are listed here:
+\begin{itemize}
+\item drawing(): Constructor, sets up the object.
+\item createWall(): Creates wall agents according to the settings.
+\item {\bf plotStep()}: Main function, plots all the agents on a field with the walls and the starting lines. 
+\item drawWallSquares: Draws the walls on the side.
+\item circlePlot: Draws circles for the agents.
+\item drawLine: Draws a line with coordinates. Used for the direction indicators etc.
+\end{itemize}
+
+
+
+
+
 
 \subsection{Agents}
 \input{Agents.tex}
