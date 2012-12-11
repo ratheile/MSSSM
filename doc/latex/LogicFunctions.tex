@@ -41,7 +41,7 @@ The heart of the simulation is the function \textit{logicFunction.m}, which dete
 		x_\y{out} = x_\y{out}' \cdot \frac{b}{max(x_\y{out}')} \cdot \brac{\frac{r_S}{d}}^c
 	\end{equation}
 	\noi The variables $a$ (called \texttt{SLOPEFACTOR}), $b$ (\texttt{HEIGHT}) and $c$ (\texttt{REPULSIONAGENT}) have to chosen in a way that the simulation runs smoothly. The term $\frac{b}{max(x_\y{out}')}$ normalized the function to a maximum value $b$ while the term $\brac{\frac{r_S}{d}}^c$ controls that the repulsive influence gets stronger the closer the two agents get. $c$ is usually chosen to be larger than 1.\\
-	For two agents walking the in the same direction, the function given in equation \label{logik2} is additionally multiplied with the difference in speed $|\delta v|$ in a try to make them avoid standing agents more resolute as it that case $|\delta v|$ would be rather big.\\
+	For two agents walking the in the same direction, the function given in equation \ref{logik2} is additionally multiplied with the difference in speed $|\delta v|$ in a try to make them avoid standing agents more resolute as it that case $|\delta v|$ would be rather big.\\
 	
 	\noi If the $x_\y{out}$ given in equation (\ref{logik2}) would be returned, the agent in question would aim to miss the other agent exactly. We thought that this would be to close as in reality, one also leaves a bit of space if possible between each other. Therefore we introduced an offset given as \texttt{WALLANGLEOFFSET} which gives the angle additionally to the $\beta$ angles for which an agent should aim to. To account for this, $x_\y{out}$ is modified with an linear interpolation between the values at $\beta + $\texttt{WALLANGLEOFFSET} and $\beta$ (which was set to zero before).
 
@@ -78,7 +78,7 @@ In figure \ref{fig:Bsp2}, the function (\ref{logik1}) is shown graphically in th
 \end{figure}
 
 \subsubsection{Graphical example}
-This subchapter shall give a visual example of how the logic functions work. Lets consider the situation given in figure \ref{Bsp1}.
+This subchapter shall give a visual example of how the logic functions work. Lets consider the situation given in figure \ref{fig:Bsp1}.
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.40\textwidth]{pictures/Bsp1}
