@@ -18,16 +18,16 @@ Then there are some Data Saves:
 * ADataPackage2 - contains also 5 average vectors (one per each width)
 * WidthTest2500mmSeed51ProfileViewer.pdf - The combination 2.5m, Seed 51 was a total killer because there was a massive jam right from the beginning which caused in massive CPU use, a reason to save the ProfileViewer's data.
 
-## Graps/Pictures
+## Plots/Pictures
 
-And there are some Graphs:
+And there are some plots:
 * AallInOne - all the 15 vectors of #agents in systems in one graph
 * AAveragesInOne - the 5 average vectors of #agents in systems
 Also, a picture was token:
 * WidthTest2800mmSeed51LaneFormation70sec.jpg - At 2.8m, Seed 51, ca.70, a very nice example of lane formation pops up
 
-## Graph commands
-Here are the Matlab codes for the graphs:
+## Plot commands
+Here are the Matlab codes for the plots:
 
 AallInOne:
 

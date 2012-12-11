@@ -5,7 +5,7 @@ function [] = defineConstants()
         HEIGHT SLOPEFACTOR WALLFACTOR AGENTANGLEOFFSET...
         WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION...
         SPEED MEANRADIUS STDRADIUS MEANSPEED STDSPEED WIDTH...
-        YSPB1 YSPB2 YSPT1 YSPT2 RANDSTART REP DENSITYUP DENSITYDOWN...
+        YSPB1 YSPB2 YSPT1 YSPT2 REP DENSITYUP DENSITYDOWN...
         REPULSIONAGENT STANDOFF SEED DISPERSIONFACTOR LOOPS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Name & Value......................value.Description........................
@@ -26,17 +26,16 @@ function [] = defineConstants()
     WALLFACTOR = -0.05;                % -0.02    parameter for walls' influence
     AGENTANGLEOFFSET = pi/14;       % pi/12 offset angle in angle calculations for agents
     WALLANGLEOFFSET = pi/20;        % pi/20 offset angle in angle calculations for walls
-    INFLUENCESPHERE = 3;            % 2     how far an agents "looks", in meters
+    INFLUENCESPHERE = 3.0;            % 2     how far an agents "looks", in meters
     PRECISIONCOLLISION = 4;        % 4    numerical precision for collision detection
     STANDOFF = -0.5;                % -0.5  "Strength" to resolve standoffs, must be negative
-    DISPERSIONFACTOR = 1;        % Positiv für Abstossung, negativ für Anziehung
+    DISPERSIONFACTOR = 0.7;        % Positiv für Abstossung, negativ für Anziehung
                                     % Negativ = Die Agents wollen
                                     % hintereinander herlaufen
                                     % 0 für gar keinen Einfluss
                                     % 1/100 oder -1/50
     
     SPEED = 0.001; %Wartezeit in Sekunden für das Abspielen zweier Schritte
-    RANDSTART = 133; %Seed für die Zufallsgeneratoren
     
                             % Die dreifache Standardabweichung muss kleiner
                             % sein als der Durchschnittswert
@@ -61,7 +60,7 @@ function [] = defineConstants()
     REP = 10;			% Anzahl Versuche, einen neuen Agent zu spawnen
     
     DENSITYUP = 1;        % Anzahl neue Personen aus einer Richtung pro Sekunde
-    DENSITYDOWN = 0.4;      % Und nach unten
+    DENSITYDOWN = 1;      % Und nach unten
 
     LOOPS = 1200;            % Anzahl Iterationen
     SEED = 51;              % Seed for random number generator
