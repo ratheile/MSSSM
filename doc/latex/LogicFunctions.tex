@@ -11,7 +11,7 @@ The heart of the simulation is the function \textit{logicFunction.m}, which dete
 	\label{fig:beta}
 \end{figure}
 
-\noi For our model, it is crucial to determine where an agent shouldn't go. The function \textit{getBeta.m} returns the angles which describe the interval leading to a collision. A graphical depiction of the situation is given in figure \ref{fig:beta}. The equations (\ref{logik3}) to (\ref{logik5}) were used to get $\beta_\y{Links}$ and $\beta_\y{Rechts}$. They had to be converted into the angles given with respect to $\varphi$, $\beta_{\varphi,\y{ left}}$ and $\beta_{\varphi,\y{ right}}$ as shown in equations (\ref{logik6}) to (\ref{logik7}).
+\noi For our model, it is crucial to determine where an agent shouldn't go. The function \textit{getBeta.m} returns the angles which describe the interval of angles leading to a collision. A graphical depiction of the situation is given in figure \ref{fig:beta}. The equations (\ref{logik3}) to (\ref{logik5}) were used to get $\beta_\y{Links}$ and $\beta_\y{Rechts}$. They had to be converted into the angles given with respect to $\varphi$, $\beta_{\varphi,\y{ left}}$ and $\beta_{\varphi,\y{ right}}$ as shown in equations (\ref{logik6}) to (\ref{logik7}).
 \begin{equation}\label{logik3}
 	\gamma = arccos\brac{\frac{r_S}{d}},\ \alpha = arctan\brac{\frac{\Delta y}{\Delta x}}
 \end{equation}
@@ -19,13 +19,13 @@ The heart of the simulation is the function \textit{logicFunction.m}, which dete
 	\beta_\y{Links} = \gamma + \alpha - \frac{\pi}{2}
 \end{equation}
 \begin{equation}\label{logik5}
-	\beta_\y{Rechts} = + \alpha + \frac{\pi}{2} - \gamma
+	\beta_\y{Rechts} = \alpha + \frac{\pi}{2} - \gamma
 \end{equation}
 \begin{equation}\label{logik6}
-  \beta_{\varphi,\y{ left}} = \frac{\pi}{2} - \beta_\y{Rechts} = \pi - (\gamma + \alpha)
+  \beta_{\varphi,\y{ left}} = \frac{\pi}{2} - \beta_\y{Links} = \pi - (\gamma + \alpha)
 \end{equation}
 \begin{equation}\label{logik7}
-  \beta_{\varphi,\y{ right}} = \frac{\pi}{2} - \beta_\y{Rechts} = \gamma - \alpha)
+  \beta_{\varphi,\y{ right}} = \frac{\pi}{2} - \beta_\y{Rechts} = \gamma - \alpha
 \end{equation}
 \noi This works between agents as well as between agents and the wall agents. Care was taken to engineer a calculation that allows for it to be used for agents walking in both directions.
 
@@ -36,17 +36,17 @@ The heart of the simulation is the function \textit{logicFunction.m}, which dete
 	\begin{equation}\label{logik1}
 		x_\y{out}' = \frac{1}{\dis (|x - \alpha_X|)^{\brac{\frac{-\Delta v}{a}}}} = (|x - \alpha_X|)^{\brac{\frac{\Delta v}{a}}},\ \Delta v < 0
 	\end{equation}
-	\noi All values which correspond to a collision course in $x_y{out}'$ are set to zero. This also deals with the singularity of equation (\ref{logik1}) as it is set to zero. This done using the $\beta$-angles shown before. Afterwards, $x_\y{out}'$ is normalized and modificated further using equation (\ref{logik2}).
+	\noi All values which correspond to a collision course in $x_\y{out}'$ are set to zero. This also deals with the singularity of equation (\ref{logik1}) as it is set to zero. This is done using the $\beta$-angles shown before. Afterwards, $x_\y{out}'$ is normalized and modificated further using equation (\ref{logik2}).
 	\begin{equation}\label{logik2}
 		x_\y{out} = x_\y{out}' \cdot \frac{b}{max(x_\y{out}')} \cdot \brac{\frac{r_S}{d}}^c
 	\end{equation}
-	\noi The variables $a$ (called \texttt{SLOPEFACTOR}), $b$ (\texttt{HEIGHT}) and $c$ (\texttt{REPULSIONAGENT}) have to chosen in a way that the simulation runs smoothly. The term $\frac{b}{max(x_\y{out}')}$ normalized the function to a maximum value $b$ while the term $\brac{\frac{r_S}{d}}^c$ controls that the repulsive influence gets stronger the closer the two agents get. $c$ is usually chosen to be larger than 1.\\
+	\noi The variables $a$ (called \texttt{SLOPEFACTOR}), $b$ (\texttt{HEIGHT}) and $c$ (\texttt{REPULSIONAGENT}) have to chosen in a way that the simulation runs smoothly. The term $\frac{b}{max(x_\y{out}')}$ normalized the function to a maximum value $b$ while the term $\brac{\frac{r_S}{d}}^c$ controls that the repulsive influence gets stronger, the closer the two agents get. $c$ is usually chosen to be larger than 1.\\
 	For two agents walking the in the same direction, the function given in equation \ref{logik2} is additionally multiplied with the difference in speed $|\delta v|$ in a try to make them avoid standing agents more resolute as it that case $|\delta v|$ would be rather big.\\
 	
-	\noi If the $x_\y{out}$ given in equation (\ref{logik2}) would be returned, the agent in question would aim to miss the other agent exactly. We thought that this would be to close as in reality, one also leaves a bit of space if possible between each other. Therefore we introduced an offset given as \texttt{WALLANGLEOFFSET} which gives the angle additionally to the $\beta$ angles for which an agent should aim to. To account for this, $x_\y{out}$ is modified with an linear interpolation between the values at $\beta + $\texttt{WALLANGLEOFFSET} and $\beta$ (which was set to zero before).
+	\noi If the $x_\y{out}$ given in equation (\ref{logik2}) would be returned, the agent in question would aim to miss the other agent exactly. We thought that this would be too close as in reality, one also leaves a bit of space if possible between each other. Therefore we introduced an offset given as \texttt{WALLANGLEOFFSET} which gives the angle additionally to the $\beta$ angles for which an agent should aim to. To account for this, $x_\y{out}$ is modified with an linear interpolation between the values at $\beta + $\texttt{WALLANGLEOFFSET} and $\beta$ (which was set to zero before).
 
 	\item If the agent in front of the agent in question is faster, a gaussian curve was used with the mean $\alpha_X$ and standard deviation $rS/d$. It is then modified further with $\Delta v$ and \texttt{HEIGHT} to make it a weak influence.
-	\item For two agents moving with the same speed, the influence is set two zero by returning a vector of zeros.
+	\item For two agents moving with the same speed, the influence is set to zero by returning a vector of zeros.
 \end{itemize}
 
 
@@ -55,7 +55,7 @@ To avoid hitting the wall, we used a very simple approach. Every angle correspon
 \begin{equation}\label{logik8}
 	x_\y{Out} = x \cdot \frac{a}{d - rS}
 \end{equation}
-\noi As before for agents, an offset is introduced so the agent in question doesn't just try to avoid the wall-agent but also to leave some buffer space. The offset is also given in \texttt{WALLANGLEOFFSET}, $a$ can be accessed with the constant variable \texttt{WALLFACTOR}. $a$ has to be set negative as otherwise the wall would have an attractive force. To set a good value for this factor $a$ is quite delicate because if it is too low agents will be stuck in the wall while if it too high they will never approach the wall even slightly. 
+\noi As before for agents, an offset is introduced so the agent in question doesn't just try to avoid the wall-agent but also to leave some buffer space. The offset is also given in \texttt{WALLANGLEOFFSET}, $a$ can be accessed with the constant variable \texttt{WALLFACTOR}. $a$ has to be set negative as otherwise the wall would have an attracting force. To set a good value for this factor $a$ is quite delicate because if it is too low, agents will be stuck in the wall while if it too high, they will never approach the wall even slightly. 
 
 \subsubsection{Calculating functions in $x$ and transforming them into a polar axis in $\varphi$}
 \begin{figure}[h!]
@@ -78,7 +78,7 @@ In figure \ref{fig:Bsp2}, the function (\ref{logik1}) is shown graphically in th
 \end{figure}
 
 \subsubsection{Graphical example}
-This subchapter shall give a visual example of how the logic functions work. Lets consider the situation given in figure \ref{fig:Bsp1}.
+This subchapter shall give a visual example of how the logic functions work. Let's consider the situation given in figure \ref{fig:Bsp1}.
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.40\textwidth]{pictures/Bsp1}
@@ -109,5 +109,3 @@ This subchapter shall give a visual example of how the logic functions work. Let
 	\caption{Output of all logic functions combined for the black agent in figure \ref{fig:Bsp1}. Visible is the effect of the oncoming green and red agents as superpositions on the underlying gaussian curve. The black agent will move left (from his point of view) to avoid hitting the closer green agent.}
 	\label{fig:Bsp1ObenRechts}
 \end{figure}
-
-
