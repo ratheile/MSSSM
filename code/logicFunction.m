@@ -1,12 +1,3 @@
-% ag = agent.empty(5,0); %Array von 2 leeren agents
-% ag(1) = agent(1,0,0,1,1);
-% ag(2) = agent(1,0,3,-1,1);
-% ag(3) = agent(1,2,2,1,1);
-% ag(4) = agent(1,6,2,0.1,0);
-% ag(5) = agent(1,7,2,0.1,0);
-% prio = getPriorityArray(ag);
-%prioArray = [1,1,1,0,0]
-
 function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere, priorityArray, wallArray)
 %   Funktion berechnet die Richtung, in die ein Agent gehen wird. Mögliche
 %   Werte liegen zwischen -pi/2 bis pi/2, wobei 0 nach rechts bedeutet und
