@@ -96,6 +96,14 @@ All methods are listed here:
 \end{itemize}
 \noi How the field is created is the subject of subchapter \ref{drawField}.
 
+\subsubsection{Simplifications}
+Some simplifications and constrains on the model had to be introduced during the implementation to keep the whole simulation manageable. At first we decided that the agents should walk either up or down and used the sign of an agent's velocity as an indication in which direction the agent goes. In the logic functions, a discretization had to be introduced for the numerical evaluations of functions. To interconvert values between different vectors, the function \textit{closest.m} was used.\\
+
+\noi As a consequence of the model used for the logic functions, the agents will only be able to look forward. Because of the actual way \textit{logicFunction.m} was implemented (see subchapter \ref{logic}), they would not use the full $\pm 90^\circ$ in front and on the side of them. We thought this not to be too critical as the human visual field is also smaller than $180^\circ$, if one doesn't move the head.\\
+
+\noi If one walks through the main station, it is visible that many people are not on their own. Groups tend to walk together as they want to chat. This can be seen very clearly in couples which try to walk side-by-side. To incorporate this in our model, we would have to introduce some kind of coupling between agents, for example that they would always be below a certain distance from each other. As we constructed our model from scratch, we thought it should be challenging enough to make it work with completely independent agents.\\
+
+\noi The hallway in the main station in Zurich is approximately 60 meters long. We shortened the way to 30 meters as we reckon that the same affects should be visible over that length. This saves some time for the simulations as the way until the agents from the opposite directions meet is considerable shortened.
 
 \subsection{How to run a simulation}
 To start a simulation, simply change to the "/code" directory in your local matlab installation. Then type "run" into the command window. This will set up a new simulation environment. This environment can be accessed trough the "sim" variable.\\
@@ -121,14 +129,5 @@ The run script will ask for a "runmode" and if you like to save the data. Suppor
 \noi A string could be for example: "normal -nograph -report". For a more detailed example please view the header of the run.m file. \\
 
 \noi If one wants to save the data, type "Y" as one is asked whether the data shall be saved and type in the name to the location on the computer where the data shall be stored. As a default, they are saved into the sim folder. Then the \textit{defineConstants.m} file containing all the constants is saved as a .txt file with the runmode appended. After the simulation is finished, the workspace variables containing the "sim" variable are saved as a .mat file. The situation after the last iteration is drawn and saved as a png, also when the parameter -nograph was called. This allows a first visual check on how a run went.
-
-\subsubsection{Simplifications}
-Some simplifications and constrains on the model had to be introduced during the implementation to keep the whole simulation manageable. At first we decided that the agents should walk either up or down and used the sign of an agent's velocity as an indication in which direction the agent goes. In the logic functions, a discretization had to be introduced for the numerical evaluations of functions. To interconvert values between different vectors, the function \textit{closest.m} was used.\\
-
-\noi As a consequence of the model used for the logic functions, the agents will only be able to look forward. Because of the actual way \textit{logicFunction.m} was implemented (see subchapter \ref{logic}), they would not use the full $\pm 90^\circ$ in front and on the side of them. We thought this not to be too critical as the human visual field is also smaller than $180^\circ$, if one doesn't move the head.\\
-
-\noi If one walks through the main station, it is visible that many people are not on their own. Groups tend to walk together as they want to chat. This can be seen very clearly in couples which try to walk side-by-side. To incorporate this in our model, we would have to introduce some kind of coupling between agents, for example that they would always be below a certain distance from each other. As we constructed our model from scratch, we thought it should be challenging enough to make it work with completely independent agents.\\
-
-\noi The hallway in the main station in Zurich is approximately 60 meters long. We shortened the way to 30 meters as we reckon that the same affects should be visible over that length. This saves some time for the simulations as the way until the agents from the opposite directions meet is considerable shortened.
 
 
