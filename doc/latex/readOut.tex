@@ -1,3 +1,14 @@
 %readOut
 
-\noi 
+\noi To evaluate how the model has worked, both a graphical and a mathematical output is given. As a graphical check one can take a look at the last situation which is saved as a png. This gives immediate information about whether the agents got caught in a jam or not.\\
+For further and more precise analysis, several variables listed below are stored which can be used to monitor several aspects like the overall efficiency of the model. In the list below, the variables are stated in the way they can be called after a simulation.
+\begin{itemize}
+	\item \textbf{sim.loops}: Gives back the number of iterated loops.
+	\item \textbf{sim.evaluateDistance}: (1$\times$(\# of arrived agents))-matrix containing the distances of all agents which have finished their way across the hallway.
+	\item \textbf{sim.evaluateTime}: (1$\times$(\# of arrived agents))-matrix containing the spent time in the simulation of all agents which successfully crossed the hallway.
+	\item \textbf{sim.spawned}: (2$\times$loops)-Matrix containing the number of spawned agents at the top (column 1) and bottom (column 2) of the hallway.
+	\item \textbf{sim.result}: (2$\times$loops)-Matrix containing the number of deleted agents at the top (column 1) and bottom (column 2) of the hallway.
+	\item \textbf{sim.additionalresult}: (2$\times$loops)-Matrix containing the total distance walked by all agents during each iteration step (column 1) and the total number of agents in the system (column 2).
+\end{itemize}
+
+
