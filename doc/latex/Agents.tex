@@ -3,19 +3,19 @@
 As the model is agent-based, we wanted to implement them as such. Therefore we created a class called \text{agent.m}. Every agent has the following properties which are critical for the simulation:
 \begin{itemize}
 	\item Radius of the agent called \textsc{radius}
-	\item An x coordinate called \textsc{cordX}
-	\item A y coordinate called \textsc{cordY}
+	\item The x coordinate of its position called \textsc{cordX}
+	\item The y coordinate of its position called \textsc{cordY}
 	\item A maximal velocity called \textsc{maxSpeed}
 	\item An actual velocity called \textsc{actSpeed}
 	\item A priority called \textsc{priority}
 \end{itemize}
-\noi Two more properties were introduced later for the analysis of the model. They are called \textsc{distance} and \textsc{time} and are used to monitor the time and pathlength an agent needs for crossing the field. The property \textsc{angle} stores the angle an agent wants to walk. This was used to show the way they want to walk to during the simulation.\\
+\noi Two more properties were introduced later for the analysis of the model. They are called \textsc{distance} and \textsc{time} and are used to monitor the time and pathlength an agent needs for crossing the field. The property \textsc{angle} stores the angle an agent wants to walk. This was used to graphically show the way they want to walk to during the simulation.\\
 
-\noi A circle is the mathematically easiest shape to consider especially for collision detections which have to be done later all the time. In addition, we consider the circle to be a good approximation as one also needs some space to move as the legs cover some space in front and behind the body. A circle is also practical as it only needs one parameter entirely for the shape which is the radius. Using this approach, every agent can have a different radius.\\
+\noi A circle is the mathematically easiest shape to consider, especially for collision detections which have to be done later all the time. In addition, we consider the circle to be a good approximation as one also needs some space to move as the legs cover some space in front and behind the body. Also, a circle is very practical as it only needs one parameter entirely for the shape which is the radius. Using this approach, every agent can have a different radius.\\
 
-\noi The coordinates of the agent with respect to a cartesian grid centered at the lower left of the whole filed are vital for all calculations. They are also needed to defined the circle representing the agent in the plane. After each iteration, they will be adjusted to the new situation.\\
+\noi The coordinates of the agent with respect to a cartesian grid centered at the lower left of the whole filed are vital for all calculations. They are also needed to define the circle representing the agent in the plane. After each iteration, they will be adjusted to the new situation.\\
 
-\noi Every agent has a maximum velocity. The actual velocity of an agent gives its actual speed. If there is no obstacle, it will be the maximum velocity. In the initialization of an agent, the first actual velocity is set to be equal to the maximum velocity. As velocity is in principle a vectorial quantity, we used the sign of the maximum velocity to determine the way an agent walks. By our own convention a positive sign means to go upwards and a negative sign to go downwards.\\
+\noi Every agent has a maximum velocity. The actual velocity of an agent gives its actual speed. If there is no obstacle, it will be the maximum velocity. In the initialization of an agent, the first actual velocity is set to be equal to the maximum velocity. As velocity is in principle a vectorial quantity, we used the sign of the maximum velocity to determine the way an agent walks which is always well-defined as we don't let agents walk backwards. By our own convention, a positive sign means to go upwards (increasing y coordinate) and a negative sign means to go downwards (decreasing y coordinate).\\
 
 \noi Every agent has a priority and usually a random number between 0 and 1. It is used to determine the order in which the agents move through one iteration step. A high priority means that the agent will walk first. A high priority value can be attributed to an agent which will always try to push his way through.\\
 The priority is also used to mark inactive agents. As all arrays are stored in an array of class agent, a priority of 0 denotes an empty position and will not be drawn are considered. Any new agent is placed at the first position in the array of agents with a priority of 0. If an agent reaches its goal, it can be deleted by setting the priority to zero. This is the only time the priority value is changed after the creation of an agent.\\
