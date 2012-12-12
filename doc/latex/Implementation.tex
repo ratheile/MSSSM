@@ -1,40 +1,36 @@
 %Implementation
 
-\subsection{General considerations}	%Genereller Aufbau, Einbindung der Funktionen und wie die Simulation gestartet wird
-%Nach oben/unten entspricht der y-Koordinate
-%Wandagents gespeichert in einem Array WallArray
-%Agents gespeichert in einem Array agentArray
-%Simplifications wahrscheinlich auch hier einbringen
-%closest.m als Diskretisierung einbringen
+%General composition, functions, how to start a simulation, +-1 for up/down, wallArray contains wall agents, agentArray contains agents, simplifications, closest.m as discretization
+\subsection{General considerations}
 \input{ImplementationGeneral}
 
 \subsection{Agents}
 \input{Agents.tex}
 
+%How is the field drawn? (0/0) is bottom left, explain shortening the field
 \subsection{Drawing of the field}\label{drawField}
-%Wie wird das Feld gezeichnet?
-%Implementierung der Zeichnung von Mosi.
-%Nullpunkt des Koordinatensystems links unten
-%auch Kürzung des Feldes erwähnen
+%Implementierung der Zeichnung von Mosi!!!
 To draw the field, the matlab API is used in a very basic way. Matlab supports the drawing of different shapes like circles, squares and lines. They can be combined in a single plot to create more complex graphic objects. The field is repainted after every simulation step by different functions. There is a separate function for the wall painting and to paint the spawn-lines on both sides. The agents are painted in two steps. First it paints a round "rectangle" to create a cyclic shape and then, if the user desires, direction indicators on top of it. All the drawing functions are processed in a procedural manner. Every agent is handled individually.\\
 
-The field is defined by its wall agents. They could be in any shape. For example, if one wants extend the field with an obstacle somewhere between the spawn lines it can be defined by adding wall-agents to the specific coordinates The easiest way to do so is to modify the createWall() function (which currently creates wall-agents on the left and the right side to simulate a passage) . Keep in mind that the coordinate systems zero point is on the lower left side.  All wall agents are currently invisible. \\
+The field is defined by its wall agents. They could be in any shape. For example, if one wants extend the field with an obstacle somewhere between the spawn lines it can be defined by adding wall-agents to the specific coordinates. The easiest way to do so is to modify the createWall() function (which currently creates wall-agents on the left and the right side to simulate a hallway). Keep in mind that the coordinate system's zero point is on the lower left side. All wall agents are currently invisible.\\
 
-If one does extend the field with other obstacles or different shaped walls and if its not possible to frame the new situation with a simple geometric structure, the wall agents have to be drawn again. This is currently disabled because it slows down the simulation speed and the straight walls can be easily substituted with a long small rectangle. Drawing wall-agents is very simple due to the fact that they are exactly the same object type like a normal, moving agent. One can combine the two arrays (wall-agents and the moving agents) and let it draw by the iteration loop.\\
+If one does extend the field with other obstacles or different shaped walls and if it is not possible to frame the new situation with a simple geometric structure, the wall agents have to be drawn again. This is currently disabled because it slows down the simulation speed, and because the straight walls can be easily substituted with a long small rectangle. Drawing wall-agents is very simple due to the fact that they are exactly the same object type like a normal, moving agent. One can combine the two arrays (wall-agents and the moving agents) and let it draw by the iteration loop.\\
 
-Currently walls are coloured black, agents moving from top to bottom are painted in blue and those from bottom to top are red. The agents direction indicators are painted black. All the distances are in meters.
+Currently, walls are coloured black, agents moving from top to bottom are painted in blue and those from bottom to top are red. The agent's direction indicators are painted black. All the distances are in meters.
 
+%Description of the logical functions
 \subsection{Logical functions}\label{logic}
 \input{LogicFunctions.tex}
 
+%description of iteration function and collision detection, also spawning agents
 \subsection{Iteration}
 \input{Iteration}
-%Iterationsfunktion und Kollisionsabfragen hier beschreiben.
-%Ebenso die Erschaffung der Agents durch spawn
 
+%Description of data readout
 \subsection{Readout of informations of after a simulation}
 \input{readout.tex}
 
+%Description of the constant's definitions
 \subsection{Defining all constants}
 \input{constants.tex}
 
