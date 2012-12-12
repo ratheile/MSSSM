@@ -9,7 +9,7 @@ classdef simulation < handle
     %a result it is faster but agents can shake a little bit
     
     %Parameters:
-    % -MACHKEIPENIS: Disables the direction line of the agents for a better
+    % -nodirections: Disables the direction line of the agents for a better
     % general overview
     
     % -nograph: Does what it says.. A non graphical mode to save simulation
@@ -96,7 +96,7 @@ classdef simulation < handle
         %   mode    - the mode string to parse
         function obj = runMode(obj,mode)
                 
-              if(isempty(strfind(mode, '-MACHKEIPENIS')) == 0)
+              if(isempty(strfind(mode, '-nodirections')) == 0)
                   disp('MODE: keine Richtungsanzeige');
                   obj.draw.drawP = 0;
               end
