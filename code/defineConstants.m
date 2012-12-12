@@ -28,7 +28,6 @@ function [] = defineConstants()
     GAUSSANGLE = gaussmf(XVALUES,[breite 0]); % ntbc* Generate Gaussian function for direction
     ANGLE = atan(XVALUES);          % ntbc* Calculate angular values for Gaussian function    
     
-    DELTAT = 0.1;                   % 0.1   Iteration steps in seconds
     HEIGHT = 4;                     % 4     Normalization factor in logical calculations for agents
     SLOPEFACTOR = 8;                % 8     Parameter for other agents' influence
     REPULSIONAGENT = 2;             % 2     Parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
@@ -49,8 +48,8 @@ function [] = defineConstants()
     STDRADIUS = 0.03;               % 0.03  Standard deviation of the distribution of radii
     MEANSPEED = 1.5;                % 1.5   Mean speed of the agents in meters/second
     STDSPEED = 0.25;                % 0.25  Standard deviation of the distribution of speeds
-    WIDTH = 2.8;                    % 2.8   Width of the field
 
+    WIDTH = 2.8;                    % 2.8   Width of the field
     YSPT2 = 30;                     % 30    Spawn line of the upper agents
     %YSPT2--------                
     %YSPT1--------
@@ -62,11 +61,10 @@ function [] = defineConstants()
     %YSPB2--------
     %YSPB1--------
     YSPB1 = 0;                      % 0     Spawn line of the lower agents
-    
+
+    DELTAT = 0.1;                   % 0.1   Iteration steps in seconds
     REP = 10;                       % 10    Number of tries to spawn a new agent
     LOOPS = 1800;                   % 500   Number of iteration steps
     SEED = 451;                     %       Seed for random number generator
     SPEED = 0.001;                  % 0.001 Time delay between two iterations in seconds
-
-    % *: ntbc = not to be changed!
 end
