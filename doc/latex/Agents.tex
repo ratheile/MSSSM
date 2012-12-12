@@ -17,12 +17,7 @@ As the model is agent-based, we wanted to implement them as such. Therefore we c
 
 \noi Every agent has a maximum velocity. The actual velocity of an agent gives its actual speed. If there is no obstacle, it will be the maximum velocity. In the initialization of an agent, the first actual velocity is set to be equal to the maximum velocity. As velocity is in principle a vectorial quantity, we used the sign of the maximum velocity to determine the way an agent walks which is always well-defined as we don't let agents walk backwards. By our own convention, a positive sign means to go upwards (increasing y coordinate) and a negative sign means to go downwards (decreasing y coordinate).\\
 
-\noi Every agent has a priority and usually a random number between 0 and 1. It is used to determine the order in which the agents move through one iteration step. A high priority means that the agent will walk first. A high priority value can be attributed to an agent which will always try to push his way through.\\
-The priority is also used to mark inactive agents. As all arrays are stored in an array of class agent, a priority of 0 denotes an empty position and will not be drawn are considered. Any new agent is placed at the first position in the array of agents with a priority of 0. If an agent reaches its goal, it can be deleted by setting the priority to zero. This is the only time the priority value is changed after the creation of an agent.\\
+\noi Every agent has a priority and usually this is a random number between 0 and 1. It is used to determine the order in which the agents move through one iteration step. A high priority means that the agent will walk first. A high priority value can be attributed to an agent which will always try to push his way through.\\
+The priority is also used to mark inactive agents. As all arrays are stored in an array of class agent, a priority of 0 denotes an empty position and will not be drawn. Any new agent is placed at the first position in the array of agents with a priority of 0. If an agent reaches its goal, it can be deleted by setting the priority to zero. This is the only time the priority value is changed after the creation of an agent.\\
 
 \noi The class agent was implemented using \textit{handle} in the class definition. This has the same effect as \textit{call by reference} in C++ as there is after the creation only one instance of the agent, specially in the case where it is passed down to functions. A change of the value inside the function will be effective also outside the function which saves the step of giving the whole array of agents back after every function call which changes the coordinates or the actual velocity.
-
-
-%class < handle
-
-
