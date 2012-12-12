@@ -16,7 +16,13 @@
 %Implementierung der Zeichnung von Mosi.
 %Nullpunkt des Koordinatensystems links unten
 %auch Kürzung des Feldes erwähnen
+To draw the field, the matlab API is used in a very basic way. Matlab supports the drawing of different shapes like circles, squares and lines. They can be combined in a single plot to create more complex graphic objects. The field is repainted after every simulation step by different functions. There is a separate function for the wall painting and to paint the spawn-lines on both sides. The agents are painted in two steps. First it paints a round "rectangle" to create a cyclic shape and then, if the user desires, direction indicators on top of it. All the drawing functions are processed in a procedural manner. Every agent is handled individually.\\
 
+The field is defined by its wall agents. They could be in any shape. For example, if one wants extend the field with an obstacle somewhere between the spawn lines it can be defined by adding wall-agents to the specific coordinates The easiest way to do so is to modify the createWall() function (which currently creates wall-agents on the left and the right side to simulate a passage) . Keep in mind that the coordinate systems zero point is on the lower left side.  All wall agents are currently invisible. \\
+
+If one does extend the field with other obstacles or different shaped walls and if its not possible to frame the new situation with a simple geometric structure, the wall agents have to be drawn again. This is currently disabled because it slows down the simulation speed and the straight walls are substituted with a long small rectangle. Drawing wall-agents is very simple due to the fact that they are exactly the same object type like a normal, moving agent. One can combine the two arrays (wall-agents and the moving agents) and let it draw by the iteration loop.\\
+
+Currently walls are coloured black, agents moving from top to bottom are painted in blue and those from bottom to top are red. The agents direction indicators are painted black. All the distances are in meters.
 
 \subsection{Logical functions}\label{logic}
 \input{LogicFunctions.tex}
