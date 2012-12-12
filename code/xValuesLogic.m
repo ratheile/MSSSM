@@ -1,6 +1,6 @@
 function [ xOut ] = xValuesLogic( indexX, distance, betaLeft, betaRight, diffVelocity, radiusSum , isMoving )
 %   Berechnet die Werte für die Berechnung der Richtung
-    
+%  Calculates the values for the calculation of the direction    
     global XVALUES HEIGHT SLOPEFACTOR ANGLE AGENTANGLEOFFSET REPULSIONAGENT STANDOFF
     
     if isMoving == 0 && abs(diffVelocity) < 0.2    %Agents bleiben beide stehen (ungefähr)

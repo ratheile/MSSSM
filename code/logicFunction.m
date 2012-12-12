@@ -11,6 +11,17 @@ function [angleOut] = logicFunction( agentsArray, agentPosition, influenceSphere
 %   das Maximum dieser entstehenden Funktion genommen und der entsprechende
 %   Winkel zurückgegeben.
 
+%   This function calculates the direction in which an agent will move.
+%   Possible values are between -pi/2 to pi/2 whereby 0 means to the right
+%   and 180 to the left.
+%   agentPosition indicates for which agent it will be done.
+%   influenceSphere indicates, how big the regarded semi cycle of an array
+%   is.
+%   The function summs up the different influences of every agent that is
+%   inside of the influenceSphere. After this step the influences of the
+%   wall-agents inside the influenceSphere are added.  In the end, the
+%   maximum of these resulting functions is calculated and a resulting
+%   angle is returned.
     global ANGLE GAUSSANGLE DISPERSIONFACTOR
     len = length(agentsArray);
     radius = zeros(len,1);
