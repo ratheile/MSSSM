@@ -1,0 +1,72 @@
+function [] = defineConstants()
+%   defineConstants defines all global constants that will be used later
+%
+%   Change the constants with caution as the simulation can be very
+%   sensitive to some changes. After the variable definition, a reliable
+%   value is given with a short description of the influence of the
+%   constant variable on the simulation. Consult the documentation for a
+%   detailed description of the functioning of these constant variables.
+%   ntbc* stands for not to be changed. Changing them anyway will probably
+%   lead to a complete breakdown of the simulation.
+%
+%   WARNING: The standard deviation for speed and radius has to be at least 3 times smaller than 
+%   the corresponding mean. Otherwise unlogical results in the form of
+%   negative numbers will appear. This is not checked during the simulation.
+
+    global ANGLE GAUSSANGLE XSCOPE XRES XVALUES DELTAT...
+        HEIGHT SLOPEFACTOR WALLFACTOR AGENTANGLEOFFSET...
+        WALLANGLEOFFSET INFLUENCESPHERE PRECISIONCOLLISION...
+        SPEED MEANRADIUS STDRADIUS MEANSPEED STDSPEED WIDTH...
+        YSPB1 YSPB2 YSPT1 YSPT2 REP DENSITYUP DENSITYDOWN...
+        REPULSIONAGENT STANDOFF SEED DISPERSIONFACTOR LOOPS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Name & Value......................value.Description........................
+    XSCOPE = 120;                   % 120      How far one looks to the sides
+    XRES = 0.04;                    % 0.04      x-Resolution, possible angles for logical functions
+    XVALUES = -XSCOPE:XRES:XSCOPE;  % ntbc*     Generate all possible x-values
+    breite = 1;                     % 1         Standard deviation of Gaussian function determines the tendency to walk straightforwards
+    GAUSSANGLE = gaussmf(XVALUES,[breite 0]); % ntbc* Generate Gaussian function for direction
+    ANGLE = atan(XVALUES);          % ntbc* Calculate angular values for Gaussian function    
+    
+    HEIGHT = 4;                     % 4     Normalization factor in logical calculations for agents
+    SLOPEFACTOR = 8;                % 8     Parameter for other agents' influence
+    REPULSIONAGENT = 2;             % 2     Parameter for the repulsion between two agents. The higher it is, the higher HEIGHT has to be
+    WALLFACTOR = -0.05;             % -0.05 Parameter for walls' influence
+    AGENTANGLEOFFSET = pi/14;       % pi/14 Offset angle in angle calculations for agents
+    WALLANGLEOFFSET = pi/20;        % pi/20 Offset angle in angle calculations for walls
+    INFLUENCESPHERE = 2.5;          % 2.5   How far an agents "looks", in meters
+    PRECISIONCOLLISION = 4;         % 4     Numerical precision for collision detection
+    STANDOFF = -0.5;                % -0.5  "Strength" to resolve standoffs, must be negative
+    DISPERSIONFACTOR = 0.7;         % This constant variable determines the willingness of the agents to follow an agent in front of him walking in the same direction
+                                    % -0.2  A negative value will cause the agents to form lanes
+                                    % 0 	No influence of the agent in front
+                                    % 0.3 or 0.7    The agents will try to overtake a slower agent in front of them. Prone to the formation of jams for high values
+    DENSITYUP = 0.6;               % 0.4   Flux density of people walking up (in people/sec)
+    DENSITYDOWN = 0.5;            % 0.4   Flux density of people walking down (in people/sec)
+   
+    MEANRADIUS = 0.25;              % 0.25  Mean radius of the agents
+    STDRADIUS = 0.03;               % 0.03  Standard deviation of the distribution of radii
+    MEANSPEED = 1.5;                % 1.5   Mean speed of the agents in meters/second
+    STDSPEED = 0.25;                % 0.25  Standard deviation of the distribution of speeds
+
+    WIDTH = 2.8;                    % 2.8   Width of the field
+    YSPT2 = 30;                     % 30    Spawn line of the upper agents
+    %YSPT2--------                
+    %YSPT1--------
+    YSPT1 = 28;                     % 28    Arrival line for agents walking up
+    %
+    %Field here
+    %
+    YSPB2 = 2;                      % 2     Arrival line for agents walking down
+    %YSPB2--------
+    %YSPB1--------
+    YSPB1 = 0;                      % 0     Spawn line of the lower agents
+
+    DELTAT = 0.1;                   % 0.1   Iteration steps in seconds
+    REP = 10;                       % 10    Number of tries to spawn a new agent
+    LOOPS = 1800;                   % 500   Number of iteration steps
+    SEED = 51;                     %       Seed for random number generator
+    SPEED = 0.001;                  % 0.001 Time delay between two iterations in seconds
+end
+
+Mode utilized: normal -report
