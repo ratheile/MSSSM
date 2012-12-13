@@ -11,7 +11,7 @@ We had to build our implementation around several different desires:
 
 \noi According to those points, the simulation code grew to be a mixture between classes and cascaded functions. At the top is a file defining all the global constants called  \textit{defineConstants.m}. This approach is maybe not very correct in terms of a good programming style, but it makes it very simple to adjust smaller details and to keep an overview over all the constants necessary to make the model work and to specify the field the agents walk in. It also provides an easy way to store and therefore document each run by simply saving the file containing all constants to a text file. All constants and variables are considered to be in SI-Units, if not mentioned otherwise. This means that all position specifications are given in meters, the velocity in meters per second and so on. Of course, this is only an approximation of reality, but it makes comparisons possible and easy.\\
 
-\noi There are 3 classes implemented: \textit{simulation.m}, \textit{agent.m} and \textit{drawing.m}. A further description about these classes can be found in the table beneath or directly in the header of the class files. The rest of the code is split up into different logical functions.\\
+\noi There are 3 classes implemented: \textit{simulation.m}, \textit{agent.m} and \textit{drawing.m}. A further description about these classes can be found in the table beneath or directly in the header of the class files. The rest of the code is split up into different logical functions.\\[12px]
 \begin{tabular}{|l|p{7cm}|l|}
         \hline
         Class & Description & Parent \\ \hline
@@ -26,7 +26,7 @@ We had to build our implementation around several different desires:
 		drawing.m
 		& This class can draw a field containing agents.           
 		& Matlab "handle" class \\  \hline
-\end{tabular}\\
+\end{tabular}\\[12px]
 
 \noi The class diagram given in figure \ref{fig:classpackage} is a summary of the most important functions and properties in this project.\\
 
@@ -40,9 +40,9 @@ We had to build our implementation around several different desires:
 %simulation.m
 \subsubsection{Important classes to run the simulation}
 \noi The simulation class \textit{simulation.m} describes an object that wraps all the different possibilities of our simulation program. It's the starting point for a new simulation, runs this simulation and collects all the data requested from the agents and the simulated environment. The drawing class \textit{drawing.m} handles all graphical aspects of our simulation. The agent class \textit{agent.m} has a subchapter of its own because it fulfills a very different role than the two classes mentioned previously.\\
-The main flow of a run cycle is described in the activity diagram given in figure
+The main flow of a run cycle is described in the activity diagram given in figure \ref{fig:activityDiagram}.\\
 
-\ref{fig:activityDiagram}.\\
+
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.70\textwidth]{pictures/activityDiagram}
@@ -70,7 +70,7 @@ The main flow of a run cycle is described in the activity diagram given in figur
 \item \textsc{initialSpawn()}: Fills up the agent array with new \textit{agent.m} objects. They have priority 0 which corresponds to non-existing agents.
 \item \textsc{addNewAgentsToArray()}: Used to add new agents to the simulation while running.
 \item \textsc{balanceProbability()}: Balances the probabilities to spawn agents, if wanted to. It was replaced by spawning probabilities for top and bottom with given constant probability.
-\item \textsc{run()}: Main function to run a simulation after everything is set up and ready.
+\item \textsc{run()}: Main function to run a simulation after everything is set up and ready. This function should not be executed directly by the user. New simulations should be started with the \textsc{runMode()} function.
 \end{itemize}
 
 \noi See also the activity diagram (figure \ref{fig:activityDiagram}) for a better overview on how these method functions are used in the simulation.\\
@@ -108,20 +108,20 @@ Some simplifications and constraints on the model had to be introduced during th
 
 \subsection{How to run a simulation}
 To start a simulation, simply change to the "/code" directory in your local matlab installation. Then type "run" into the command window. This will set up a new simulation environment. This environment can be accessed trough the "sim" variable.\\
-The run script will ask for a "runmode" and whether you'd like to save the data. Supported runmodes are:\\
+The run script will ask for a "runmode" and whether you'd like to save the data. Supported runmodes are:\\[12px]
 \begin{tabular}{|p{3cm}|p{10cm}|}
       \hline
       normal & normal mode with many wall agents\\ \hline
       fasttest & faster mode with less wall agents \\ 
       \hline
-\end{tabular}\\
-\noi Supported parameters are:\\
+\end{tabular}\\[12px]
+\noi Supported parameters are:\\[12px]
 \begin{tabular}{|p{3cm}|p{10cm}|}
       \hline
       -nograph & simulation draws no graph, can be used if graphical output is not necessary.\\ \hline
       -report & additional report will be recorded\\ \hline
       -nodirections & removes the direction markers on top of the agents.\\
       \hline
-\end{tabular}\\
+\end{tabular}\\[12px]
 \noi A string could be for example: "normal -nograph -report". For a more detailed example please view the header of the run.m file. \\
 \noi If one wants to save the data, type "Y" when asked and type in the name of the location/filename where the data shall be stored to. As a default, they are saved into the sim folder. Then the \textit{defineConstants.m} file containing all the constants is saved as a .txt file with the runmode appended. After the simulation is finished, the workspace variables containing the "sim" variable are saved as a .mat file. The situation after the last iteration is drawn and saved as a .png file, also when the parameter -nograph was called. This allows a first visual check on how a run went.
