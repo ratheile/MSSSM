@@ -48,9 +48,28 @@ On the downside of this, we dropped the investigation into the behaviour of the 
 
 \subsection{Discussion}
 \subsubsection{Simulations}
+Overall, we were quite pleased with the results we got from our simulations as they mostly fulfilled our expectations. We could underscore the importance of the choice of a good set of parameters for our model to succeed. It is also possible, as in the case of \texttt{DISPFACTOR}, to change the result very drastically.\\
+To address the question whether our model is a good description of the reality even if it cannot descide on itself whether it should start something like a cooperative mode including lane formation or adapt an egoistic approach, we would like to state that the model is only as intelligent as the one who uses it. We leave it to the user of the simulation to set reasonable (and therefore also realistic) values for the global parameters which should match the situation one would like to research.\\
+
+\noi The main simulations concerning the modelling of an actual situation was very satisfying as it performed at least as good as reality. A criticism onto our implementation of the main station in Zurich could be that the flux of people arriving is always kept constant. People familiar with the main station in Zurich would know that there is a pedestrian traffic light just in from of the Burger King, therefore the simulation should probably be adapted to allowing intermittent people spawning with different people flux densities just after the red or green light at the traffic light.\\
+
+\noi It should be highlighted that we saw a big overall performance improvement once we introduced the preference for lane formation. This can be interpreted as implementing a social norm which states that one should back down a little bit from the egoistic main goal of crossing as fast as possible but work together in order to get an acceptable result for everyone.
 
 
 \subsubsection{Discussion on various implementational issues}
+As we created and implemented our model from scratch, there are obviously some undealt issues that would need some refinement if one wants an even better performance of the simulation as such.\\
 
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=0.90\textwidth]{pictures/exFails}
+	\caption{Graphical examples of instructive failures. Graphs were taken from the simulation series to test \texttt{DISPERSIONFACTOR}. In the left graph, we have in the top region the unrealistic situation where three agents block the whole hallway. On the right the earliest stage of a jam is visible with the three blue and one red agent standing in the middle at the right wall.}
+	\label{fig:exFails}
+\end{figure}
+
+\noi Probably the most important issue of all would be the need of implementing a smarter way to resolve standoffs or detect them earlier. We reckon that a good implementation of this should prove to be rather difficult as one has to distinguish between various cases with various ways to resolve them. This is visualized in figure \ref{fig:exFails} in the right graph. As soon as two (or more) agents totally immobilize each other, the are prone to form a jam.\\
+One would probably have to introduce walking backwards to resolve these situations. The effect of not being able to walk backwards is given in figure \ref{fig:exFails} in the left graph on the top in a very instructive way. Three red agents were able to totally freeze the simulation at the top, something that would never happen in reality.\\
+Another advantage of a good implementation would be that the runtime on the machine would not explode as it does with the current implementation as soon as a jam has formed. This is rooted in the consideration that all agents within a certain radius shall be considered. Then the logical routine would go over a lot of other agents, even though the agent will not be able to move anyway as he is stuck in a jam.\\
+
+\noi We used to different axis, a $x$- and a $\varphi$-axis as we thought this would make it significantly easier to model various aspects without the trouble of doing the transformation on paper and only use the $\varphi$-axis all the way. Also all angular values had to be discretized to their closest values the $\varphi$-axis has, which was done with the function \textit{closest.m}. This works fine as long as the simulation runs smoothly, but as soon as a jam was formed, the number of calls of \textit{closest.m} exploded. In one case, it was called over 2 million times for 1200 iteration steps in a simulation that had a matlab runtime of about 2 hours (with 4 Matlab instances running parallel).
 
 
