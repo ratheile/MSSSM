@@ -24,13 +24,13 @@ On the downside of this, we dropped the investigation into the behaviour of the 
 \input{ex1}
 
 \subsubsection{Influence of overtaking or lane formation on the success of the model}
-\input{ex2}
+\input{ex2}\label{ex2}
 
 \subsubsection{Influence of the radius of sight of an agent}
-\input{ex3}
+\input{ex3}\label{ex3}
 
 \subsubsection{Influence of the hallway width on the success of the simulation}
-\input{ex4}
+\input{ex4}\label{ex4}
 
 \subsubsection{Simulating measurements of the main station Zurich}
 \input{ex5}
@@ -47,11 +47,6 @@ To address the question whether our model is a good description of the reality e
 \noi The main simulations concerning the modelling of an actual situation was very satisfying as it performed at least as good as reality. A criticism onto our implementation of the main station in Zurich could be that the flux of people arriving is always kept constant. People familiar with the main station in Zurich would know that there is a pedestrian traffic light just in front of the Burger King, therefore the simulation should probably be adapted to allowing intermittent people spawning with different people flux densities just after the red or green light at the traffic light.\\
 
 \noi It should be highlighted that we saw a big overall performance improvement once we introduced the preference for lane formation. This can be interpreted as implementing a social norm which states that one should back down a little bit from the egoistic main goal of crossing as fast as possible but work together in order to get an acceptable result for everyone. Also, it is similar to the phenomenon sometimes observed that people have the tendency to walk on the right hand side of their walking direction, used to this by traffic.\\
-
-\noi 
-
-
-
 
 \subsubsection{Discussion on various implementational issues}
 As we created and implemented our model from scratch, there are obviously some undealt issues that would need refinement if one wants an even better performance of the simulation as such.\\
@@ -71,5 +66,8 @@ Another advantage of a good implementation would be that the runtime on the mach
 
 \noi It rarely happens during a simulation that an agent is in an impossible position. This is determined in the collision detection because the first of all calculated points is the position the agent stands on before moving. This was easier to implement and probably not significantly worse in system runtime than excluding it. In rare occasions, the collision detection determines that the agent could not stand at its actual position. We think that this happens due to some small roundoff errors or other computational mistakes.\\
 If the agent is at an impossible position, its position would freeze and cause everything around him not to work properly anymore. We could not think of an effective algorithm to resolve these conflicts because they would probably involve setting back the simulation by some iteration steps, so we decided to simply delete such an agent.\\
-We knew that it was not an elegant solution but could settle on the argument that the simulation would otherwise crash. And as the frequency of this occurrence is really small, we also thought that the number of disappearing agents could be neglected. For long simulations, this may not hold true any longer.
+We knew that it was not an elegant solution but could settle on the argument that the simulation would otherwise crash. And as the frequency of this occurrence is really small, we also thought that the number of disappearing agents could be neglected. For long simulations, this may not hold true any longer.\\
+
+It is worth mentioning that an optimization of all the global parameters is quite difficult as they are anything but independent of each other. Therefore we settled on parameters that seemed to work quite well without an extensive testing.
+
 
