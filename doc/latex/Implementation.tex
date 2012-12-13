@@ -24,7 +24,7 @@ The de-spawn-line indicates where agents coming from the other side will disappe
 
 \pagebreak
 \noi We adapted the model we used for our simulations to the given facts inside the main station concourse "Zürich HB" which are given in figure \ref{fig:situation_plan}. According to the measured distances we could calculate the average width of the passage ($l$ for length, $w$ for width):\[\frac{l_{Nordsee}*w_{Nordsee}+l_{Imagine}*w_{Imagine}+l_{BurgerKing}*w_{BurgerKing}}{l_{Nordsee}+l_{Imagine}+l_{BurgerKing}}=\]
-\[\frac{19*2.75+25*2.5+16*3.4}{19+25+16}= 2.819\]
+\[\frac{19*2.75+25*2.5+16*3.4}{19+25+16}\y{ m}= 2.819\y{ m}\]
 
 If one does extend the field with other obstacles or different shaped walls and if it is not possible to frame the new situation with a simple geometric structure, the wall agents have to be drawn again. This is currently disabled because it slows down the simulation speed, and because the straight walls can be easily substituted with a long small rectangle. Drawing wall-agents is very simple due to the fact that they are exactly the same object type like a normal, moving agent. One can combine the two arrays (wall-agents and the moving agents) and let it draw by the iteration loop.\\
 

@@ -60,6 +60,7 @@ As we created and implemented our model from scratch, there are obviously some u
 \end{figure}
 
 \noi Probably the most important issue of all would be the need of implementing a smarter way to resolve standoffs or detect them earlier. We reckon that a good implementation of this should prove to be rather difficult as one has to distinguish between various cases with various ways to resolve them. This is visualized in figure \ref{fig:exFails} in the right graph. As soon as two (or more) agents totally immobilize each other, they are prone to form a jam.\\
+
 One would probably have to introduce walking backwards to resolve these situations. The effect of not being able to walk backwards is given in figure \ref{fig:exFails} in the left graph on the top in a very instructive way. Three red agents were able to totally freeze the simulation at the top, something that would never happen in reality.\\
 Another advantage of a good implementation would be that the runtime on the machine would not explode as it does with the current implementation as soon as a jam has formed. This is rooted in the consideration that all agents within a certain radius shall be considered. Then the logical routine would do calculations over a lot of other agents, even though the agent will not be able to move anyway as he is stuck in a jam.\\
 
