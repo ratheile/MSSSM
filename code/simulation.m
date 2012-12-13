@@ -41,9 +41,8 @@ classdef simulation < handle
         evaluateTime;               %Time evaluation of the iteration.m
         
         %Properties
-        %EVT durch globals austauschen!!
         agentMinRadius = 0.25;      %Minimaler Radius von einem Agent
-        agentMaxSpeed;              %???
+        agentMaxSpeed;              %Used to initialize agents max speed
         
         
     end

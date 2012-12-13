@@ -14,9 +14,17 @@ To draw the field, the matlab API is used in a very basic way. Matlab supports t
 
 The field is defined by its wall agents. They could be in any shape. For example, if one wants to extend the field with an obstacle somewhere between the spawn lines it can be defined by adding wall-agents to the specific coordinates. The easiest way to do so is to modify the createWall() function (which currently creates wall-agents on the left and on the right side to simulate a hallway). Keep in mind that the coordinate system's zero point is on the lower left side. All wall agents are currently invisible.\\
 
+The de-spawn-line indicates where agents coming from the other side will disappear. We had to separate spawn and de-spawn areas because of possible positioning conflicts between arriving and new created agents.\\
+
+We adapted the model we used for our simulations to the given facts inside the main station concourse "Zürich HB". According to the measured distances we could calculate the average width of the passage ($l$ for length, $w$ for width):$$\frac{l_{Nordsee}*w_{Nordsee}+l_{Imagine}*w_{Imagine}+l_{BurgerKing}*w_{BurgerKing}}{l_{Nordsee}+l_{Imagine}+l_{BurgerKing}}=$$
+\vspace{6px}
+$$\frac{19*2.75+25*2.5+16*3.4}{19+25+16}= 2.819$$
+
 If one does extend the field with other obstacles or different shaped walls and if it is not possible to frame the new situation with a simple geometric structure, the wall agents have to be drawn again. This is currently disabled because it slows down the simulation speed, and because the straight walls can be easily substituted with a long small rectangle. Drawing wall-agents is very simple due to the fact that they are exactly the same object type like a normal, moving agent. One can combine the two arrays (wall-agents and the moving agents) and let it draw by the iteration loop.\\
 
-Currently, walls are coloured black, agents moving from top to bottom are painted in blue and those from bottom to top are red. The agent's direction indicators are painted black. All the distances are in meters.
+Currently, walls are coloured black, agents moving from top to bottom are painted in blue and those from bottom to top are red. The agent's direction indicators are painted black. All the distances are in meters.\\
+
+The proportions of a long narrow passage does not fit very well onto an usual computer monitor because the width-height ratios used for the passage in our simulations were up to 21:1. To prevent the images from being small and unclear we introduced a scaling factor variable called \textsc{xStretchFactor} with a default value of 5. This has some side effects one has to consider: Agents displayed as an oval are circles in the non transformed "real" environment. To obtain a better general overview about the situation one can set the \textsc{xStretchFactor} to 1 which resets the image to a compensated x/y ratio.
 
 %Description of the logical functions
 \subsection{Logical functions}\label{logic}
