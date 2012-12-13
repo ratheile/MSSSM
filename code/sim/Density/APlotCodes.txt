@@ -18,11 +18,11 @@ plot(0.1:0.1:120, AgentsInSystem1up04down1, 0.1:0.1:120, AgentsInSystem1up04down
 
 This one plots the average number of agents (of the three seeds) in the different densities against time
 "AAllAveragesInOnePlot"
-plot(0.1:0.1:120, AgentsInSystem1up1downAvg, 0.1:0.1:120, AgentsInSystem1up08downAvg, 0.1:0.1:120, AgentsInSystem1up06downAvg, 0.1:0.1:120, AgentsInSystem1up04downAvg, 0.1:0.1:120, AgentsInSystem08up08downAvg, 0.1:0.1:120, AgentsInSystem08up06downAvg, 0.1:0.1:120, AgentsInSystem08up04downAvg, 0.1:0.1:120, AgentsInSystem06up06downAvg, 0.1:0.1:120, AgentsInSystem06up04downAvg, 0.1:0.1:120, AgentsInSystem04up04downAvg); legend('1 up, 1 down','1 up, 0.8 down','1 up, 0.6 down','1 up, 0.4 down','0.8 up, 0.8 down','0.8 up, 0.6 down','0.8 up, 0.4 down','0.6 up, 0.6 down','0.6 up, 0.4 down','0.4 up, 0.4 down','Location','NorthWest'); xlabel('Time in Seconds'); ylabel('Number of Agents in System'); title('Number of agents compared with various densities');
+-> Code can be found in AAllAveragesInOnePlot.m
 
 This one plots the average #agents, divided per the sum of the densities, so it's a scaled version of the one above
 "AAllAveragesScaled"
-plot(0.1:0.1:120, AIS1up1downAvgScaled, 0.1:0.1:120, AIS1up08downAvgScaled, 0.1:0.1:120, AIS1up06downAvgScaled, 0.1:0.1:120, AIS1up04downAvgScaled, 0.1:0.1:120, AIS08up08downAvgScaled, 0.1:0.1:120, AIS08up06downAvgScaled, 0.1:0.1:120, AIS08up04downAvgScaled, 0.1:0.1:120, AIS06up06downAvgScaled, 0.1:0.1:120, AIS06up04downAvgScaled, 0.1:0.1:120, AIS04up04downAvgScaled); legend('1 up, 1 down','1 up, 0.8 down','1 up, 0.6 down','1 up, 0.4 down','0.8 up, 0.8 down','0.8 up, 0.6 down','0.8 up, 0.4 down','0.6 up, 0.6 down','0.6 up, 0.4 down','0.4 up, 0.4 down','Location','NorthWest'); xlabel('Time in Seconds'); ylabel('(Number of Agents in System):(densityup+densitydown)'); title('Number of agents compared with various densities, scaled');
+-> Code can be found in AAllAveragesScaled.m
 
 This one plots the mean distance (over all seeds), an agent had to walk in order to arrive, in comparison to the densities added up.
 "AMeanDistancesCompared"

@@ -32,4 +32,4 @@ And there are some plots:
 ## Plot commands
 Here are the Matlab codes for the plots:
 
-The Matlab codes can be found in the file APlotCodes.txt.
+The Matlab codes can be found in the file APlotCodes.txt, two of them were exported in scripts named after the plots they create.
