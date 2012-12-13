@@ -1,10 +1,10 @@
 % Influence of the radius of sight of an agent
 
-\noi In this test series, the constant variable INFLUENCESPHERE, which determines the radius of the semi-circle in which the agent considers other agents around him, was varied. First of all, the dependency between the influence sphere's radius and the total distance walked by all agents had to be evaluated.\\
+\noi In this test series, the constant variable \texttt{INFLUENCESPHERE}, which determines the radius of the semi-circle in which the agent considers other agents around him, was varied. First of all, the dependency between the influence sphere's radius and the total distance walked by all agents had to be evaluated.\\
 
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.80\textwidth]{pictures/ATotalDistanceInfluencesColoured.png}
+		\includegraphics[width=1.00\textwidth]{pictures/ATotalDistanceInfluencesColoured.png}
 	\caption{This plot shows the total distance covered by all agents in the system for different influence sphere radii and seeds in dependence of the simulation time. This distance decreases rapidly when a jam starts. To show the total distance's dependence on the influence sphere radius, each seed to a certain radius was coloured equally. One can see here that there is no clear dependence of the radii to the total distance as for every radius except 1.5 m there are seeds that work and seeds that don't, which means they had jams.}
 	\label{fig:InfluencesColoured}
 \end{figure}
@@ -13,7 +13,7 @@
 
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.80\textwidth]{pictures/ATotalDistanceSeedsColoured.png}
+		\includegraphics[width=1.00\textwidth]{pictures/ATotalDistanceSeedsColoured.png}
 	\caption{This plot shows the total distance covered by all agents in the system for different influence sphere radii and seeds in dependence of the simulation time. This distance decreases rapidly when a jam starts. To show the total distance's dependence on the seed, each radius to a certain seed was coloured equally. One can see here that whether a simulation jams or not seems to depend on the seed, as the seed 51 simulations all jammed independent of the radius, and for the other two seeds, there was only one radius that was different.}
 	\label{fig:SeedsColoured}
 \end{figure}
@@ -30,5 +30,5 @@
 \noi To investigate this further, the plot was now split up into 3 subplots with one for each seed as given in figure \ref{fig:SeedsOverview}. Again, this seems to show some dependency as assumed in figure \ref{fig:SeedsColoured}, but this could also be coincidence.\\
 Here, no dependency can be seen because with seed 51, every single simulation will cause jams. Seed 151 shows what one could expect to see: For a small influence sphere radius, a jam pops up. But seed 77 shows the exact opposite of this as here, the larger influence radii caused jams. So neither dependence nor tendency between influence sphere radius and total distance walked can be observed because of the opposing trends.\\
 
-\noi This leads us to think that coincidence played a main role here and shows us another thing: In our formulas weighing the influence of other agents on a specific agents, the weights are too big for very close agents in comparison to agents in a larger distance. This explains why larger radii didn't show the expected results: the additional influence of those agents was too little to matter. The assumption that our weighing function is not perfect can also be observed in any simulation: The agents walk straight forwards to each other for a long time and avoid each other only when they are very close to each other and not from a few meters ahead.\\
+\noi This leads us to think that coincidence played a main role here and shows us another thing: In our formulas weighing the influence of other agents on a specific agents, the weights are too big for very close agents in comparison to agents in a larger distance. This explains why larger radii didn't show the expected results: The additional influence of those agents was too small to matter. The assumption that our weighing function is not perfect can also be observed in any simulation: The agents walk straight forwards to each other for a long time and avoid each other only when they are very close to each other and not from a few meters ahead.\\
 \noi But thinking about the implementation, these results are not really surprising as we weighted short distance interactions quadratically, therefore the inclusion of more influences with a big distance will in comparison not have a big effect. This could change if the weighting would not be quadratic but maybe linear, but then the agents should bump into each other much more frequently.\\

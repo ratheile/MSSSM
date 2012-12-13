@@ -32,7 +32,7 @@ We had to build our implementation around several different desires:
 
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.70\textwidth]{pictures/classpackage}
+		\includegraphics[width=0.9\textwidth]{pictures/classpackage}
 	\caption{Class diagram of our model. From bottom to top we implemented a class \textit{agent.m}, \textit{drawing.m} and \textit{simulation.m}.}
 	\label{fig:classpackage}
 \end{figure}
@@ -45,7 +45,7 @@ The main flow of a run cycle is described in the activity diagram given in figur
 
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.70\textwidth]{pictures/activityDiagram}
+		\includegraphics[width=1.0\textwidth]{pictures/activityDiagram}
 	\caption{Activity diagram of our model.}
 	\label{fig:activityDiagram}
 \end{figure}
@@ -58,7 +58,7 @@ The main flow of a run cycle is described in the activity diagram given in figur
 \item \textsc{evaluateTime}: A vector used to evaluate the time an agent has spent in the simulation during its existence. %Noch beschreiben
 \item \textsc{evaluateDistance}: A vector used to evaluate the distance an agent has covered in the simulation during its existence. %Noch beschreiben
 \end{itemize}
-
+\pagebreak
 \noi All methods of the simulation class are listed here:
 \begin{itemize}
 \item \textsc{simulation()}: Constructor, sets up the object.
@@ -77,11 +77,12 @@ The main flow of a run cycle is described in the activity diagram given in figur
 
 %drawing.m
 \noi The drawing class \textit{drawing.m} basically adapts simple Matlab drawing functions and converts them into useful functions for this project. As a result it's very easy to draw the new situation after a simulation step by simply calling the method \textsc{plotStep()}.
+\pagebreak
 
 \subsubsection{Properties}
 Important properties are:
 \begin{itemize}
-\item \textsc{particleDensity}: Resolution for wall \textit{agent.m} objects in $\frac{\y{agents}}{\y{meter}}$.
+\item \textsc{particleDensity}: Resolution for wall \textit{agent.m} objects in agents per meter.
 \item \textsc{width}: The field width.
 \item \textsc{length}: The field length.
 \item \textsc{wallArray}: All the agent.m objects for the wall.

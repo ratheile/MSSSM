@@ -17,11 +17,12 @@ The field is defined by its wall agents. They could be in any shape. For example
 The de-spawn-line indicates where agents coming from the other side will disappear. We had to separate spawn and de-spawn areas because of possible positioning conflicts between arriving and new created agents.\\
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.90\textwidth]{pictures/situation_plan.jpg}
+		\includegraphics[width=1.00\textwidth]{pictures/situation_plan.jpg}
 	\caption{Scheme of the considered space in the main station of Zurich. Values are given in meters.}
 	\label{fig:situation_plan}
 \end{figure}
 
+\pagebreak
 \noi We adapted the model we used for our simulations to the given facts inside the main station concourse "Zürich HB" which are given in figure \ref{fig:situation_plan}. According to the measured distances we could calculate the average width of the passage ($l$ for length, $w$ for width):\[\frac{l_{Nordsee}*w_{Nordsee}+l_{Imagine}*w_{Imagine}+l_{BurgerKing}*w_{BurgerKing}}{l_{Nordsee}+l_{Imagine}+l_{BurgerKing}}=\]
 \[\frac{19*2.75+25*2.5+16*3.4}{19+25+16}= 2.819\]
 
@@ -32,6 +33,7 @@ Currently, walls are coloured black, agents moving from top to bottom are painte
 The proportions of a long narrow passage does not fit very well onto an usual computer monitor because the width-height ratios used for the passage in our simulations were up to 21:1. To prevent the images from being small and unclear we introduced a scaling factor variable called \textsc{xStretchFactor} with a default value of 5. This has some side effects one has to consider: Agents displayed as an oval are circles in the non transformed "real" environment. To obtain a better general overview about the situation one can set the \textsc{xStretchFactor} to 1 which resets the image to a compensated x/y ratio.
 
 %Description of the logical functions
+\pagebreak
 \subsection{Logical functions}\label{logic}
 \input{LogicFunctions.tex}
 

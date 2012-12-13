@@ -57,6 +57,7 @@ To avoid hitting the wall, we used a very simple approach. Every angle correspon
 \end{equation}
 \noi As before for agents, an offset is introduced so the agent in question doesn't just try to avoid the wall-agent but also to leave some buffer space. The offset is also given in \texttt{WALLANGLEOFFSET}, $a$ can be accessed with the constant variable \texttt{WALLFACTOR}. $a$ has to be set negative as otherwise the wall would have an attracting force. To set a good value for this factor $a$ is quite delicate because if it is too low, agents will be stuck in the wall while if it too high, they will never approach the wall even slightly. 
 
+\pagebreak
 \subsubsection{Calculating functions in $x$ and transforming them into a polar axis in $\varphi$}
 \begin{figure}[h!]
 	\centering
@@ -67,8 +68,6 @@ To avoid hitting the wall, we used a very simple approach. Every angle correspon
 \end{figure}
 
 \noi As the functions given above are given in $x$ but the direction to go on is determined in polar values, it needs to be transformed into a $\varphi$ axis. This is done using a vector for $x$ ranging $\pm$ \texttt{XSCOPE} with a step of \texttt{XRES}. Applying the arcustangent on it yields the axis in angular values ($\varphi$). The transforming is done simply by using the $\varphi$ axis instead of the $x$ axis. This is shown in the two figures \ref{fig:Bsp2} and \ref{fig:Bsp2Out}. As those functions are only chosen to show the principle, they were not normalized in height according to the equations mentioned above.\\
-In figure \ref{fig:Bsp2}, the function (\ref{logik1}) is shown graphically in the $x$ as well as $\varphi$ axis. Figure \ref{fig:Bsp2Out} shows the $x_\y{out}$ the function \textit{xValuesLogic.m} returns.
-
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.40\textwidth]{pictures/Bsp2Out}
@@ -77,11 +76,15 @@ In figure \ref{fig:Bsp2}, the function (\ref{logik1}) is shown graphically in th
 	\label{fig:Bsp2Out}
 \end{figure}
 
+In figure \ref{fig:Bsp2}, the function (\ref{logik1}) is shown graphically in the $x$ as well as $\varphi$ axis. Figure \ref{fig:Bsp2Out} shows the $x_\y{out}$ the function \textit{xValuesLogic.m} returns.
+
+
+
 \subsubsection{Graphical example}
 This subchapter shall give a visual example of how the logic functions work. Let's consider the situation given in figure \ref{fig:Bsp1}.
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.40\textwidth]{pictures/Bsp1}
+		\includegraphics[width=0.45\textwidth]{pictures/Bsp1}
 	\caption{Exemplary case used to demonstrate the working principle of the logic functions.}
 	\label{fig:Bsp1}
 \end{figure}
@@ -89,7 +92,7 @@ This subchapter shall give a visual example of how the logic functions work. Let
 \noi The blue agent moving up in figure \ref{fig:Bsp1} only sees the influence of the wall. What the blue agent "sees" is given in figure \ref{fig:Bsp1LinksUnten}. The influence of the wall causes the overall function to decrease for all $\varphi$ corresponding to a collision course. The offset causes the overall function to have its maximum $\alpha$ at a positive $\varphi$. This causes the agent to walk in the direction of $\alpha$.\\
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.40\textwidth]{pictures/Bsp1LinksUnten}
+		\includegraphics[width=0.4\textwidth]{pictures/Bsp1LinksUnten}
 	\caption{Output of all logic functions combined for the blue agent in figure \ref{fig:Bsp1}. Visible is the effect of wall agents on the blue agent as negative values on the left side.}
 	\label{fig:Bsp1LinksUnten}
 \end{figure}
