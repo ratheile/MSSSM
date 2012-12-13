@@ -41,8 +41,8 @@ function [] = defineConstants()
                                     % -0.2  A negative value will cause the agents to form lanes
                                     % 0 	No influence of the agent in front
                                     % 0.3 or 0.7    The agents will try to overtake a slower agent in front of them. Prone to the formation of jams for high values
-    DENSITYUP = 0.34;               % 0.4   Flux density of people walking up (in people/sec)
-    DENSITYDOWN = 0.275;            % 0.4   Flux density of people walking down (in people/sec)
+    DENSITYUP =0.4;                 % 0.4   Flux density of people spawned on the upper line (in people/sec)
+    DENSITYDOWN = 0.4;              % 0.4   Flux density of people spawned on the lower line (in people/sec)
    
     MEANRADIUS = 0.25;              % 0.25  Mean radius of the agents
     STDRADIUS = 0.03;               % 0.03  Standard deviation of the distribution of radii
@@ -65,6 +65,6 @@ function [] = defineConstants()
     DELTAT = 0.1;                   % 0.1   Iteration steps in seconds
     REP = 10;                       % 10    Number of tries to spawn a new agent
     LOOPS = 1800;                   % 500   Number of iteration steps
-    SEED = 451;                     %       Seed for random number generator
+    SEED = 113;                     %       Seed for random number generator
     SPEED = 0.001;                  % 0.001 Time delay between two iterations in seconds
 end
