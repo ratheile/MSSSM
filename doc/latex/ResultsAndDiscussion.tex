@@ -1,29 +1,22 @@
 %ResultsAndDiscussion
 
-%vgl. auch Introduction and Motivation
-%vgl. auch Abstract
-%had to drop some of our goals because we wanted to build everything up on our own.
-%erwähnen (zB bei discussion), dass Imagine und Nordshizzle während Christkindmarkt jetzt die Tische/Stühle aus dem Weg räumen!
-%beachten, dass wir mit "jeder läuft alleine" statt "es gibt auch Gruppen von Leuten" eine ziemlich starke Einschränkung/Vereinfachung vorgenommen haben!
-
-%Discussion
 \subsection{Goals}
 First, let's have a look at what our goals were. We planned to have a look at the pedestrian flux, how it can be improved and jammings be avoided. We furthermore wanted to have a closer look to what happens during rush-hours and in a situation when much more people are moving in one direction than in the other.\\
 On the agent-based side of our model, we wanted to analyze the influence of aggressive fast people in a rush, slowly moving obstacles (eg. mothers with baby buggies) and the influence of drunkard (more or less randomized walking) on the pedestrian flux.\\
 If everything went well, we also wanted to implement a static obstacle and see what happens. As a reminder before the discussion of the results, our fundamental research questions were:
 \begin{itemize}
 \item How does the simulation behave in the following situations: rush hour, with obstacle, with very slow/fast agents, random path agent (drunkard)? Does it run smoothly or will ther be jams?
-\item How will our implementation of a rudimentary kind of "`thinking ahead"' affect the simulation? Will it work good or bad? Can we compare it to other implementations?
+\item How will our implementation of a rudimentary kind of "thinking ahead" affect the simulation? Will it work good or bad? Can we compare it to other implementations?
 \item Are there any group dynamics evolving as lane or group formation?
 \end{itemize}
 
 \subsection{General achievements}
-As soon as we started programming we realized there was a major point of importance about this work we all were aware of, but had forgot to put it in the project proposal. We all did not want to start with an already known program or existing algorithms, but build something "new". So we started off creating our logic function that would allow the agents to avoid crashing into other agents and not working with repulsive forces as for example Helbing (Quelle angeben, ist das älteste Paper) did.\\
+As soon as we started programming we realized there was a major point of importance about this work we all were aware of, but had forgot to put it in the project proposal. We all did not want to start with an already known program or existing algorithms, but build something "new" on our own. So we started off creating our logic function that would allow the agents to avoid crashing into other agents and not working with repulsive forces as for example Helbing in \ref{helbing} did.\\
 Quite proudly, we can now say we managed to do this. Our idea of the agents "thinking ahead" by consulting where other agents are and not just being pushed around by repulsive forces worked.\\
 We now are able to play with lots of input variables, the most important being number of agents entering the corridor per time and the agents' characteristics as size, speed and lots more.\\
-A nice thing we built but did not originally plan to is that we planned to and did research on the sitation as explained earlier in the long, narrow corridor in Zurich mainstation. But in our simulation, one can also change dimensions as length and shape of the walls easily.\\
+A nice thing we built but did not originally plan to is that we planned to and did research on the situation as explained earlier in the long, narrow corridor in Zurich main station. But in our simulation, one can also change dimensions as length and shape of the walls easily as well as inserting obstacles.\\
 
-\noi We therefore decided to make first of all sure that the model works and what are its operating parameters. This meant that we had to drop a lot of our former goals because we did not want to carry on with a faulty model. Therefore we have included some results that were not included in our first questions we set out to answer in the beginning.\\
+\noi We therefore decided first of all to make sure that the model works and what its operating parameters are. This meant that we had to drop a lot of our former goals because we did not want to carry on with a faulty model. Therefore we have included some results that were not included in our first questions we set out to answer in the beginning.\\
 On the downside of this, we dropped the investigation into the behaviour of the pedestrian flux when exposed to aggressive, slow or random people. Even though these situations were not simulated, the functionality to introduce them without much work was implemented into the model as they were considered when we built our model.
 
 \subsection{Results from the simulation series}
@@ -31,13 +24,13 @@ On the downside of this, we dropped the investigation into the behaviour of the 
 \input{ex1}
 
 \subsubsection{Influence of overtaking or lane formation on the success of the model}
-\input{ex2}
+\input{ex2}\label{ex2}
 
 \subsubsection{Influence of the radius of sight of an agent}
-\input{ex3}
+\input{ex3}\label{ex3}
 
 \subsubsection{Influence of the hallway width on the success of the simulation}
-\input{ex4}
+\input{ex4}\label{ex4}
 
 \subsubsection{Simulating measurements of the main station Zurich}
 \input{ex5}
@@ -48,32 +41,38 @@ On the downside of this, we dropped the investigation into the behaviour of the 
 
 \subsection{Discussion}
 \subsubsection{Simulations}
-Overall, we were quite pleased with the results we got from our simulations as they mostly fulfilled our expectations. We could underscore the importance of the choice of a good set of parameters for our model to succeed. It is also possible, as in the case of \texttt{DISPFACTOR}, to change the result very drastically.\\
-To address the question whether our model is a good description of the reality even if it cannot descide on itself whether it should start something like a cooperative mode including lane formation or adapt an egoistic approach, we would like to state that the model is only as intelligent as the one who uses it. We leave it to the user of the simulation to set reasonable (and therefore also realistic) values for the global parameters which should match the situation one would like to research.\\
+Overall, we were quite pleased with the results we got from our simulations as they mostly fulfilled our expectations. We could underscore the importance of the choice of a good set of parameters for our model to succeed. It is also possible, as in the case of \texttt{DISPFACTOR}, that parameter changes can change the result drastically.\\
+To address the question whether our model is a good description of the reality even if it cannot decide on itself whether it should start something like a cooperative mode including lane formation or adapt an egoistic approach, we would like to state that the model is only as intelligent as the one who uses it. We leave it to the user of the simulation to set reasonable (and therefore also realistic) values for the global parameters which should match the situation one would like to research.\\
 
-\noi The main simulations concerning the modelling of an actual situation was very satisfying as it performed at least as good as reality. A criticism onto our implementation of the main station in Zurich could be that the flux of people arriving is always kept constant. People familiar with the main station in Zurich would know that there is a pedestrian traffic light just in from of the Burger King, therefore the simulation should probably be adapted to allowing intermittent people spawning with different people flux densities just after the red or green light at the traffic light.\\
+\noi The main simulations concerning the modelling of an actual situation was very satisfying as it performed at least as good as reality. A criticism onto our implementation of the main station in Zurich could be that the flux of people arriving is always kept constant. People familiar with the main station in Zurich would know that there is a pedestrian traffic light just in front of the Burger King, therefore the simulation should probably be adapted to allowing intermittent people spawning with different people flux densities just after the red or green light at the traffic light.\\
 
-\noi It should be highlighted that we saw a big overall performance improvement once we introduced the preference for lane formation. This can be interpreted as implementing a social norm which states that one should back down a little bit from the egoistic main goal of crossing as fast as possible but work together in order to get an acceptable result for everyone.
-
+\noi It should be highlighted that we saw a big overall performance improvement once we introduced the preference for lane formation. This can be interpreted as implementing a social norm which states that one should back down a little bit from the egoistic main goal of crossing as fast as possible but work together in order to get an acceptable result for everyone. Also, it is similar to the phenomenon sometimes observed that people have the tendency to walk on the right hand side of their walking direction, used to this by traffic.\\
 
 \subsubsection{Discussion on various implementational issues}
-As we created and implemented our model from scratch, there are obviously some undealt issues that would need some refinement if one wants an even better performance of the simulation as such.\\
+As we created and implemented our model from scratch, there are obviously some undealt issues that would need refinement if one wants an even better performance of the simulation as such.\\
 
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.90\textwidth]{pictures/exFails}
-	\caption{Graphical examples of instructive failures. Graphs were taken from the simulation series to test \texttt{DISPERSIONFACTOR}. In the left graph, we have in the top region the unrealistic situation where three agents block the whole hallway. On the right the earliest stage of a jam is visible with the three blue and one red agent standing in the middle at the right wall.}
+	\caption{Graphical examples of instructive failures. Graphs were taken from the simulation series to test \texttt{DISPERSIONFACTOR}. In the left graph, we have in the top region of the hallway the unrealistic situation where three agents block the whole hallway. On the right, the earliest stage of a jam is visible with the three blue and one red agent standing in the middle at the right wall. This situation won't resolve and so, a jam will start because agents walking into them from behind will get stuck too.}
 	\label{fig:exFails}
 \end{figure}
 
-\noi Probably the most important issue of all would be the need of implementing a smarter way to resolve standoffs or detect them earlier. We reckon that a good implementation of this should prove to be rather difficult as one has to distinguish between various cases with various ways to resolve them. This is visualized in figure \ref{fig:exFails} in the right graph. As soon as two (or more) agents totally immobilize each other, the are prone to form a jam.\\
+\noi Probably the most important issue of all would be the need of implementing a smarter way to resolve standoffs or detect them earlier. We reckon that a good implementation of this should prove to be rather difficult as one has to distinguish between various cases with various ways to resolve them. This is visualized in figure \ref{fig:exFails} in the right graph. As soon as two (or more) agents totally immobilize each other, they are prone to form a jam.\\
 One would probably have to introduce walking backwards to resolve these situations. The effect of not being able to walk backwards is given in figure \ref{fig:exFails} in the left graph on the top in a very instructive way. Three red agents were able to totally freeze the simulation at the top, something that would never happen in reality.\\
-Another advantage of a good implementation would be that the runtime on the machine would not explode as it does with the current implementation as soon as a jam has formed. This is rooted in the consideration that all agents within a certain radius shall be considered. Then the logical routine would go over a lot of other agents, even though the agent will not be able to move anyway as he is stuck in a jam.\\
+Another advantage of a good implementation would be that the runtime on the machine would not explode as it does with the current implementation as soon as a jam has formed. This is rooted in the consideration that all agents within a certain radius shall be considered. Then the logical routine would do calculations over a lot of other agents, even though the agent will not be able to move anyway as he is stuck in a jam.\\
 
-\noi We used to different axis, a $x$- and a $\varphi$-axis as we thought this would make it significantly easier to model various aspects without the trouble of doing the transformation on paper and only use the $\varphi$-axis all the way. Also all angular values had to be discretized to their closest values the $\varphi$-axis has, which was done with the function \textit{closest.m}. This works fine as long as the simulation runs smoothly, but as soon as a jam was formed, the number of calls of \textit{closest.m} exploded. In one case, it was called over 2 million times for 1200 iteration steps in a simulation that had a matlab runtime of about 2 hours (with 4 Matlab instances running parallel).\\
+\noi We used two different axis, a $x$- and a $\varphi$-axis as we thought this would make it significantly easier to model various aspects without the trouble of doing the transformation on paper and only use the $\varphi$-axis all the way. Also all angular values had to be discretized to their closest values the $\varphi$-axis has, which was done with the function \textit{closest.m}. This works fine as long as the simulation runs smoothly, but as soon as a jam was formed, the number of calls of \textit{closest.m} exploded. In one case, it was called over 2 million times for 1200 iteration steps in a simulation that had a matlab runtime of about 2 hours (with 4 Matlab instances running parallel).\\
 
 \noi It rarely happens during a simulation that an agent is in an impossible position. This is determined in the collision detection because the first of all calculated points is the position the agent stands on before moving. This was easier to implement and probably not significantly worse in system runtime than excluding it. In rare occasions, the collision detection determines that the agent could not stand at its actual position. We think that this happens due to some small roundoff errors or other computational mistakes.\\
-If the agent is at an impossible position, its position would freeze and cause everything around him not to work properly anymore. We could not think of an effective algorithm to resolve these conflicts because they would probably involve setting back the simulation by some iteration steps and simply deleted the agent.\\
-We knew that it was not an elegant solution but could settle on the argument that the simulation would otherwise crash. And as the freuency of this occurence is really small, we also thought that the number of disappearing agents could be neglected. For long simulations, this may not hold true anymore.
+If the agent is at an impossible position, its position would freeze and cause everything around him not to work properly anymore. We could not think of an effective algorithm to resolve these conflicts because they would probably involve setting back the simulation by some iteration steps, so we decided to simply delete such an agent.\\
+We knew that it was not an elegant solution but could settle on the argument that the simulation would otherwise crash. And as the frequency of this occurrence is really small, we also thought that the number of disappearing agents could be neglected. For long simulations, this may not hold true any longer.\\
+
+It is worth mentioning that an optimization of all the global parameters is quite difficult as they are anything but independent of each other. Therefore we settled on parameters that seemed to work quite well without an extensive testing.
 
 
+\subsubsection{Discussion on our research questions}
+As explained earlier, we had to drop some of our goals, especially those about specifying agents (slow, fast, aggressive, drunk), for the sake of building our own new simulation. We assume this to be a good decision as our model works nicely and can be varied in lots of ways. Nevertheless, we were able to answer lots of our questions about jams, the influence of the hallways width, agent densities and few agents walking against lots of others.\\
+Our agents turned out to walk quite smart with their rudimentary kind of looking ahead what is in front of them. As this was our main idea on how to determine their way to walk, we cannot compare it to other data, but we can see that our implementation works nicely.\\
+The last question we were interested in was whether group dynamics or similar behaviours showed. This could be observed in lots of lane formations and also some kind of group formation when few agents had to walk against lots of agents.\\
+As for our research questions that arose when we started to build up a model on our own, we can say that the looking ahead as a rudimentary kind of intelligence turned out to work well as in this situation, there is no need of a path finding algorithm or similar things. We managed to simulate the main station situation and derive statements, e.g. that less jams would occur if the hallway was a bit wider, which can be observed in reality as during Christmas market days, Imagine and Nordsee removed their tables and chairs outside, which resulted in a wider hallway and more space to walk in.
