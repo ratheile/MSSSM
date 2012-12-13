@@ -29,7 +29,7 @@ The heart of the simulation is the function \textit{logicFunction.m}, which dete
 \end{equation}
 \noi This works between agents as well as between agents and the wall agents. Care was taken to engineer a calculation that allows for it to be used for agents walking in both directions.
 
-\subsubsection{xValuesLogic.m}
+\subsubsection{Calculation of the interaction with another dynamic agents}
 \text{xValuesLogic.m} distinguishes three different cases.
 \begin{itemize}
 	\item For two crossing agents or if the agent in front of the agent in question is slower, we used equation (\ref{logik1}) to get $x_\y{out}'$. It was also used for two not moving agents, setting $\Delta v$ equal to an arbitrary value given in \texttt{STANDOFF}. This was a quick way to resolve standoffs, although this would eventually turn out to be in its actual form an Achilles heel of the model.
@@ -50,7 +50,7 @@ The heart of the simulation is the function \textit{logicFunction.m}, which dete
 \end{itemize}
 
 
-\subsubsection{xWallLogic.m}
+\subsubsection{Calculation of the interaction with a wall agents}
 To avoid hitting the wall, we used a very simple approach. Every angle corresponding to a collision course is set to a negative value accoring to equation (\ref{logik8}).
 \begin{equation}\label{logik8}
 	x_\y{Out} = x \cdot \frac{a}{d - rS}
