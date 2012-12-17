@@ -1,4 +1,4 @@
 # Presentation Folder 
 
-Our presentation and additional material we might use for it will be added here.  
-The oral presentation will probably be in the afternoon of Dec 19th.
+Our presentation and additional material we use for it (except the things already included in the presentation and the matlab code) is in here.  
+The oral presentation is Dec 19th, 16.50-17.10.
