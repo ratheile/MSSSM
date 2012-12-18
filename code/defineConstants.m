@@ -34,15 +34,15 @@ function [] = defineConstants()
     WALLFACTOR = -0.05;             % -0.05 Parameter for walls' influence
     AGENTANGLEOFFSET = pi/14;       % pi/14 Offset angle in angle calculations for agents
     WALLANGLEOFFSET = pi/20;        % pi/20 Offset angle in angle calculations for walls
-    INFLUENCESPHERE = 2.5;          % 2.5   How far an agents "looks", in meters
+    INFLUENCESPHERE = 3;            % 2.5   How far an agents "looks", in meters
     PRECISIONCOLLISION = 4;         % 4     Numerical precision for collision detection
     STANDOFF = -0.5;                % -0.5  "Strength" to resolve standoffs, must be negative
     DISPERSIONFACTOR = 0.7;         % This constant variable determines the willingness of the agents to follow an agent in front of him walking in the same direction
                                     % -0.2  A negative value will cause the agents to form lanes
                                     % 0 	No influence of the agent in front
                                     % 0.3 or 0.7    The agents will try to overtake a slower agent in front of them. Prone to the formation of jams for high values
-    DENSITYUP =0.4;                 % 0.4   Flux density of people spawned on the upper line (in people/sec)
-    DENSITYDOWN = 0.4;              % 0.4   Flux density of people spawned on the lower line (in people/sec)
+    DENSITYUP = 1;                  % 0.4   Flux density of people spawned on the upper line (in people/sec)
+    DENSITYDOWN = 1;                % 0.4   Flux density of people spawned on the lower line (in people/sec)
    
     MEANRADIUS = 0.25;              % 0.25  Mean radius of the agents
     STDRADIUS = 0.03;               % 0.03  Standard deviation of the distribution of radii
@@ -64,7 +64,7 @@ function [] = defineConstants()
 
     DELTAT = 0.1;                   % 0.1   Iteration steps in seconds
     REP = 10;                       % 10    Number of tries to spawn a new agent
-    LOOPS = 1800;                   % 500   Number of iteration steps
-    SEED = 113;                     %       Seed for random number generator
+    LOOPS = 250;                    % 500   Number of iteration steps
+    SEED = 51;                      %       Seed for random number generator
     SPEED = 0.001;                  % 0.001 Time delay between two iterations in seconds
 end
